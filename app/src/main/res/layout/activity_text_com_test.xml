@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_text_com_test"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.xyz.practiceandlearn.TextComTestActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txttime6"
+            android:textSize="20sp"
+            android:layout_alignParentLeft="true"
+            android:text=""/>
+
+
+        <TextView
+            android:id="@+id/txtnum6"
+            android:textSize="20sp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/txtScriptTextCom_test"
+            android:layout_marginLeft="15dp"
+            android:layout_below="@id/txtnum6"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/relativeQuestion1_TextCom_test"
+            android:layout_below="@+id/txtScriptTextCom_test"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtQuestion1_TextCom_test"
+                android:text=""
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="25dp"/>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/rdoGroupA_TextCom_test"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/txtQuestion1_TextCom_test">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/rdoA_TextCom_test"
+                    android:text="A."
+                    android:layout_marginLeft="15dp" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rdoB_TextCom_test"
+                    android:text="B."
+                    android:layout_marginLeft="15dp" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rdoC_TextCom_test"
+                    android:text="C."
+                    android:layout_marginLeft="15dp"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rdoD_TextCom_test"
+                    android:text="D."
+                    android:layout_marginLeft="15dp"/>
+
+            </RadioGroup>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/relativeQuestion2_TextCom_test"
+            android:layout_below="@+id/relativeQuestion1_TextCom_test"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtQuestionB_TextCom_test"
+                android:text=""
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dp"/>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/rdoGroupB_TextCom_test"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/txtQuestionB_TextCom_test">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rdoA2_TextCom_test"
+                    android:text="A."
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rdoB2_TextCom_test"
+                    android:text="B."
+                    android:layout_marginLeft="15dp" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rdoC2_TextCom_test"
+                    android:text="C."
+                    android:layout_marginLeft="15dp"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rdoD2_TextCom_test"
+                    android:text="D."
+                    android:layout_marginLeft="15dp"/>
+
+            </RadioGroup>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/relativeQuestion2_TextCom_test"
+            android:id="@+id/relativeQuestion3_TextCom_test"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtQuestionC_TextCom_test"
+                android:text=""
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dp"/>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/rdoGroupC_TextCom_test"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/txtQuestionC_TextCom_test" >
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rdoA3_TextCom_test"
+                    android:text="A."
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rdoB3_TextCom_test"
+                    android:text="B."
+                    android:layout_marginLeft="15dp" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rdoC3_TextCom_test"
+                    android:text="C."
+                    android:layout_marginLeft="15dp"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rdoD3_TextCom_test"
+                    android:text="D."
+                    android:layout_marginLeft="15dp"/>
+
+            </RadioGroup>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relativeQuestion3_TextCom_test"
+            android:layout_marginTop="20dp" >
+
+            <Button
+                android:text="Back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginStart="25dp"
+                android:id="@+id/btnBack6_test"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <Button
+                android:text="Next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnNext6_test"
+                android:layout_marginRight="25dp"
+                android:layout_alignParentRight="true" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

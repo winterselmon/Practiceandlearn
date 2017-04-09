@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Practice and Learn</string>
+    <string-array name="list_1">
+        <item>Photos</item>
+        <item>Question and Response</item>
+        <item>Short Conversation</item>
+        <item>Short Talk</item>
+        <item>Incomplete Sentences</item>
+        <item>Text Completion</item>
+        <item>Reading Comprehension</item>
+    </string-array>
+</resources>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_incomplete_sentence"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.xyz.practiceandlearn.IncompleteSentenceActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="45dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="25dp"
+            android:id="@+id/txtQuestion_Incomplete" />
+
+        <RadioGroup
+            android:id="@+id/rdoGroup_Incomplete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtQuestion_Incomplete"
+            android:layout_alignLeft="@+id/txtQuestion_Incomplete"
+            android:layout_alignStart="@+id/txtQuestion_Incomplete"
+            android:layout_marginTop="25dp" >
+
+            <RadioButton
+                android:text=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rdoA_Incomplete"
+                android:layout_weight="1" />
+
+            <RadioButton
+                android:text=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rdoB_Incomplete"
+                android:layout_weight="1" />
+
+            <RadioButton
+                android:text=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rdoC_Incomplete"
+                android:layout_weight="1" />
+
+            <RadioButton
+                android:text=""
+                android:id="@+id/rdoD_Incomplete"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </RadioGroup>
+
+        <TextView
+            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/rdoGroup_Incomplete"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="25dp"
+            android:id="@+id/txtDes_Incomplete" />
+
+        <Button
+            android:text="Back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_below="@id/txtDes_Incomplete"
+            android:id="@+id/btnBack5"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+
+
+        <Button
+            android:text="Ans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnAns5"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/btnBack5"
+            android:layout_toEndOf="@+id/btnBack5" />
+
+        <Button
+            android:text="Next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnNext5"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/btnAns5"
+            android:layout_toEndOf="@+id/btnAns5" />
+
+    </RelativeLayout>
+
+</ScrollView>

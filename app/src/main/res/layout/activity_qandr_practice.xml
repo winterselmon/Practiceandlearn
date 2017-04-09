@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_qandr_practice"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.xyz.practiceandlearn.QandrPracticeActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Listen to a question and choose the best response"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="45dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="25dp"
+            android:id="@+id/txtQuestion_QandR" />
+
+        <RadioGroup
+            android:id="@+id/rdoGroup2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtQuestion_QandR"
+            android:layout_alignLeft="@+id/txtQuestion_QandR"
+            android:layout_alignStart="@+id/txtQuestion_QandR"
+            android:layout_marginTop="25dp" >
+
+            <RadioButton
+                android:text="A.Listen and choose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rdoA2"
+                android:layout_weight="1" />
+
+            <RadioButton
+                android:text="B.Listen and choose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rdoB2"
+                android:layout_weight="1" />
+
+            <RadioButton
+                android:text="C.Listen and choose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rdoC2"
+                android:layout_weight="1" />
+
+        </RadioGroup>
+
+        <TextView
+            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/rdoGroup2"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="25dp"
+            android:id="@+id/txtDes" />
+
+        <Button
+            android:text="Back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_below="@id/txtDes"
+            android:id="@+id/btnBack2"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:text="Play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnPlay2"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/btnBack2"
+            android:layout_toEndOf="@+id/btnBack2" />
+
+        <Button
+            android:text="Ans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnAns2"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/btnPlay2"
+            android:layout_toEndOf="@+id/btnPlay2" />
+
+        <Button
+            android:text="Next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnNext2"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/btnAns2"
+            android:layout_toEndOf="@+id/btnAns2" />
+
+    </RelativeLayout>
+
+</ScrollView>

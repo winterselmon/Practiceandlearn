@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_qandr_test"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.xyz.practiceandlearn.QandrTestActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txttime2"
+            android:textSize="20sp"
+            android:layout_alignParentLeft="true"
+            android:text=""/>
+
+        <TextView
+            android:id="@+id/txtnum2"
+            android:textSize="20sp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="Listen to a question and choose the best response"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:paddingRight="15dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="25dp"
+        android:id="@+id/txtQuestion_QandR_test" />
+
+    <RadioGroup
+        android:id="@+id/rdoGroup2_qandr_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtQuestion_QandR_test"
+        android:layout_alignLeft="@+id/txtQuestion_QandR_test"
+        android:layout_alignStart="@+id/txtQuestion_QandR_test"
+        android:layout_marginTop="25dp" >
+
+        <RadioButton
+            android:text="A.Listen and choose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rdoA2_qandr_test"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:text="B.Listen and choose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rdoB2_qandr_test"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:text="C.Listen and choose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rdoC2_qandr_test"
+            android:layout_weight="1" />
+
+    </RadioGroup>
+
+    <Button
+        android:text="Back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_below="@id/rdoGroup2_qandr_test"
+        android:id="@+id/btnBack2_qandr_test"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+        <Button
+            android:text="Next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnNext2_qandr_test"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dp" />
+
+    </RelativeLayout>
+
+</ScrollView>
