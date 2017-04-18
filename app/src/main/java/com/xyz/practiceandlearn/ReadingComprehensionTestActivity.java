@@ -203,8 +203,9 @@ public class ReadingComprehensionTestActivity extends AppCompatActivity {
 
                 if (Global.currentposition > maxrow) {
                     Global.currentposition = 0;
-                    Intent intent = new Intent(ReadingComprehensionTestActivity.this, ReadingComprehensionTestActivity.class);
-                    startActivity(intent);
+                    sumScore();
+                    //Intent intent = new Intent(ReadingComprehensionTestActivity.this, ReadingComprehensionTestActivity.class);
+                    //startActivity(intent);
                 } else {
 
                     ScrollView scrollView = (ScrollView) findViewById(R.id.activity_reading_comprehension_test);
@@ -226,6 +227,16 @@ public class ReadingComprehensionTestActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void sumScore(){
+        int score = 0;
+        for ( int i = 0; i < 200; i++){
+            if (Global.collect[i])
+                score++;
+        }
+        String S = Integer.toString(score);
+        Toast.makeText(getBaseContext(),"Score = " + S ,Toast.LENGTH_LONG).show();
     }
 
     private void clearcheck() {

@@ -1,9 +1,12 @@
 package com.xyz.practiceandlearn;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
 import android.os.Environment;
 import android.os.Handler;
+import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -14,6 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.Arrays;
+
+import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_ANSWER_TEST;
+import static com.xyz.practiceandlearn.PhotoDatabase.PHOTOGRAPHS_QUESTION_TEST;
+import static com.xyz.practiceandlearn.QuestionAndResponseDatabase.COLUMN_QANDR_ANSWER_TEST;
+import static com.xyz.practiceandlearn.QuestionAndResponseDatabase.QuestionAndResponse_Question_TEST;
 
 public class QandrTestActivity extends AppCompatActivity {
 
@@ -22,6 +31,7 @@ public class QandrTestActivity extends AppCompatActivity {
     private int currentpage;
     private MediaPlayer mPlayer;
     private static final int maxrow = 29;
+    private static String[] strListAnswer;
 
     //timer
     TextView txttime2;
@@ -65,6 +75,7 @@ public class QandrTestActivity extends AppCompatActivity {
         timerHandler.postDelayed(timerRunnable, 0);
 
 
+        setupArray();
 
         playSound();
 
@@ -72,8 +83,60 @@ public class QandrTestActivity extends AppCompatActivity {
 
         next();
 
+        collectpoint();
+
+
     }
 
+    private void collectpoint() {
+
+        RadioGroup radioCorrect = (RadioGroup) findViewById(R.id.rdoGroup2_qandr_test);
+        radioCorrect.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                switch (checkedId) {
+                    case R.id.rdoA2_qandr_test:
+                        if (strListAnswer[Global.currentposition].equals("A")) {
+                            Global.collect[Global.currentposition] = true;
+                        } else {
+                            Global.collect[Global.currentposition] = false;
+                        }
+                        break;
+                    case R.id.rdoB2_qandr_test:
+                        if (strListAnswer[Global.currentposition].equals("B")) {
+                            Global.collect[Global.currentposition] = true;
+                        } else {
+                            Global.collect[Global.currentposition] = false;
+                        }
+                        break;
+                    case R.id.rdoC2_qandr_test:
+                        if (strListAnswer[Global.currentposition].equals("C")) {
+                            Global.collect[Global.currentposition] = true;
+                        } else {
+                            Global.collect[Global.currentposition] = false;
+                        }
+                        break;
+                }
+            }
+        });
+    }
+
+    private void setupArray(){
+
+        Arrays.fill(Global.played,false);
+        Arrays.fill(Global.collect,false);
+        strListAnswer = listAnswer();
+    }
+
+    private void sumScore() {
+        int score = 0;
+        for (int i = 0; i < 200; i++) {
+            if (Global.collect[i])
+                score++;
+        }
+        String S = Integer.toString(score);
+        Toast.makeText(getBaseContext(), "Score = " + S, Toast.LENGTH_LONG).show();
+    }
 
     private void playSound() {
 
@@ -85,9 +148,12 @@ public class QandrTestActivity extends AppCompatActivity {
         mPlayer = new MediaPlayer();
 
         try {
-            mPlayer.setDataSource(filePath);
-            mPlayer.prepare();
-            mPlayer.start();
+            if (!Global.played[Global.currentposition]) {
+                mPlayer.setDataSource(filePath);
+                mPlayer.prepare();
+                mPlayer.start();
+                Global.played[Global.currentposition] = true;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -147,7 +213,9 @@ public class QandrTestActivity extends AppCompatActivity {
                 if (Global.currentposition > maxrow) {
                     Global.currentposition = 0;
                     Intent intent = new Intent(QandrTestActivity.this, ShortConTestActivity.class);
+                    sumScore();
                     startActivity(intent);
+
                 } else {
 
                     String strNumber = String.valueOf(Global.currentposition + 1) + "/30";
@@ -180,5 +248,22 @@ public class QandrTestActivity extends AppCompatActivity {
         super.onPause();
 
         mPlayer.stop();
+    }
+
+    private String[] listAnswer(){
+
+        String strListAnswer[];
+        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        Cursor objCursor = db.query(QuestionAndResponse_Question_TEST, new String[]{COLUMN_QANDR_ANSWER_TEST}, null, null, null, null, null);
+        objCursor.moveToFirst();
+        strListAnswer = new String[objCursor.getCount()];
+        for (int i=0; i<objCursor.getCount(); i++){
+            strListAnswer[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_QANDR_ANSWER_TEST));
+            objCursor.moveToNext();
+        }
+        objCursor.close();
+
+        return strListAnswer;
+
     }
 }

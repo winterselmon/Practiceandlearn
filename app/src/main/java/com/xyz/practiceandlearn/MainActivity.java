@@ -46,10 +46,22 @@ public class MainActivity extends AppCompatActivity {
     String unzipLocation = Environment.getExternalStorageDirectory() + "/sdcard/";
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Global.played[1] = true;
+        //if (Global.played[1])
+        //    Toast.makeText(getBaseContext(),"played 1 ok",Toast.LENGTH_LONG).show();
+
+        //Global.played[2] = false;
+        //if (!Global.played[2])
+        //    Toast.makeText(getBaseContext(),"played 2 false",Toast.LENGTH_LONG).show();
+
+
 
         objPhotoDatabase = new PhotoDatabase(this);
         objQandR = new QuestionAndResponseDatabase(this);

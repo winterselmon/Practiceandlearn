@@ -4,6 +4,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.widget.TextView;
 
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -17,4 +18,14 @@ public class Global {
     public static int currentposition = 0;
 
     public static long startTime =0;
+
+    //public static boolean played[];
+
+    public static boolean[] played = new boolean[200];
+
+    public static boolean[] collect = new boolean[200];
+
+
+
+
 }

@@ -6,9 +6,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.os.CountDownTimer;
 import android.os.Environment;
 import android.os.Handler;
+import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -52,7 +54,6 @@ public class PhotosTestActivity extends AppCompatActivity {
     private MediaPlayer mPlayer;
 
 
-
     //timer
     TextView txttime;
 
@@ -64,15 +65,14 @@ public class PhotosTestActivity extends AppCompatActivity {
         public void run() {
             long millis = System.currentTimeMillis() - Global.startTime;
             int seconds = (int) (millis / 1000);
-            int minutes = (seconds % 3600)/60;
-            int hour    = seconds / 3600;
+            int minutes = (seconds % 3600) / 60;
+            int hour = seconds / 3600;
             seconds = seconds % 60;
 
-            txttime.setText(String.format("%d:%02d:%02d",hour, minutes, seconds));
+            txttime.setText(String.format("%d:%02d:%02d", hour, minutes, seconds));
             timerHandler.postDelayed(this, 500);
         }
     };
-
 
 
     @Override
@@ -86,7 +86,7 @@ public class PhotosTestActivity extends AppCompatActivity {
 
         currentpage = 0;
 
-        String strNumber = String.valueOf(Global.currentposition+1)+ "/10";
+        String strNumber = String.valueOf(Global.currentposition + 1) + "/10";
 
         //Toast.makeText(this, strNumber, Toast.LENGTH_LONG);
 
@@ -95,8 +95,10 @@ public class PhotosTestActivity extends AppCompatActivity {
 
 
         txttime = (TextView) findViewById(R.id.txttime);
-        Global.startTime = System.currentTimeMillis();
-        timerHandler.postDelayed(timerRunnable ,0);
+        if (Global.startTime == 0)
+            Global.startTime = System.currentTimeMillis();
+
+        timerHandler.postDelayed(timerRunnable, 0);
 
 
         setupArrar();
@@ -113,9 +115,82 @@ public class PhotosTestActivity extends AppCompatActivity {
 
         playSound();
 
+        collectpoint();
 
 
     }
+
+    private void sumScore() {
+        int score = 0;
+        for (int i = 0; i < 200; i++) {
+            if (Global.collect[i])
+                score++;
+        }
+        String S = Integer.toString(score);
+        Toast.makeText(getBaseContext(), "Score = " + S, Toast.LENGTH_LONG).show();
+    }
+
+
+    private void collectpoint() {
+
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.rdoGroup1_photo_test);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group,int checkedId) {
+                switch (checkedId) {
+                    case R.id.rdoA_photo_test:
+                        Toast.makeText(getBaseContext(),"Hi",Toast.LENGTH_SHORT).show();
+
+                        if (strListAnswer[Global.currentposition].equals("A")) {
+
+                            Global.collect[Global.currentposition] = true;
+                            Toast.makeText(getBaseContext(),"Hi",Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            Global.collect[Global.currentposition] = false;
+
+                        }
+                        break;
+                    case R.id.rdoB_photo_test:
+                        if (strListAnswer[Global.currentposition].equals("B")) {
+
+                            Global.collect[Global.currentposition] = true;
+
+                        } else {
+                            Global.collect[Global.currentposition] = false;
+
+                        }
+                        break;
+                    case R.id.rdoC_photo_test:
+                        if (strListAnswer[Global.currentposition].equals("C")) {
+
+                            Global.collect[Global.currentposition] = true;
+
+                        } else {
+                            Global.collect[Global.currentposition] = false;
+
+                        }
+                        break;
+                    case R.id.rdoD_photo_test:
+                        if (strListAnswer[Global.currentposition].equals("D")) {
+                            Global.collect[Global.currentposition] = true;
+
+                        } else {
+                            Global.collect[Global.currentposition] = false;
+
+                        }
+                        break;
+                }
+            }
+        });
+    }
+
+
+        //RadioGroup radioCorrect = (RadioGroup) findViewById(R.id.rdoGroup1_photo_test);
+        //radioCorrect.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+
+
 
     private void showpicture() {
 
@@ -143,17 +218,23 @@ public class PhotosTestActivity extends AppCompatActivity {
         String filePath = Environment.getExternalStorageDirectory()+"/AudioPhoto/"+String.valueOf(Global.currentposition+1)+".mp3";
         mPlayer = new MediaPlayer();
 
+
         try {
-            mPlayer.setDataSource(filePath);
-            mPlayer.prepare();
-            mPlayer.start();
+            if (!Global.played[Global.currentposition]) {
+                mPlayer.setDataSource(filePath);
+                mPlayer.prepare();
+                mPlayer.start();
+                Global.played[Global.currentposition] = true;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-
     private void setupArrar() {
+
+        Arrays.fill(Global.played,false);
+        Arrays.fill(Global.collect,false);
 
         strListChoiceA = listChoiceA();
         strListChoiceB = listChoiceB();
@@ -228,8 +309,8 @@ public class PhotosTestActivity extends AppCompatActivity {
                     Global.currentposition = 0;
                     Intent intent = new Intent(PhotosTestActivity.this, QandrTestActivity.class);
                     startActivity(intent);
+                    sumScore();
                 } else {
-
 
                     String strNumber = String.valueOf(Global.currentposition + 1) + "/10";
                     Toast.makeText(getBaseContext().getApplicationContext(), strNumber, Toast.LENGTH_LONG);
