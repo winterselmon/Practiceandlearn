@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -74,6 +75,32 @@ public class QandrTestActivity extends AppCompatActivity {
         txttime2 = (TextView) findViewById(R.id.txttime2);
         timerHandler.postDelayed(timerRunnable, 0);
 
+        RadioButton rdoA2 = (RadioButton) findViewById(R.id.rdoA2_qandr_test);
+        rdoA2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoB2 = (RadioButton) findViewById(R.id.rdoB2_qandr_test);
+        rdoB2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoC2 = (RadioButton) findViewById(R.id.rdoC2_qandr_test);
+        rdoC2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                collectpoint();
+            }
+        });
 
         setupArray();
 
@@ -83,48 +110,63 @@ public class QandrTestActivity extends AppCompatActivity {
 
         next();
 
-        collectpoint();
-
 
     }
+
 
     private void collectpoint() {
 
-        RadioGroup radioCorrect = (RadioGroup) findViewById(R.id.rdoGroup2_qandr_test);
-        radioCorrect.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                switch (checkedId) {
-                    case R.id.rdoA2_qandr_test:
-                        if (strListAnswer[Global.currentposition].equals("A")) {
-                            Global.collect[Global.currentposition] = true;
-                        } else {
-                            Global.collect[Global.currentposition] = false;
-                        }
-                        break;
-                    case R.id.rdoB2_qandr_test:
-                        if (strListAnswer[Global.currentposition].equals("B")) {
-                            Global.collect[Global.currentposition] = true;
-                        } else {
-                            Global.collect[Global.currentposition] = false;
-                        }
-                        break;
-                    case R.id.rdoC2_qandr_test:
-                        if (strListAnswer[Global.currentposition].equals("C")) {
-                            Global.collect[Global.currentposition] = true;
-                        } else {
-                            Global.collect[Global.currentposition] = false;
-                        }
-                        break;
+        RadioButton rdoA2 = (RadioButton) findViewById(R.id.rdoA2_qandr_test);
+        if (rdoA2.isChecked()) {
+
+                if (strListAnswer[Global.currentposition].equals("A")) {
+
+                    Global.collect[Global.currentAnswer] = true;
+                } else {
+                    Global.collect[Global.currentAnswer] = false;
                 }
             }
-        });
+
+
+        RadioButton rdoB2 = (RadioButton) findViewById(R.id.rdoB2_qandr_test);
+        if (rdoB2.isChecked()) {
+            if (strListAnswer[Global.currentposition].equals("B")) {
+
+                Global.collect[Global.currentAnswer] = true;
+            } else {
+                Global.collect[Global.currentAnswer] = false;
+            }
+
+        }
+
+        RadioButton rdoC2 = (RadioButton) findViewById(R.id.rdoC2_qandr_test);
+        if (rdoC2.isChecked()) {
+
+            if (strListAnswer[Global.currentposition].equals("C")) {
+
+                Global.collect[Global.currentAnswer] = true;
+            } else {
+                Global.collect[Global.currentAnswer] = false;
+            }
+
+        }
+        if (Global.collect[Global.currentAnswer])
+        Toast.makeText(getBaseContext(),"correct",Toast.LENGTH_SHORT).show();
+
+        else Toast.makeText(getBaseContext(),"wrong",Toast.LENGTH_SHORT).show();
+        sumScore();
+        String C = Integer.toString(Global.currentAnswer);
+
+        Toast.makeText(getBaseContext(),C,Toast.LENGTH_SHORT).show();
+
+
     }
+
 
     private void setupArray(){
 
         Arrays.fill(Global.played,false);
-        Arrays.fill(Global.collect,false);
+
         strListAnswer = listAnswer();
     }
 
@@ -135,7 +177,7 @@ public class QandrTestActivity extends AppCompatActivity {
                 score++;
         }
         String S = Integer.toString(score);
-        Toast.makeText(getBaseContext(), "Score = " + S, Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Score = " + S, Toast.LENGTH_SHORT).show();
     }
 
     private void playSound() {
@@ -169,6 +211,11 @@ public class QandrTestActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
+                if (Global.currentAnswer == 0){
+                    return;
+                }
+                Global.currentAnswer--;
+
                 if (Global.currentposition == 0) {
                     if (currentpage == 0) {
                         return;
@@ -176,7 +223,9 @@ public class QandrTestActivity extends AppCompatActivity {
                         Global.currentposition = 9;
                         Intent intent = new Intent(QandrTestActivity.this, PhotosTestActivity.class);
                         startActivity(intent);
+                        sumScore();
                     }
+
                 } else {
 
 
@@ -208,13 +257,16 @@ public class QandrTestActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
+
                 Global.currentposition++;
+                Global.currentAnswer++;
+
 
                 if (Global.currentposition > maxrow) {
                     Global.currentposition = 0;
                     Intent intent = new Intent(QandrTestActivity.this, ShortConTestActivity.class);
-                    sumScore();
                     startActivity(intent);
+                    sumScore();
 
                 } else {
 

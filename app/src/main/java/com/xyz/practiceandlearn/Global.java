@@ -25,6 +25,8 @@ public class Global {
 
     public static boolean[] collect = new boolean[200];
 
+    public static int currentAnswer = 0;
+
 
 
 

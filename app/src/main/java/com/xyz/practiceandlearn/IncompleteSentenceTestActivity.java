@@ -119,6 +119,10 @@ public class IncompleteSentenceTestActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
+                if (Global.currentAnswer == 0){
+                    return;
+                }
+                Global.currentAnswer--;
 
                 if (Global.currentposition == 0) {
                     if (currentpage == 0) {
@@ -161,6 +165,7 @@ public class IncompleteSentenceTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                Global.currentAnswer++;
 
                 Global.currentposition++;
 

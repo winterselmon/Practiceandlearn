@@ -92,6 +92,7 @@ public class ReadingComprehensionTestActivity extends AppCompatActivity {
 
     private void setupArray() {
 
+
         strScript = listScript();
         strQuestion = listQuestion();
         strAnswer = listAnswer();
@@ -153,6 +154,12 @@ public class ReadingComprehensionTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
+                if (Global.currentAnswer == 0){
+                    return;
+                }
+                Global.currentAnswer--;
+
                 if (Global.currentposition == 0) {
                     if (currentpage == 0) {
                         return;
@@ -197,7 +204,7 @@ public class ReadingComprehensionTestActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-
+                Global.currentAnswer++;
 
                 Global.currentposition++;
 
@@ -220,7 +227,6 @@ public class ReadingComprehensionTestActivity extends AppCompatActivity {
                     txtNo.setText(strNumber);
 
                     showText();
-
                     clearcheck();
                 }
 

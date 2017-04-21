@@ -100,6 +100,41 @@ public class PhotosTestActivity extends AppCompatActivity {
 
         timerHandler.postDelayed(timerRunnable, 0);
 
+        RadioButton rdoA = (RadioButton) findViewById(R.id.rdoA_photo_test);
+        rdoA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoB1 = (RadioButton) findViewById(R.id.rdoB_photo_test);
+        rdoB1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoC1 = (RadioButton) findViewById(R.id.rdoC_photo_test);
+        rdoC1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoD1 = (RadioButton) findViewById(R.id.rdoD_photo_test);
+        rdoD1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                collectpoint();
+            }
+        });
 
         setupArrar();
 
@@ -120,76 +155,55 @@ public class PhotosTestActivity extends AppCompatActivity {
 
     }
 
-    private void sumScore() {
-        int score = 0;
-        for (int i = 0; i < 200; i++) {
-            if (Global.collect[i])
-                score++;
-        }
-        String S = Integer.toString(score);
-        Toast.makeText(getBaseContext(), "Score = " + S, Toast.LENGTH_LONG).show();
-    }
-
 
     private void collectpoint() {
 
-        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.rdoGroup1_photo_test);
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group,int checkedId) {
-                switch (checkedId) {
-                    case R.id.rdoA_photo_test:
-                        Toast.makeText(getBaseContext(),"Hi",Toast.LENGTH_SHORT).show();
+        RadioButton rdoA1 = (RadioButton) findViewById(R.id.rdoA_photo_test);
+        if (rdoA1.isChecked()) {
+            if (strListAnswer[Global.currentposition].equals("A")) {
 
-                        if (strListAnswer[Global.currentposition].equals("A")) {
+                Global.collect[Global.currentAnswer] = true;
 
-                            Global.collect[Global.currentposition] = true;
-                            Toast.makeText(getBaseContext(),"Hi",Toast.LENGTH_SHORT).show();
-
-                        } else {
-                            Global.collect[Global.currentposition] = false;
-
-                        }
-                        break;
-                    case R.id.rdoB_photo_test:
-                        if (strListAnswer[Global.currentposition].equals("B")) {
-
-                            Global.collect[Global.currentposition] = true;
-
-                        } else {
-                            Global.collect[Global.currentposition] = false;
-
-                        }
-                        break;
-                    case R.id.rdoC_photo_test:
-                        if (strListAnswer[Global.currentposition].equals("C")) {
-
-                            Global.collect[Global.currentposition] = true;
-
-                        } else {
-                            Global.collect[Global.currentposition] = false;
-
-                        }
-                        break;
-                    case R.id.rdoD_photo_test:
-                        if (strListAnswer[Global.currentposition].equals("D")) {
-                            Global.collect[Global.currentposition] = true;
-
-                        } else {
-                            Global.collect[Global.currentposition] = false;
-
-                        }
-                        break;
-                }
+            } else {
+                Global.collect[Global.currentAnswer] = false;
             }
-        });
+        }
+
+
+        RadioButton rdoB1 = (RadioButton) findViewById(R.id.rdoB_photo_test);
+        if (rdoB1.isChecked()) {
+            if (strListAnswer[Global.currentposition].equals("B")) {
+
+                Global.collect[Global.currentAnswer] = true;
+            } else {
+                Global.collect[Global.currentAnswer] = false;
+            }
+        }
+
+
+        RadioButton rdoC1 = (RadioButton) findViewById(R.id.rdoC_photo_test);
+        if (rdoC1.isChecked()) {
+            if (strListAnswer[Global.currentposition].equals("C")) {
+
+                Global.collect[Global.currentAnswer] = true;
+            } else {
+                Global.collect[Global.currentAnswer] = false;
+            }
+        }
+
+
+        RadioButton rdoD1 = (RadioButton) findViewById(R.id.rdoD_photo_test);
+        if (rdoD1.isChecked()) {
+            if (strListAnswer[Global.currentposition].equals("D")) {
+
+                Global.collect[Global.currentAnswer] = true;
+            } else {
+                Global.collect[Global.currentAnswer] = false;
+            }
+        }
+        String C = Integer.toString(Global.currentposition);
+        Toast.makeText(getBaseContext(),C,Toast.LENGTH_SHORT).show();
     }
-
-
-        //RadioGroup radioCorrect = (RadioGroup) findViewById(R.id.rdoGroup1_photo_test);
-        //radioCorrect.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-
-
 
 
     private void showpicture() {
@@ -268,6 +282,10 @@ public class PhotosTestActivity extends AppCompatActivity {
                 if (Global.currentposition == 0) {
                     return;
                 }
+                if (Global.currentAnswer == 0) {
+                    return;
+                }
+                Global.currentAnswer--;
                 Global.currentposition--;
                 if (Global.currentposition>=0) {
 
@@ -296,6 +314,16 @@ public class PhotosTestActivity extends AppCompatActivity {
 
     }
 
+    private void sumScore() {
+        int score = 0;
+        for (int i = 0; i < 200; i++) {
+            if (Global.collect[i])
+                score++;
+        }
+        String S = Integer.toString(score);
+        Toast.makeText(getBaseContext(), "Score = " + S, Toast.LENGTH_LONG).show();
+    }
+
     private void next() {
 
         Button btnNext = (Button) findViewById(R.id.btnNextTest1);
@@ -304,12 +332,14 @@ public class PhotosTestActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Global.currentposition++;
+                Global.currentAnswer++;
 
                 if (Global.currentposition > maxrow) {
                     Global.currentposition = 0;
                     Intent intent = new Intent(PhotosTestActivity.this, QandrTestActivity.class);
                     startActivity(intent);
                     sumScore();
+
                 } else {
 
                     String strNumber = String.valueOf(Global.currentposition + 1) + "/10";
