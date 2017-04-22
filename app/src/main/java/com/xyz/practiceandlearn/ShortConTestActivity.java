@@ -87,6 +87,106 @@ public class ShortConTestActivity extends AppCompatActivity {
         txttime3 = (TextView) findViewById(R.id.txttime3);
         timerHandler.postDelayed(timerRunnable, 0);
 
+        RadioButton rdoA1 = (RadioButton) findViewById(R.id.rdoA_shortc_test);
+        rdoA1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoB1 = (RadioButton) findViewById(R.id.rdoB_shortc_test);
+        rdoB1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoC1 = (RadioButton) findViewById(R.id.rdoC_shortc_test);
+        rdoC1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoD1 = (RadioButton) findViewById(R.id.rdoD_shortc_test);
+        rdoD1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoA2 = (RadioButton) findViewById(R.id.rdoA2_shortc_test);
+        rdoA2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoB2 = (RadioButton) findViewById(R.id.rdoB2_shortc_test);
+        rdoB2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoC2 = (RadioButton) findViewById(R.id.rdoC2_shortc_test);
+        rdoC2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoD2 = (RadioButton) findViewById(R.id.rdoD2_shortc_test);
+        rdoD2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoA3 = (RadioButton) findViewById(R.id.rdoA3_shortc_test);
+        rdoA3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoB3 = (RadioButton) findViewById(R.id.rdoB3_shortc_test);
+        rdoB3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoC3 = (RadioButton) findViewById(R.id.rdoC3_shortc_test);
+        rdoC3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoD3 = (RadioButton) findViewById(R.id.rdoD3_shortc_test);
+        rdoD3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+
+
+
+
         setupArray();
 
         showArray();
@@ -118,6 +218,154 @@ public class ShortConTestActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    private void collectpoint() {
+
+        RadioButton rdoA1 = (RadioButton) findViewById(R.id.rdoA_shortc_test);
+        if (rdoA1.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)].equals("A")) {
+
+                Global.collect[(Global.currentAnswer*3)] = true;
+
+            } else {
+                Global.collect[(Global.currentAnswer*3)] = false;
+            }
+        }
+
+
+        RadioButton rdoB1 = (RadioButton) findViewById(R.id.rdoB_shortc_test);
+        if (rdoB1.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)].equals("B")) {
+
+                Global.collect[(Global.currentAnswer*3)] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)] = false;
+            }
+        }
+
+
+        RadioButton rdoC1 = (RadioButton) findViewById(R.id.rdoC_shortc_test);
+        if (rdoC1.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)].equals("C")) {
+
+                Global.collect[(Global.currentAnswer*3)] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)] = false;
+            }
+        }
+
+
+        RadioButton rdoD1 = (RadioButton) findViewById(R.id.rdoD_shortc_test);
+        if (rdoD1.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)].equals("D")) {
+
+                Global.collect[(Global.currentAnswer*3)] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)] = false;
+            }
+        }
+
+
+        RadioButton rdoA2 = (RadioButton) findViewById(R.id.rdoA2_shortc_test);
+        if (rdoA2.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+1].equals("A")) {
+
+                Global.collect[(Global.currentAnswer*3)+1] = true;
+
+            } else {
+                Global.collect[(Global.currentAnswer*3)+1] = false;
+            }
+        }
+
+
+        RadioButton rdoB2 = (RadioButton) findViewById(R.id.rdoB2_shortc_test);
+        if (rdoB2.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+1].equals("B")) {
+
+                Global.collect[(Global.currentAnswer*3)+1] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)+1] = false;
+            }
+        }
+
+
+        RadioButton rdoC2 = (RadioButton) findViewById(R.id.rdoC2_shortc_test);
+        if (rdoC2.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+1].equals("C")) {
+
+                Global.collect[(Global.currentAnswer*3)+1] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)+1] = false;
+            }
+        }
+
+
+        RadioButton rdoD2 = (RadioButton) findViewById(R.id.rdoD2_shortc_test);
+        if (rdoD2.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+1].equals("D")) {
+
+                Global.collect[(Global.currentAnswer*3)+1] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)+1] = false;
+            }
+        }
+
+
+        RadioButton rdoA3 = (RadioButton) findViewById(R.id.rdoA3_shortc_test);
+        if (rdoA3.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+2].equals("A")) {
+
+                Global.collect[(Global.currentAnswer*3)+2] = true;
+
+            } else {
+                Global.collect[(Global.currentAnswer*3)+2] = false;
+            }
+        }
+
+
+        RadioButton rdoB3 = (RadioButton) findViewById(R.id.rdoB3_shortc_test);
+        if (rdoB3.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+2].equals("B")) {
+
+                Global.collect[(Global.currentAnswer*3)+2] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)+2] = false;
+            }
+        }
+
+
+        RadioButton rdoC3 = (RadioButton) findViewById(R.id.rdoC3_shortc_test);
+        if (rdoC3.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+2].equals("C")) {
+
+                Global.collect[(Global.currentAnswer*3)+2] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)+2] = false;
+            }
+        }
+
+
+        RadioButton rdoD3 = (RadioButton) findViewById(R.id.rdoD3_shortc_test);
+        if (rdoD3.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+2].equals("D")) {
+
+                Global.collect[(Global.currentAnswer*3)+2] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)+2] = false;
+            }
+        }
+
+    }
+
+    private void sumScore() {
+        int score = 0;
+        for (int i = 0; i < 200; i++) {
+            if (Global.collect[i])
+                score++;
+        }
+        String S = Integer.toString(score);
+        Toast.makeText(getBaseContext(), "Score = " + S, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -188,6 +436,7 @@ public class ShortConTestActivity extends AppCompatActivity {
                 if (Global.currentposition > maxrow) {
                     Global.currentposition = 0;
                     Intent intent = new Intent(ShortConTestActivity.this, ShortTalkTestActivity.class);
+                    sumScore();
                     startActivity(intent);
                 } else {
                     ScrollView scrollView = (ScrollView) findViewById(R.id.activity_short_con_test);

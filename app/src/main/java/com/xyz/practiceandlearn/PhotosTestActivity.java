@@ -201,6 +201,11 @@ public class PhotosTestActivity extends AppCompatActivity {
                 Global.collect[Global.currentAnswer] = false;
             }
         }
+        if (Global.collect[Global.currentAnswer])
+            Toast.makeText(getBaseContext(),"correct",Toast.LENGTH_SHORT).show();
+
+        else Toast.makeText(getBaseContext(),"wrong",Toast.LENGTH_SHORT).show();
+        sumScore();
         String C = Integer.toString(Global.currentposition);
         Toast.makeText(getBaseContext(),C,Toast.LENGTH_SHORT).show();
     }

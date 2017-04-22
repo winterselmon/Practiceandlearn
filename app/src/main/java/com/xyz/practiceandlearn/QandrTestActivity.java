@@ -165,7 +165,6 @@ public class QandrTestActivity extends AppCompatActivity {
 
     private void setupArray(){
 
-        Arrays.fill(Global.played,false);
 
         strListAnswer = listAnswer();
     }
