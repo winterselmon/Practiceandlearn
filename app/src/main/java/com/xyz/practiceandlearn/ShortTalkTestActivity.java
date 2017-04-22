@@ -85,6 +85,102 @@ public class ShortTalkTestActivity extends AppCompatActivity {
         txttime4 = (TextView) findViewById(R.id.txttime4);
         timerHandler.postDelayed(timerRunnable, 0);
 
+        RadioButton rdoA1 = (RadioButton) findViewById(R.id.rdoA_shortTalk_test);
+        rdoA1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoB1 = (RadioButton) findViewById(R.id.rdoB_shortTalk_test);
+        rdoB1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoC1 = (RadioButton) findViewById(R.id.rdoC_shortTalk_test);
+        rdoC1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoD1 = (RadioButton) findViewById(R.id.rdoD_shortTalk_test);
+        rdoD1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoA2 = (RadioButton) findViewById(R.id.rdoA2_shortTalk_test);
+        rdoA2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoB2 = (RadioButton) findViewById(R.id.rdoB2_shortTalk_test);
+        rdoB2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoC2 = (RadioButton) findViewById(R.id.rdoC2_shortTalk_test);
+        rdoC2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoD2 = (RadioButton) findViewById(R.id.rdoD2_shortTalk_test);
+        rdoD2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoA3 = (RadioButton) findViewById(R.id.rdoA3_shortTalk_test);
+        rdoA3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoB3 = (RadioButton) findViewById(R.id.rdoB3_shortTalk_test);
+        rdoB3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoC3 = (RadioButton) findViewById(R.id.rdoC3_shortTalk_test);
+        rdoC3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoD3 = (RadioButton) findViewById(R.id.rdoD3_shortTalk_test);
+        rdoD3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
 
         setupArray();
 
@@ -119,6 +215,155 @@ public class ShortTalkTestActivity extends AppCompatActivity {
 
 
     }
+
+    private void sumScore() {
+        int score = 0;
+        for (int i = 0; i < 200; i++) {
+            if (Global.collect[i])
+                score++;
+        }
+        String S = Integer.toString(score);
+        Toast.makeText(getBaseContext(), "Score = " + S, Toast.LENGTH_SHORT).show();
+    }
+
+    private void collectpoint() {
+
+        RadioButton rdoA1 = (RadioButton) findViewById(R.id.rdoA_shortTalk_test);
+        if (rdoA1.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)].equals("A")) {
+
+                Global.collect[(Global.currentAnswer*3)] = true;
+
+            } else {
+                Global.collect[(Global.currentAnswer*3)] = false;
+            }
+        }
+
+
+        RadioButton rdoB1 = (RadioButton) findViewById(R.id.rdoB_shortTalk_test);
+        if (rdoB1.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)].equals("B")) {
+
+                Global.collect[(Global.currentAnswer*3)] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)] = false;
+            }
+        }
+
+
+        RadioButton rdoC1 = (RadioButton) findViewById(R.id.rdoC_shortTalk_test);
+        if (rdoC1.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)].equals("C")) {
+
+                Global.collect[(Global.currentAnswer*3)] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)] = false;
+            }
+        }
+
+
+        RadioButton rdoD1 = (RadioButton) findViewById(R.id.rdoD_shortTalk_test);
+        if (rdoD1.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)].equals("D")) {
+
+                Global.collect[(Global.currentAnswer*3)] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)] = false;
+            }
+        }
+
+
+        RadioButton rdoA2 = (RadioButton) findViewById(R.id.rdoA2_shortTalk_test);
+        if (rdoA2.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+1].equals("A")) {
+
+                Global.collect[(Global.currentAnswer*3)+1] = true;
+
+            } else {
+                Global.collect[(Global.currentAnswer*3)+1] = false;
+            }
+        }
+
+
+        RadioButton rdoB2 = (RadioButton) findViewById(R.id.rdoB2_shortTalk_test);
+        if (rdoB2.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+1].equals("B")) {
+
+                Global.collect[(Global.currentAnswer*3)+1] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)+1] = false;
+            }
+        }
+
+
+        RadioButton rdoC2 = (RadioButton) findViewById(R.id.rdoC2_shortTalk_test);
+        if (rdoC2.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+1].equals("C")) {
+
+                Global.collect[(Global.currentAnswer*3)+1] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)+1] = false;
+            }
+        }
+
+
+        RadioButton rdoD2 = (RadioButton) findViewById(R.id.rdoD2_shortTalk_test);
+        if (rdoD2.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+1].equals("D")) {
+
+                Global.collect[(Global.currentAnswer*3)+1] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)+1] = false;
+            }
+        }
+
+
+        RadioButton rdoA3 = (RadioButton) findViewById(R.id.rdoA3_shortTalk_test);
+        if (rdoA3.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+2].equals("A")) {
+
+                Global.collect[(Global.currentAnswer*3)+2] = true;
+
+            } else {
+                Global.collect[(Global.currentAnswer*3)+2] = false;
+            }
+        }
+
+
+        RadioButton rdoB3 = (RadioButton) findViewById(R.id.rdoB3_shortTalk_test);
+        if (rdoB3.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+2].equals("B")) {
+
+                Global.collect[(Global.currentAnswer*3)+2] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)+2] = false;
+            }
+        }
+
+
+        RadioButton rdoC3 = (RadioButton) findViewById(R.id.rdoC3_shortTalk_test);
+        if (rdoC3.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+2].equals("C")) {
+
+                Global.collect[(Global.currentAnswer*3)+2] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)+2] = false;
+            }
+        }
+
+
+        RadioButton rdoD3 = (RadioButton) findViewById(R.id.rdoD3_shortTalk_test);
+        if (rdoD3.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+2].equals("D")) {
+
+                Global.collect[(Global.currentAnswer*3)+2] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)+2] = false;
+            }
+        }
+
+    }
+
 
     private void back() {
 
@@ -186,6 +431,7 @@ public class ShortTalkTestActivity extends AppCompatActivity {
                     Global.currentposition = 0;
                     Intent intent = new Intent(ShortTalkTestActivity.this, IncompleteSentenceTestActivity.class);
                     startActivity(intent);
+                    sumScore();
                 } else {
 
 

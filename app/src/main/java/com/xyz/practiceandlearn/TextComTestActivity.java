@@ -77,6 +77,7 @@ public class TextComTestActivity extends AppCompatActivity {
         txttime6 = (TextView) findViewById(R.id.txttime6);
         timerHandler.postDelayed(timerRunnable, 0);
 
+
         setupArray();
 
         showText();
@@ -145,6 +146,154 @@ public class TextComTestActivity extends AppCompatActivity {
 
     }
 
+    private void collectpoint() {
+
+        RadioButton rdoA1 = (RadioButton) findViewById(R.id.rdoA_TextCom_test);
+        if (rdoA1.isChecked()) {
+            if (strAnswer[Global.currentposition*3].equals("A")) {
+
+                Global.collect[Global.currentAnswer*3] = true;
+
+            } else {
+                Global.collect[Global.currentAnswer*3] = false;
+            }
+        }
+
+
+        RadioButton rdoB1 = (RadioButton) findViewById(R.id.rdoB_TextCom_test);
+        if (rdoB1.isChecked()) {
+            if (strAnswer[Global.currentposition*3].equals("B")) {
+
+                Global.collect[Global.currentAnswer*3] = true;
+            } else {
+                Global.collect[Global.currentAnswer*3] = false;
+            }
+        }
+
+
+        RadioButton rdoC1 = (RadioButton) findViewById(R.id.rdoC_TextCom_test);
+        if (rdoC1.isChecked()) {
+            if (strAnswer[Global.currentposition*3].equals("C")) {
+
+                Global.collect[Global.currentAnswer*3] = true;
+            } else {
+                Global.collect[Global.currentAnswer*3] = false;
+            }
+        }
+
+
+        RadioButton rdoD1 = (RadioButton) findViewById(R.id.rdoD_TextCom_test);
+        if (rdoD1.isChecked()) {
+            if (strAnswer[Global.currentposition*3].equals("D")) {
+
+                Global.collect[Global.currentAnswer*3] = true;
+            } else {
+                Global.collect[Global.currentAnswer*3] = false;
+            }
+        }
+
+
+        RadioButton rdoA2 = (RadioButton) findViewById(R.id.rdoA2_TextCom_test);
+        if (rdoA2.isChecked()) {
+            if (strAnswer[Global.currentposition*3+1].equals("A")) {
+
+                Global.collect[Global.currentAnswer*3+1] = true;
+
+            } else {
+                Global.collect[Global.currentAnswer*3+1] = false;
+            }
+        }
+
+
+        RadioButton rdoB2 = (RadioButton) findViewById(R.id.rdoB2_TextCom_test);
+        if (rdoB2.isChecked()) {
+            if (strAnswer[Global.currentposition*3+1].equals("B")) {
+
+                Global.collect[Global.currentAnswer*3+1] = true;
+            } else {
+                Global.collect[Global.currentAnswer*3+1] = false;
+            }
+        }
+
+
+        RadioButton rdoC2 = (RadioButton) findViewById(R.id.rdoC2_TextCom_test);
+        if (rdoC2.isChecked()) {
+            if (strAnswer[Global.currentposition*3+1].equals("C")) {
+
+                Global.collect[Global.currentAnswer*3+1] = true;
+            } else {
+                Global.collect[Global.currentAnswer*3+1] = false;
+            }
+        }
+
+
+        RadioButton rdoD2 = (RadioButton) findViewById(R.id.rdoD2_TextCom_test);
+        if (rdoD2.isChecked()) {
+            if (strAnswer[Global.currentposition*3+1].equals("D")) {
+
+                Global.collect[Global.currentAnswer*3+1] = true;
+            } else {
+                Global.collect[Global.currentAnswer*3+1] = false;
+            }
+        }
+
+
+        RadioButton rdoA3 = (RadioButton) findViewById(R.id.rdoA3_TextCom_test);
+        if (rdoA3.isChecked()) {
+            if (strAnswer[Global.currentposition*3+2].equals("A")) {
+
+                Global.collect[Global.currentAnswer*3+2] = true;
+
+            } else {
+                Global.collect[Global.currentAnswer*3+2] = false;
+            }
+        }
+
+
+        RadioButton rdoB3 = (RadioButton) findViewById(R.id.rdoB3_TextCom_test);
+        if (rdoB3.isChecked()) {
+            if (strAnswer[Global.currentposition*3+2].equals("B")) {
+
+                Global.collect[Global.currentAnswer*3+2] = true;
+            } else {
+                Global.collect[Global.currentAnswer*3+2] = false;
+            }
+        }
+
+
+        RadioButton rdoC3 = (RadioButton) findViewById(R.id.rdoC3_TextCom_test);
+        if (rdoC3.isChecked()) {
+            if (strAnswer[Global.currentposition*3+2].equals("C")) {
+
+                Global.collect[Global.currentAnswer*3+2] = true;
+            } else {
+                Global.collect[Global.currentAnswer*3+2] = false;
+            }
+        }
+
+
+        RadioButton rdoD3 = (RadioButton) findViewById(R.id.rdoD3_TextCom_test);
+        if (rdoD3.isChecked()) {
+            if (strAnswer[Global.currentposition*3+2].equals("D")) {
+
+                Global.collect[Global.currentAnswer*3+2] = true;
+            } else {
+                Global.collect[Global.currentAnswer*3+2] = false;
+            }
+        }
+
+    }
+
+    private void sumScore() {
+        int score = 0;
+        for (int i = 0; i < 200; i++) {
+            if (Global.collect[i])
+                score++;
+        }
+        String S = Integer.toString(score);
+        Toast.makeText(getBaseContext(), "Score = " + S, Toast.LENGTH_SHORT).show();
+    }
+
     private void back() {
 
         Button btnBack = (Button) findViewById(R.id.btnBack6_test);
@@ -200,7 +349,6 @@ public class TextComTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
                 Global.currentAnswer++;
 
                 Global.currentposition++;
@@ -208,14 +356,12 @@ public class TextComTestActivity extends AppCompatActivity {
                 if (Global.currentposition > maxrow) {
                     Global.currentposition = 0;
                     Intent intent = new Intent(TextComTestActivity.this, ReadingComprehensionTestActivity.class);
+                    sumScore();
                     startActivity(intent);
                 } else {
 
                     ScrollView scrollView = (ScrollView) findViewById(R.id.activity_text_com_test);
-
                     scrollView.smoothScrollTo(0,0);
-
-
                     String strNumber = String.valueOf(Global.currentposition + 1) + "/4";
                     Toast.makeText(getBaseContext().getApplicationContext(), strNumber, Toast.LENGTH_LONG);
                     //Toast.makeText(this, strNumber, Toast.LENGTH_LONG);

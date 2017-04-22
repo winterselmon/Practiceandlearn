@@ -89,7 +89,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:id="@+id/relativeQuestion2ShortTalk_test"
             android:layout_below="@+id/relativeQuestion1ShortTalk_test"
             android:layout_alignParentLeft="true"
@@ -147,7 +147,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/relativeQuestion2ShortTalk_test"

@@ -235,6 +235,144 @@ public class ReadingComprehensionTestActivity extends AppCompatActivity {
 
     }
 
+    private void collectpoint() {
+
+        RadioButton rdoA1 = (RadioButton) findViewById(R.id.rdoA_Reading_test);
+        if (rdoA1.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)].equals("A")) {
+
+                Global.collect[(Global.currentAnswer*3)] = true;
+
+            } else {
+                Global.collect[(Global.currentAnswer*3)] = false;
+            }
+        }
+
+
+        RadioButton rdoB1 = (RadioButton) findViewById(R.id.rdoB_Reading_test);
+        if (rdoB1.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)].equals("B")) {
+
+                Global.collect[(Global.currentAnswer*3)] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)] = false;
+            }
+        }
+
+
+        RadioButton rdoC1 = (RadioButton) findViewById(R.id.rdoC_Reading_test);
+        if (rdoC1.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)].equals("C")) {
+
+                Global.collect[(Global.currentAnswer*3)] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)] = false;
+            }
+        }
+
+
+        RadioButton rdoD1 = (RadioButton) findViewById(R.id.rdoD_Reading_test);
+        if (rdoD1.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)].equals("D")) {
+
+                Global.collect[(Global.currentAnswer*3)] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)] = false;
+            }
+        }
+
+
+        RadioButton rdoA2 = (RadioButton) findViewById(R.id.rdoA2_Reading_test);
+        if (rdoA2.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+1].equals("A")) {
+
+                Global.collect[(Global.currentAnswer*3)+1] = true;
+
+            } else {
+                Global.collect[(Global.currentAnswer*3)+1] = false;
+            }
+        }
+
+
+        RadioButton rdoB2 = (RadioButton) findViewById(R.id.rdoB2_Reading_test);
+        if (rdoB2.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+1].equals("B")) {
+
+                Global.collect[(Global.currentAnswer*3)+1] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)+1] = false;
+            }
+        }
+
+
+        RadioButton rdoC2 = (RadioButton) findViewById(R.id.rdoC2_Reading_test);
+        if (rdoC2.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+1].equals("C")) {
+
+                Global.collect[(Global.currentAnswer*3)+1] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)+1] = false;
+            }
+        }
+
+
+        RadioButton rdoD2 = (RadioButton) findViewById(R.id.rdoD2_Readingm_test);
+        if (rdoD2.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+1].equals("D")) {
+
+                Global.collect[(Global.currentAnswer*3)+1] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)+1] = false;
+            }
+        }
+
+
+        RadioButton rdoA3 = (RadioButton) findViewById(R.id.rdoA3_Reading_test);
+        if (rdoA3.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+2].equals("A")) {
+
+                Global.collect[(Global.currentAnswer*3)+2] = true;
+
+            } else {
+                Global.collect[(Global.currentAnswer*3)+2] = false;
+            }
+        }
+
+
+        RadioButton rdoB3 = (RadioButton) findViewById(R.id.rdoB3_Reading_test);
+        if (rdoB3.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+2].equals("B")) {
+
+                Global.collect[(Global.currentAnswer*3)+2] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)+2] = false;
+            }
+        }
+
+
+        RadioButton rdoC3 = (RadioButton) findViewById(R.id.rdoC3_Reading_test);
+        if (rdoC3.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+2].equals("C")) {
+
+                Global.collect[(Global.currentAnswer*3)+2] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)+2] = false;
+            }
+        }
+
+
+        RadioButton rdoD3 = (RadioButton) findViewById(R.id.rdoD3_Reading_test);
+        if (rdoD3.isChecked()) {
+            if (strAnswer[(Global.currentposition*3)+2].equals("D")) {
+
+                Global.collect[(Global.currentAnswer*3)+2] = true;
+            } else {
+                Global.collect[(Global.currentAnswer*3)+2] = false;
+            }
+        }
+
+    }
+
     private void sumScore(){
         int score = 0;
         for ( int i = 0; i < 200; i++){

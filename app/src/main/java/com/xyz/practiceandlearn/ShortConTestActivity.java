@@ -185,8 +185,6 @@ public class ShortConTestActivity extends AppCompatActivity {
 
 
 
-
-
         setupArray();
 
         showArray();
@@ -369,7 +367,6 @@ public class ShortConTestActivity extends AppCompatActivity {
     }
 
 
-
     private void back() {
 
         Button btnBack = (Button) findViewById(R.id.btnBack3_test);
@@ -436,8 +433,8 @@ public class ShortConTestActivity extends AppCompatActivity {
                 if (Global.currentposition > maxrow) {
                     Global.currentposition = 0;
                     Intent intent = new Intent(ShortConTestActivity.this, ShortTalkTestActivity.class);
-                    sumScore();
                     startActivity(intent);
+                    sumScore();
                 } else {
                     ScrollView scrollView = (ScrollView) findViewById(R.id.activity_short_con_test);
                     scrollView.smoothScrollTo(0,0);

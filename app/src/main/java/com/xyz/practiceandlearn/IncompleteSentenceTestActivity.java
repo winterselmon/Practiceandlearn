@@ -71,6 +71,42 @@ public class IncompleteSentenceTestActivity extends AppCompatActivity {
         txttime5 = (TextView) findViewById(R.id.txttime5);
         timerHandler.postDelayed(timerRunnable, 0);
 
+        RadioButton rdoA = (RadioButton) findViewById(R.id.rdoA_Incomplete_test);
+        rdoA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoB1 = (RadioButton) findViewById(R.id.rdoB_Incomplete_test);
+        rdoB1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoC1 = (RadioButton) findViewById(R.id.rdoC_Incomplete_test);
+        rdoC1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoD1 = (RadioButton) findViewById(R.id.rdoD_Incomplete_test);
+        rdoD1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                collectpoint();
+            }
+        });
+
         setupArray();
 
         showQuestionAndChoice(0);
@@ -94,21 +130,80 @@ public class IncompleteSentenceTestActivity extends AppCompatActivity {
 
     }
 
+
+
     private void showQuestionAndChoice(final int p){
 
         TextView txtQuestion = (TextView) findViewById(R.id.txtQuestion_Incomplete_test);
         txtQuestion.setText(strQuestion[p]);
         RadioButton btnA = (RadioButton) findViewById(R.id.rdoA_Incomplete_test);
-        btnA.setText(strChoiceA[p]);
+        btnA.setText("A."+strChoiceA[p]);
         RadioButton btnB = (RadioButton) findViewById(R.id.rdoB_Incomplete_test);
-        btnB.setText(strChoiceB[p]);
+        btnB.setText("B."+strChoiceB[p]);
         RadioButton btnC = (RadioButton) findViewById(R.id.rdoC_Incomplete_test);
-        btnC.setText(strChoiceC[p]);
+        btnC.setText("C."+strChoiceC[p]);
         RadioButton btnD = (RadioButton) findViewById(R.id.rdoD_Incomplete_test);
-        btnD.setText(strChoiceD[p]);
+        btnD.setText("D."+strChoiceD[p]);
         //TextView txtDes = (TextView) findViewById(R.id.txtDes_Incomplete);
         //txtDes.setText(strDes[p]);
 
+    }
+
+    private void collectpoint() {
+
+        RadioButton rdoA1 = (RadioButton) findViewById(R.id.rdoA_Incomplete_test);
+        if (rdoA1.isChecked()) {
+            if (strAnswer[Global.currentposition].equals("A")) {
+
+                Global.collect[Global.currentAnswer] = true;
+
+            } else {
+                Global.collect[Global.currentAnswer] = false;
+            }
+        }
+
+
+        RadioButton rdoB1 = (RadioButton) findViewById(R.id.rdoB_Incomplete_test);
+        if (rdoB1.isChecked()) {
+            if (strAnswer[Global.currentposition].equals("B")) {
+
+                Global.collect[Global.currentAnswer] = true;
+            } else {
+                Global.collect[Global.currentAnswer] = false;
+            }
+        }
+
+
+        RadioButton rdoC1 = (RadioButton) findViewById(R.id.rdoC_Incomplete_test);
+        if (rdoC1.isChecked()) {
+            if (strAnswer[Global.currentposition].equals("C")) {
+
+                Global.collect[Global.currentAnswer] = true;
+            } else {
+                Global.collect[Global.currentAnswer] = false;
+            }
+        }
+
+
+        RadioButton rdoD1 = (RadioButton) findViewById(R.id.rdoD_Incomplete_test);
+        if (rdoD1.isChecked()) {
+            if (strAnswer[Global.currentposition].equals("D")) {
+
+                Global.collect[Global.currentAnswer] = true;
+            } else {
+                Global.collect[Global.currentAnswer] = false;
+            }
+        }
+    }
+
+    private void sumScore() {
+        int score = 0;
+        for (int i = 0; i < 200; i++) {
+            if (Global.collect[i])
+                score++;
+        }
+        String S = Integer.toString(score);
+        Toast.makeText(getBaseContext(), "Score = " + S, Toast.LENGTH_SHORT).show();
     }
 
     private void back() {
@@ -173,10 +268,8 @@ public class IncompleteSentenceTestActivity extends AppCompatActivity {
                     Global.currentposition = 0;
                     Intent intent = new Intent(IncompleteSentenceTestActivity.this, TextComTestActivity.class);
                     startActivity(intent);
+                    sumScore();
                 } else {
-
-
-
 
                     String strNumber = String.valueOf(Global.currentposition + 1) + "/40";
                     Toast.makeText(getBaseContext().getApplicationContext(), strNumber, Toast.LENGTH_LONG);
