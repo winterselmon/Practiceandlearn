@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, PhotosTestActivity.class);
+                Intent intent = new Intent(MainActivity.this, DescriptionPhotoActivity.class);
                 startActivity(intent);
             }
         });
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File dir = new File(Environment.getExternalStorageDirectory() + "V1.zip");
+                File dir = new File(Environment.getExternalStorageDirectory() + "/sdcard/V1/");
                 if (dir.exists() && dir.isDirectory()) {
                     Toast.makeText(MainActivity.this,"Last varsion",Toast.LENGTH_LONG).show();
                 }else {

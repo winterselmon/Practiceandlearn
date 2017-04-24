@@ -95,8 +95,8 @@ public class PhotosTestActivity extends AppCompatActivity {
 
 
         txttime = (TextView) findViewById(R.id.txttime);
-        if (Global.startTime == 0)
-            Global.startTime = System.currentTimeMillis();
+        //if (Global.startTime == 0)
+            //Global.startTime = System.currentTimeMillis();
 
         timerHandler.postDelayed(timerRunnable, 0);
 
@@ -147,6 +147,7 @@ public class PhotosTestActivity extends AppCompatActivity {
         back();
 
         showpicture();
+
 
         playSound();
 
@@ -245,7 +246,7 @@ public class PhotosTestActivity extends AppCompatActivity {
 
     private void setupArrar() {
 
-        Arrays.fill(Global.played,false);
+        Arrays.fill(Global.played, false);
         Arrays.fill(Global.collect,false);
 
         strListChoiceA = listChoiceA();
@@ -334,7 +335,7 @@ public class PhotosTestActivity extends AppCompatActivity {
 
                 if (Global.currentposition > maxrow) {
                     Global.currentposition = 0;
-                    Intent intent = new Intent(PhotosTestActivity.this, QandrTestActivity.class);
+                    Intent intent = new Intent(PhotosTestActivity.this, DescriptionQandRActivity.class);
                     startActivity(intent);
                     sumScore();
 
@@ -377,7 +378,9 @@ public class PhotosTestActivity extends AppCompatActivity {
 
     private String[] listChoiceA(){
 
+
         String strListChoiceA[] = null;
+        //String db = Environment.getExternalStorageDirectory().getAbsolutePath() + "TOEIC.db";
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
         Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST, new String[]{COLUMN_PHOTO_CHOICE_A_TEST}, null, null, null, null, null);
         objCursor.moveToFirst();
@@ -443,6 +446,7 @@ public class PhotosTestActivity extends AppCompatActivity {
     }
 
     private String[] listAnswer(){
+
 
         String strListAnswer[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();

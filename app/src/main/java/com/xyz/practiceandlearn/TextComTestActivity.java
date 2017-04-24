@@ -77,6 +77,101 @@ public class TextComTestActivity extends AppCompatActivity {
         txttime6 = (TextView) findViewById(R.id.txttime6);
         timerHandler.postDelayed(timerRunnable, 0);
 
+        RadioButton rdoA1 = (RadioButton) findViewById(R.id.rdoA_TextCom_test);
+        rdoA1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoB1 = (RadioButton) findViewById(R.id.rdoB_TextCom_test);
+        rdoB1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoC1 = (RadioButton) findViewById(R.id.rdoC_TextCom_test);
+        rdoC1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoD1 = (RadioButton) findViewById(R.id.rdoD_TextCom_test);
+        rdoD1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoA2 = (RadioButton) findViewById(R.id.rdoA2_TextCom_test);
+        rdoA2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoB2 = (RadioButton) findViewById(R.id.rdoB2_TextCom_test);
+        rdoB2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoC2 = (RadioButton) findViewById(R.id.rdoC2_TextCom_test);
+        rdoC2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoD2 = (RadioButton) findViewById(R.id.rdoD2_TextCom_test);
+        rdoD2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoA3 = (RadioButton) findViewById(R.id.rdoA3_TextCom_test);
+        rdoA3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoB3 = (RadioButton) findViewById(R.id.rdoB3_TextCom_test);
+        rdoB3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoC3 = (RadioButton) findViewById(R.id.rdoC3_TextCom_test);
+        rdoC3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
+
+        RadioButton rdoD3 = (RadioButton) findViewById(R.id.rdoD3_TextCom_test);
+        rdoD3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectpoint();
+            }
+        });
 
         setupArray();
 
@@ -152,10 +247,10 @@ public class TextComTestActivity extends AppCompatActivity {
         if (rdoA1.isChecked()) {
             if (strAnswer[Global.currentposition*3].equals("A")) {
 
-                Global.collect[Global.currentAnswer*3] = true;
+                Global.collect[Global.currentAnswer] = true;
 
             } else {
-                Global.collect[Global.currentAnswer*3] = false;
+                Global.collect[Global.currentAnswer] = false;
             }
         }
 
@@ -164,9 +259,9 @@ public class TextComTestActivity extends AppCompatActivity {
         if (rdoB1.isChecked()) {
             if (strAnswer[Global.currentposition*3].equals("B")) {
 
-                Global.collect[Global.currentAnswer*3] = true;
+                Global.collect[Global.currentAnswer] = true;
             } else {
-                Global.collect[Global.currentAnswer*3] = false;
+                Global.collect[Global.currentAnswer] = false;
             }
         }
 
@@ -175,9 +270,9 @@ public class TextComTestActivity extends AppCompatActivity {
         if (rdoC1.isChecked()) {
             if (strAnswer[Global.currentposition*3].equals("C")) {
 
-                Global.collect[Global.currentAnswer*3] = true;
+                Global.collect[Global.currentAnswer] = true;
             } else {
-                Global.collect[Global.currentAnswer*3] = false;
+                Global.collect[Global.currentAnswer] = false;
             }
         }
 
@@ -186,9 +281,9 @@ public class TextComTestActivity extends AppCompatActivity {
         if (rdoD1.isChecked()) {
             if (strAnswer[Global.currentposition*3].equals("D")) {
 
-                Global.collect[Global.currentAnswer*3] = true;
+                Global.collect[Global.currentAnswer] = true;
             } else {
-                Global.collect[Global.currentAnswer*3] = false;
+                Global.collect[Global.currentAnswer] = false;
             }
         }
 
@@ -197,10 +292,10 @@ public class TextComTestActivity extends AppCompatActivity {
         if (rdoA2.isChecked()) {
             if (strAnswer[Global.currentposition*3+1].equals("A")) {
 
-                Global.collect[Global.currentAnswer*3+1] = true;
+                Global.collect[Global.currentAnswer+1] = true;
 
             } else {
-                Global.collect[Global.currentAnswer*3+1] = false;
+                Global.collect[Global.currentAnswer+1] = false;
             }
         }
 
@@ -209,9 +304,9 @@ public class TextComTestActivity extends AppCompatActivity {
         if (rdoB2.isChecked()) {
             if (strAnswer[Global.currentposition*3+1].equals("B")) {
 
-                Global.collect[Global.currentAnswer*3+1] = true;
+                Global.collect[Global.currentAnswer+1] = true;
             } else {
-                Global.collect[Global.currentAnswer*3+1] = false;
+                Global.collect[Global.currentAnswer+1] = false;
             }
         }
 
@@ -220,9 +315,9 @@ public class TextComTestActivity extends AppCompatActivity {
         if (rdoC2.isChecked()) {
             if (strAnswer[Global.currentposition*3+1].equals("C")) {
 
-                Global.collect[Global.currentAnswer*3+1] = true;
+                Global.collect[Global.currentAnswer+1] = true;
             } else {
-                Global.collect[Global.currentAnswer*3+1] = false;
+                Global.collect[Global.currentAnswer+1] = false;
             }
         }
 
@@ -231,9 +326,9 @@ public class TextComTestActivity extends AppCompatActivity {
         if (rdoD2.isChecked()) {
             if (strAnswer[Global.currentposition*3+1].equals("D")) {
 
-                Global.collect[Global.currentAnswer*3+1] = true;
+                Global.collect[Global.currentAnswer+1] = true;
             } else {
-                Global.collect[Global.currentAnswer*3+1] = false;
+                Global.collect[Global.currentAnswer+1] = false;
             }
         }
 
@@ -242,10 +337,10 @@ public class TextComTestActivity extends AppCompatActivity {
         if (rdoA3.isChecked()) {
             if (strAnswer[Global.currentposition*3+2].equals("A")) {
 
-                Global.collect[Global.currentAnswer*3+2] = true;
+                Global.collect[Global.currentAnswer+2] = true;
 
             } else {
-                Global.collect[Global.currentAnswer*3+2] = false;
+                Global.collect[Global.currentAnswer+2] = false;
             }
         }
 
@@ -254,9 +349,9 @@ public class TextComTestActivity extends AppCompatActivity {
         if (rdoB3.isChecked()) {
             if (strAnswer[Global.currentposition*3+2].equals("B")) {
 
-                Global.collect[Global.currentAnswer*3+2] = true;
+                Global.collect[Global.currentAnswer+2] = true;
             } else {
-                Global.collect[Global.currentAnswer*3+2] = false;
+                Global.collect[Global.currentAnswer+2] = false;
             }
         }
 
@@ -265,9 +360,9 @@ public class TextComTestActivity extends AppCompatActivity {
         if (rdoC3.isChecked()) {
             if (strAnswer[Global.currentposition*3+2].equals("C")) {
 
-                Global.collect[Global.currentAnswer*3+2] = true;
+                Global.collect[Global.currentAnswer+2] = true;
             } else {
-                Global.collect[Global.currentAnswer*3+2] = false;
+                Global.collect[Global.currentAnswer+2] = false;
             }
         }
 
@@ -276,9 +371,9 @@ public class TextComTestActivity extends AppCompatActivity {
         if (rdoD3.isChecked()) {
             if (strAnswer[Global.currentposition*3+2].equals("D")) {
 
-                Global.collect[Global.currentAnswer*3+2] = true;
+                Global.collect[Global.currentAnswer+2] = true;
             } else {
-                Global.collect[Global.currentAnswer*3+2] = false;
+                Global.collect[Global.currentAnswer+2] = false;
             }
         }
 
@@ -304,7 +399,7 @@ public class TextComTestActivity extends AppCompatActivity {
                 if (Global.currentAnswer == 0){
                     return;
                 }
-                Global.currentAnswer--;
+                Global.currentAnswer -= 3;
 
 
                 if (Global.currentposition == 0) {
@@ -349,13 +444,13 @@ public class TextComTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Global.currentAnswer++;
+                Global.currentAnswer += 3 ;
 
                 Global.currentposition++;
 
                 if (Global.currentposition > maxrow) {
                     Global.currentposition = 0;
-                    Intent intent = new Intent(TextComTestActivity.this, ReadingComprehensionTestActivity.class);
+                    Intent intent = new Intent(TextComTestActivity.this, DescriptionReadingActivity.class);
                     sumScore();
                     startActivity(intent);
                 } else {

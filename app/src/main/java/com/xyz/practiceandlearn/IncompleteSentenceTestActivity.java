@@ -266,7 +266,7 @@ public class IncompleteSentenceTestActivity extends AppCompatActivity {
 
                 if (Global.currentposition > maxrow) {
                     Global.currentposition = 0;
-                    Intent intent = new Intent(IncompleteSentenceTestActivity.this, TextComTestActivity.class);
+                    Intent intent = new Intent(IncompleteSentenceTestActivity.this, DescriptionTextcomActivity.class);
                     startActivity(intent);
                     sumScore();
                 } else {

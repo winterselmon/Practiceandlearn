@@ -189,8 +189,6 @@ public class QandrTestActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     private void back() {
@@ -254,7 +252,7 @@ public class QandrTestActivity extends AppCompatActivity {
 
                 if (Global.currentposition > maxrow) {
                     Global.currentposition = 0;
-                    Intent intent = new Intent(QandrTestActivity.this, ShortConTestActivity.class);
+                    Intent intent = new Intent(QandrTestActivity.this, DescriptionShortconActivity.class);
                     startActivity(intent);
                     sumScore();
 

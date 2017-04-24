@@ -206,9 +206,12 @@ public class ShortTalkTestActivity extends AppCompatActivity {
         mPlayer = new MediaPlayer();
 
         try {
+            if (!Global.played[Global.currentposition]) {
             mPlayer.setDataSource(filePath);
             mPlayer.prepare();
             mPlayer.start();
+            Global.played[Global.currentposition] = true;
+        }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -232,10 +235,10 @@ public class ShortTalkTestActivity extends AppCompatActivity {
         if (rdoA1.isChecked()) {
             if (strAnswer[(Global.currentposition*3)].equals("A")) {
 
-                Global.collect[(Global.currentAnswer*3)] = true;
+                Global.collect[(Global.currentAnswer)] = true;
 
             } else {
-                Global.collect[(Global.currentAnswer*3)] = false;
+                Global.collect[(Global.currentAnswer)] = false;
             }
         }
 
@@ -244,9 +247,9 @@ public class ShortTalkTestActivity extends AppCompatActivity {
         if (rdoB1.isChecked()) {
             if (strAnswer[(Global.currentposition*3)].equals("B")) {
 
-                Global.collect[(Global.currentAnswer*3)] = true;
+                Global.collect[(Global.currentAnswer)] = true;
             } else {
-                Global.collect[(Global.currentAnswer*3)] = false;
+                Global.collect[(Global.currentAnswer)] = false;
             }
         }
 
@@ -255,9 +258,9 @@ public class ShortTalkTestActivity extends AppCompatActivity {
         if (rdoC1.isChecked()) {
             if (strAnswer[(Global.currentposition*3)].equals("C")) {
 
-                Global.collect[(Global.currentAnswer*3)] = true;
+                Global.collect[(Global.currentAnswer)] = true;
             } else {
-                Global.collect[(Global.currentAnswer*3)] = false;
+                Global.collect[(Global.currentAnswer)] = false;
             }
         }
 
@@ -266,9 +269,9 @@ public class ShortTalkTestActivity extends AppCompatActivity {
         if (rdoD1.isChecked()) {
             if (strAnswer[(Global.currentposition*3)].equals("D")) {
 
-                Global.collect[(Global.currentAnswer*3)] = true;
+                Global.collect[(Global.currentAnswer)] = true;
             } else {
-                Global.collect[(Global.currentAnswer*3)] = false;
+                Global.collect[(Global.currentAnswer)] = false;
             }
         }
 
@@ -277,10 +280,10 @@ public class ShortTalkTestActivity extends AppCompatActivity {
         if (rdoA2.isChecked()) {
             if (strAnswer[(Global.currentposition*3)+1].equals("A")) {
 
-                Global.collect[(Global.currentAnswer*3)+1] = true;
+                Global.collect[(Global.currentAnswer+1)] = true;
 
             } else {
-                Global.collect[(Global.currentAnswer*3)+1] = false;
+                Global.collect[(Global.currentAnswer+1)] = false;
             }
         }
 
@@ -289,9 +292,9 @@ public class ShortTalkTestActivity extends AppCompatActivity {
         if (rdoB2.isChecked()) {
             if (strAnswer[(Global.currentposition*3)+1].equals("B")) {
 
-                Global.collect[(Global.currentAnswer*3)+1] = true;
+                Global.collect[(Global.currentAnswer+1)] = true;
             } else {
-                Global.collect[(Global.currentAnswer*3)+1] = false;
+                Global.collect[(Global.currentAnswer+1)] = false;
             }
         }
 
@@ -300,9 +303,9 @@ public class ShortTalkTestActivity extends AppCompatActivity {
         if (rdoC2.isChecked()) {
             if (strAnswer[(Global.currentposition*3)+1].equals("C")) {
 
-                Global.collect[(Global.currentAnswer*3)+1] = true;
+                Global.collect[(Global.currentAnswer+1)] = true;
             } else {
-                Global.collect[(Global.currentAnswer*3)+1] = false;
+                Global.collect[(Global.currentAnswer+1)] = false;
             }
         }
 
@@ -311,9 +314,9 @@ public class ShortTalkTestActivity extends AppCompatActivity {
         if (rdoD2.isChecked()) {
             if (strAnswer[(Global.currentposition*3)+1].equals("D")) {
 
-                Global.collect[(Global.currentAnswer*3)+1] = true;
+                Global.collect[(Global.currentAnswer+1)] = true;
             } else {
-                Global.collect[(Global.currentAnswer*3)+1] = false;
+                Global.collect[(Global.currentAnswer+1)] = false;
             }
         }
 
@@ -322,10 +325,10 @@ public class ShortTalkTestActivity extends AppCompatActivity {
         if (rdoA3.isChecked()) {
             if (strAnswer[(Global.currentposition*3)+2].equals("A")) {
 
-                Global.collect[(Global.currentAnswer*3)+2] = true;
+                Global.collect[(Global.currentAnswer+2)] = true;
 
             } else {
-                Global.collect[(Global.currentAnswer*3)+2] = false;
+                Global.collect[(Global.currentAnswer+2)] = false;
             }
         }
 
@@ -334,9 +337,9 @@ public class ShortTalkTestActivity extends AppCompatActivity {
         if (rdoB3.isChecked()) {
             if (strAnswer[(Global.currentposition*3)+2].equals("B")) {
 
-                Global.collect[(Global.currentAnswer*3)+2] = true;
+                Global.collect[(Global.currentAnswer+2)] = true;
             } else {
-                Global.collect[(Global.currentAnswer*3)+2] = false;
+                Global.collect[(Global.currentAnswer+2)] = false;
             }
         }
 
@@ -345,9 +348,9 @@ public class ShortTalkTestActivity extends AppCompatActivity {
         if (rdoC3.isChecked()) {
             if (strAnswer[(Global.currentposition*3)+2].equals("C")) {
 
-                Global.collect[(Global.currentAnswer*3)+2] = true;
+                Global.collect[(Global.currentAnswer+2)] = true;
             } else {
-                Global.collect[(Global.currentAnswer*3)+2] = false;
+                Global.collect[(Global.currentAnswer+2)] = false;
             }
         }
 
@@ -356,9 +359,9 @@ public class ShortTalkTestActivity extends AppCompatActivity {
         if (rdoD3.isChecked()) {
             if (strAnswer[(Global.currentposition*3)+2].equals("D")) {
 
-                Global.collect[(Global.currentAnswer*3)+2] = true;
+                Global.collect[(Global.currentAnswer+2)] = true;
             } else {
-                Global.collect[(Global.currentAnswer*3)+2] = false;
+                Global.collect[(Global.currentAnswer+2)] = false;
             }
         }
 
@@ -376,7 +379,7 @@ public class ShortTalkTestActivity extends AppCompatActivity {
                 if (Global.currentAnswer == 0){
                     return;
                 }
-                Global.currentAnswer--;
+                Global.currentAnswer -=3 ;
 
                 if (Global.currentposition == 0) {
                     if (currentpage == 0) {
@@ -423,13 +426,13 @@ public class ShortTalkTestActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                Global.currentAnswer++;
+                Global.currentAnswer += 3;
 
                 Global.currentposition++;
 
                 if (Global.currentposition > maxrow) {
                     Global.currentposition = 0;
-                    Intent intent = new Intent(ShortTalkTestActivity.this, IncompleteSentenceTestActivity.class);
+                    Intent intent = new Intent(ShortTalkTestActivity.this, DescriptionIncompleteActivity.class);
                     startActivity(intent);
                     sumScore();
                 } else {

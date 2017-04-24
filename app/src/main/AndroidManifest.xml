@@ -41,7 +41,15 @@
         <activity android:name=".IncompleteSentenceTestActivity" />
         <activity android:name=".TextComTestActivity" />
         <activity android:name=".ReadingComprehensionTestActivity" />
-        <activity android:name=".Update"></activity>
+        <activity android:name=".Update" />
+        <activity android:name=".ShowScoreActivity" />
+        <activity android:name=".DescriptionPhotoActivity" />
+        <activity android:name=".DescriptionQandRActivity" />
+        <activity android:name=".DescriptionShortconActivity" />
+        <activity android:name=".DescriptionShortTalkActivity" />
+        <activity android:name=".DescriptionIncompleteActivity" />
+        <activity android:name=".DescriptionTextcomActivity" />
+        <activity android:name=".DescriptionReadingActivity"></activity>
     </application>
 
 </manifest>
