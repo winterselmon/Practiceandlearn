@@ -3,6 +3,7 @@ package com.xyz.practiceandlearn;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
@@ -378,9 +379,7 @@ public class PhotosTestActivity extends AppCompatActivity {
 
     private String[] listChoiceA(){
 
-
         String strListChoiceA[] = null;
-        //String db = Environment.getExternalStorageDirectory().getAbsolutePath() + "TOEIC.db";
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
         Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST, new String[]{COLUMN_PHOTO_CHOICE_A_TEST}, null, null, null, null, null);
         objCursor.moveToFirst();

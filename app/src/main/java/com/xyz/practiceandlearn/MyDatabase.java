@@ -44,7 +44,7 @@ public class MyDatabase extends SQLiteOpenHelper {
     private static final String READING_COMPREHENSION_QUESTION_TEST = "CREATE TABLE ReadingComprehensionQuestionTest(Id_reading_question INTEGER PRIMARY KEY, "+" Reading_question TEXT, Reading_answer TEXT, Reading_choice_a TEXT, Reading_choice_b TEXT, Reading_choice_c TEXT, Reading_choice_d TEXT, Id_reading_script2 INTEGER)";
 
     public MyDatabase(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        super(context,"/storage/sdcard/sdcard/V1/TOEIC.db", null, DATABASE_VERSION);
     }
 
 
