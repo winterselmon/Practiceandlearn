@@ -18,24 +18,24 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
-import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_ANSWER;
-import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_ANSWER_TEST;
-import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_CHOICE_A;
-import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_CHOICE_A_TEST;
-import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_CHOICE_B;
-import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_CHOICE_B_TEST;
-import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_CHOICE_C;
-import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_CHOICE_C_TEST;
-import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_CHOICE_D;
-import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_CHOICE_D_TEST;
-import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_QUESTION;
-import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_QUESTION_TEST;
-import static com.xyz.practiceandlearn.ShortTalkDatabase.SHORTTALK_QUESTION;
-import static com.xyz.practiceandlearn.ShortTalkDatabase.SHORTTALK_QUESTION_TEST;
+//import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_ANSWER;
+//import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_ANSWER_TEST;
+//import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_CHOICE_A;
+//import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_CHOICE_A_TEST;
+//import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_CHOICE_B;
+//import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_CHOICE_B_TEST;
+//import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_CHOICE_C;
+//import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_CHOICE_C_TEST;
+//import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_CHOICE_D;
+//import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_CHOICE_D_TEST;
+//import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_QUESTION;
+//import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_QUESTION_TEST;
+//import static com.xyz.practiceandlearn.ShortTalkDatabase.SHORTTALK_QUESTION;
+//import static com.xyz.practiceandlearn.ShortTalkDatabase.SHORTTALK_QUESTION_TEST;
 
 public class ShortTalkTestActivity extends AppCompatActivity {
 
-    private MyDatabase objMyDatabase;
+
     private String[] strQuestion, strAnswer, strChoiceA, strChoiceB, strChoiceC, strChoiceD;
     //private int currentposition;
     private int currentpage;
@@ -67,7 +67,7 @@ public class ShortTalkTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_short_talk_test);
 
-        objMyDatabase = new MyDatabase(this);
+
 
         //currentposition = 0;
 
@@ -202,7 +202,8 @@ public class ShortTalkTestActivity extends AppCompatActivity {
             mPlayer.stop();
             mPlayer.release();
         }
-        String filePath = Environment.getExternalStorageDirectory()+"/AudioShortTalk/"+String.valueOf(Global.currentposition+1)+".mp3";
+        String filePath = Global.basedir +"/AudioShortTalk/"+String.valueOf(Global.currentposition+1)+".mp3";
+        //String filePath = Environment.getExternalStorageDirectory()+"/AudioShortTalk/"+String.valueOf(Global.currentposition+1)+".mp3";
         mPlayer = new MediaPlayer();
 
         try {
@@ -536,12 +537,14 @@ public class ShortTalkTestActivity extends AppCompatActivity {
     private String[] listQuestion() {
 
         String strListQuestion[];
-        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
-        Cursor cursor = db.query(SHORTTALK_QUESTION_TEST, new String[]{COLUMN_SHORTTALK_QUESTION_TEST}, null, null, null, null, null);
+        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM SHORTTALK_QUESTION_TEST WHERE COLUMN_SHORTTALK_QUESTION_TEST", new String[]{"COLUMN_SHORTTALK_QUESTION_TEST", null, null, null, null, null});
+        //Cursor cursor = db.query(SHORTTALK_QUESTION_TEST, new String[]{COLUMN_SHORTTALK_QUESTION_TEST}, null, null, null, null, null);
         cursor.moveToFirst();
         strListQuestion = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
-            strListQuestion[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTTALK_QUESTION_TEST));
+            strListQuestion[i] = cursor.getString(cursor.getColumnIndex("COLUMN_SHORTTALK_QUESTION_TEST"));
+            //strListQuestion[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTTALK_QUESTION_TEST));
             cursor.moveToNext();
         }
         cursor.close();
@@ -553,12 +556,14 @@ public class ShortTalkTestActivity extends AppCompatActivity {
     private String[] listAnswer() {
 
         String strListAnswer[];
-        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
-        Cursor cursor = db.query(SHORTTALK_QUESTION_TEST, new String[]{COLUMN_SHORTTALK_ANSWER_TEST}, null, null, null, null, null);
+        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM SHORTTALK_QUESTION_TEST WHERE COLUMN_SHORTTALK_ANSWER_TEST", new String[]{"COLUMN_SHORTTALK_ANSWER_TEST", null, null, null, null, null});
+        //Cursor cursor = db.query(SHORTTALK_QUESTION_TEST, new String[]{COLUMN_SHORTTALK_ANSWER_TEST}, null, null, null, null, null);
         cursor.moveToFirst();
         strListAnswer = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
-            strListAnswer[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTTALK_ANSWER_TEST));
+            strListAnswer[i] = cursor.getString(cursor.getColumnIndex("COLUMN_SHORTTALK_ANSWER_TEST"));
+            //strListAnswer[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTTALK_ANSWER_TEST));
             cursor.moveToNext();
         }
         cursor.close();
@@ -570,12 +575,14 @@ public class ShortTalkTestActivity extends AppCompatActivity {
     private String[] listChoiceA() {
 
         String strListChoiceA[];
-        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
-        Cursor cursor = db.query(SHORTTALK_QUESTION_TEST, new String[]{COLUMN_SHORTTALK_CHOICE_A_TEST}, null, null, null, null, null);
+        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM SHORTTALK_QUESTION_TEST WHERE COLUMN_SHORTTALK_CHOICE_A_TEST", new String[]{"COLUMN_SHORTTALK_CHOICE_A_TEST", null, null, null, null, null});
+        //Cursor cursor = db.query(SHORTTALK_QUESTION_TEST, new String[]{COLUMN_SHORTTALK_CHOICE_A_TEST}, null, null, null, null, null);
         cursor.moveToFirst();
         strListChoiceA = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
-            strListChoiceA[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTTALK_CHOICE_A_TEST));
+            strListChoiceA[i] = cursor.getString(cursor.getColumnIndex("COLUMN_SHORTTALK_CHOICE_A_TEST"));
+            //strListChoiceA[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTTALK_CHOICE_A_TEST));
             cursor.moveToNext();
         }
         cursor.close();
@@ -587,12 +594,14 @@ public class ShortTalkTestActivity extends AppCompatActivity {
     private String[] listChoiceB() {
 
         String strListChoiceB[];
-        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
-        Cursor cursor = db.query(SHORTTALK_QUESTION_TEST, new String[]{COLUMN_SHORTTALK_CHOICE_B_TEST}, null, null, null, null, null);
+        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELRCT * FROM SHORTTALK_QUESTION_TEST WHERE COLUMN_SHORTTALK_CHOICE_B_TEST", new String[]{"COLUMN_SHORTTALK_CHOICE_B_TEST", null, null, null, null, null});
+        //Cursor cursor = db.query(SHORTTALK_QUESTION_TEST, new String[]{COLUMN_SHORTTALK_CHOICE_B_TEST}, null, null, null, null, null);
         cursor.moveToFirst();
         strListChoiceB = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
-            strListChoiceB[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTTALK_CHOICE_B_TEST));
+            strListChoiceB[i] = cursor.getString(cursor.getColumnIndex("COLUMN_SHORTTALK_CHOICE_B_TEST"));
+            //strListChoiceB[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTTALK_CHOICE_B_TEST));
             cursor.moveToNext();
         }
         cursor.close();
@@ -604,12 +613,14 @@ public class ShortTalkTestActivity extends AppCompatActivity {
     private String[] listChoiceC() {
 
         String strListChoiceC[];
-        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
-        Cursor cursor = db.query(SHORTTALK_QUESTION_TEST, new String[]{COLUMN_SHORTTALK_CHOICE_C_TEST}, null, null, null, null, null);
+        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM SHORTTALK_QUESTION_TEST WHERE COLUMN_SHORTTALK_CHOICE_C_TEST", new String[]{"COLUMN_SHORTTALK_CHOICE_C_TEST", null, null, null, null, null});
+        //Cursor cursor = db.query(SHORTTALK_QUESTION_TEST, new String[]{COLUMN_SHORTTALK_CHOICE_C_TEST}, null, null, null, null, null);
         cursor.moveToFirst();
         strListChoiceC = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
-            strListChoiceC[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTTALK_CHOICE_C_TEST));
+            strListChoiceC[i] = cursor.getString(cursor.getColumnIndex("COLUMN_SHORTTALK_CHOICE_C_TEST"));
+            //strListChoiceC[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTTALK_CHOICE_C_TEST));
             cursor.moveToNext();
         }
         cursor.close();
@@ -621,12 +632,14 @@ public class ShortTalkTestActivity extends AppCompatActivity {
     private String[] listChoiceD() {
 
         String strListChoiceD[];
-        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
-        Cursor cursor = db.query(SHORTTALK_QUESTION_TEST, new String[]{COLUMN_SHORTTALK_CHOICE_D_TEST}, null, null, null, null, null);
+        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM SHORTTALK_QUESTION_TEST WHERE COLUMN_SHORTTALK_CHOICE_D_TEST", new String[]{"COLUMN_SHORTTALK_CHOICE_D_TEST", null, null, null, null, null});
+        //Cursor cursor = db.query(SHORTTALK_QUESTION_TEST, new String[]{COLUMN_SHORTTALK_CHOICE_D_TEST}, null, null, null, null, null);
         cursor.moveToFirst();
         strListChoiceD = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
-            strListChoiceD[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTTALK_CHOICE_D_TEST));
+            strListChoiceD[i] = cursor.getString(cursor.getColumnIndex("COLUMN_SHORTTALK_CHOICE_D_TEST"));
+            //strListChoiceD[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTTALK_CHOICE_D_TEST));
             cursor.moveToNext();
         }
         cursor.close();

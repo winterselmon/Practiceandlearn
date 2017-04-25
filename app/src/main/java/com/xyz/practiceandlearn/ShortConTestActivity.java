@@ -18,22 +18,22 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
-import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_ID_SHORTCONVERSATION_QUESTION;
-import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_ID_SHORTCONVERSATION_SCRIPT;
-import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_ANSWER;
-import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_ANSWER_TEST;
-import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_CHOICE_A;
-import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_CHOICE_A_TEST;
-import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_CHOICE_B;
-import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_CHOICE_B_TEST;
-import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_CHOICE_C;
-import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_CHOICE_C_TEST;
-import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_CHOICE_D;
-import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_CHOICE_D_TEST;
-import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_QUESTION;
-import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_QUESTION_TEST;
-import static com.xyz.practiceandlearn.ShortConDatabase.SHORTCONVERSATION_QUESTION;
-import static com.xyz.practiceandlearn.ShortConDatabase.SHORTCONVERSATION_QUESTION_TEST;
+//import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_ID_SHORTCONVERSATION_QUESTION;
+//import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_ID_SHORTCONVERSATION_SCRIPT;
+//import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_ANSWER;
+//import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_ANSWER_TEST;
+//import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_CHOICE_A;
+//import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_CHOICE_A_TEST;
+//import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_CHOICE_B;
+//import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_CHOICE_B_TEST;
+//import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_CHOICE_C;
+//import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_CHOICE_C_TEST;
+//import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_CHOICE_D;
+//import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_CHOICE_D_TEST;
+//import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_QUESTION;
+//import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_QUESTION_TEST;
+//import static com.xyz.practiceandlearn.ShortConDatabase.SHORTCONVERSATION_QUESTION;
+//import static com.xyz.practiceandlearn.ShortConDatabase.SHORTCONVERSATION_QUESTION_TEST;
 
 public class ShortConTestActivity extends AppCompatActivity {
 
@@ -204,7 +204,8 @@ public class ShortConTestActivity extends AppCompatActivity {
             mPlayer.stop();
             mPlayer.release();
         }
-        String filePath = Environment.getExternalStorageDirectory()+"/AudioShortCon/"+String.valueOf(Global.currentAnswer+1)+".mp3";
+        String filePath = Global.basedir +"/AudioShortCon/"+String.valueOf(Global.currentAnswer+1)+".mp3";
+        //String filePath = Environment.getExternalStorageDirectory()+"/AudioShortCon/"+String.valueOf(Global.currentAnswer+1)+".mp3";
         mPlayer = new MediaPlayer();
 
         try {
@@ -380,7 +381,7 @@ public class ShortConTestActivity extends AppCompatActivity {
                 if (Global.currentAnswer == 0){
                     return;
                 }
-                Global.currentAnswer -=3 ;
+                Global.currentAnswer -- ;
 
                 if (Global.currentposition == 0) {
                     if (currentpage == 0) {
@@ -535,11 +536,13 @@ public class ShortConTestActivity extends AppCompatActivity {
 
         String strListQuestion[];
         SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
-        Cursor cursor = db.query(SHORTCONVERSATION_QUESTION_TEST, new String[]{COLUMN_SHORTCONVERSATION_QUESTION_TEST}, null, null, null, null, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM SHORTCONVERSATION_QUESTION_TEST WHERE COLUMN_SHORTCONVERSATION_QUESTION_TEST", new String[]{"COLUMN_SHORTCONVERSATION_QUESTION_TEST", null, null, null, null, null});
+        //Cursor cursor = db.query(SHORTCONVERSATION_QUESTION_TEST, new String[]{COLUMN_SHORTCONVERSATION_QUESTION_TEST}, null, null, null, null, null);
         cursor.moveToFirst();
         strListQuestion = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
-            strListQuestion[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTCONVERSATION_QUESTION_TEST));
+            strListQuestion[i] = cursor.getString(cursor.getColumnIndex("COLUMN_SHORTCONVERSATION_QUESTION_TEST"));
+            //strListQuestion[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTCONVERSATION_QUESTION_TEST));
             cursor.moveToNext();
         }
         cursor.close();
@@ -552,11 +555,13 @@ public class ShortConTestActivity extends AppCompatActivity {
 
         String strListAnswer[];
         SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
-        Cursor cursor = db.query(SHORTCONVERSATION_QUESTION_TEST, new String[]{COLUMN_SHORTCONVERSATION_ANSWER_TEST}, null, null, null, null, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM SHORTCONVERSATION_QUESTION_TEST WHERE COLUMN_SHORTCONVERSATION_ANSWER_TEST", new String[]{"COLUMN_SHORTCONVERSATION_ANSWER_TEST", null, null, null, null, null});
+        //Cursor cursor = db.query(SHORTCONVERSATION_QUESTION_TEST, new String[]{COLUMN_SHORTCONVERSATION_ANSWER_TEST}, null, null, null, null, null);
         cursor.moveToFirst();
         strListAnswer = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
-            strListAnswer[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTCONVERSATION_ANSWER_TEST));
+            strListAnswer[i] = cursor.getString(cursor.getColumnIndex("COLUMN_SHORTCONVERSATION_ANSWER_TEST"));
+            //strListAnswer[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTCONVERSATION_ANSWER_TEST));
             cursor.moveToNext();
         }
         cursor.close();
@@ -569,11 +574,13 @@ public class ShortConTestActivity extends AppCompatActivity {
 
         String strListChoiceA[];
         SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
-        Cursor cursor = db.query(SHORTCONVERSATION_QUESTION_TEST, new String[]{COLUMN_SHORTCONVERSATION_CHOICE_A_TEST}, null, null, null, null, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM SHORTCONVERSATION_QUESTION_TEST WHERE COLUMN_SHORTCONVERSATION_CHOICE_A_TEST", new String[]{"COLUMN_SHORTCONVERSATION_CHOICE_A_TEST", null, null, null, null, null});
+        //Cursor cursor = db.query(SHORTCONVERSATION_QUESTION_TEST, new String[]{COLUMN_SHORTCONVERSATION_CHOICE_A_TEST}, null, null, null, null, null);
         cursor.moveToFirst();
         strListChoiceA = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
-            strListChoiceA[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTCONVERSATION_CHOICE_A_TEST));
+            strListChoiceA[i] = cursor.getString(cursor.getColumnIndex("COLUMN_SHORTCONVERSATION_CHOICE_A_TEST"));
+            //strListChoiceA[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTCONVERSATION_CHOICE_A_TEST));
             cursor.moveToNext();
         }
         cursor.close();
@@ -586,11 +593,13 @@ public class ShortConTestActivity extends AppCompatActivity {
 
         String strListChoiceB[];
         SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
-        Cursor cursor = db.query(SHORTCONVERSATION_QUESTION_TEST, new String[]{COLUMN_SHORTCONVERSATION_CHOICE_B_TEST}, null, null, null, null, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM SHORTCONVERSATION_QUESTION_TEST WHERE COLUMN_SHORTCONVERSATION_CHOICE_B_TEST ", new String[]{"COLUMN_SHORTCONVERSATION_CHOICE_B_TEST", null, null, null, null, null});
+        //Cursor cursor = db.query(SHORTCONVERSATION_QUESTION_TEST, new String[]{COLUMN_SHORTCONVERSATION_CHOICE_B_TEST}, null, null, null, null, null);
         cursor.moveToFirst();
         strListChoiceB = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
-            strListChoiceB[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTCONVERSATION_CHOICE_B_TEST));
+            strListChoiceB[i] = cursor.getString(cursor.getColumnIndex("COLUMN_SHORTCONVERSATION_CHOICE_B_TEST"));
+            //strListChoiceB[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTCONVERSATION_CHOICE_B_TEST));
             cursor.moveToNext();
         }
         cursor.close();
@@ -603,11 +612,13 @@ public class ShortConTestActivity extends AppCompatActivity {
 
         String strListChoiceC[];
         SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
-        Cursor cursor = db.query(SHORTCONVERSATION_QUESTION_TEST, new String[]{COLUMN_SHORTCONVERSATION_CHOICE_C_TEST}, null, null, null, null, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM SHORTCONVERSATION_QUESTION_TEST WHERE COLUMN_SHORTCONVERSATION_CHOICE_C_TEST", new String[]{"COLUMN_SHORTCONVERSATION_CHOICE_C_TEST", null, null, null, null, null});
+        //Cursor cursor = db.query(SHORTCONVERSATION_QUESTION_TEST, new String[]{COLUMN_SHORTCONVERSATION_CHOICE_C_TEST}, null, null, null, null, null);
         cursor.moveToFirst();
         strListChoiceC = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
-            strListChoiceC[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTCONVERSATION_CHOICE_C_TEST));
+            strListChoiceC[i] = cursor.getString(cursor.getColumnIndex("COLUMN_SHORTCONVERSATION_CHOICE_C_TEST"));
+            //strListChoiceC[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTCONVERSATION_CHOICE_C_TEST));
             cursor.moveToNext();
         }
         cursor.close();
@@ -620,11 +631,13 @@ public class ShortConTestActivity extends AppCompatActivity {
 
         String strListChoiceD[];
         SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
-        Cursor cursor = db.query(SHORTCONVERSATION_QUESTION_TEST, new String[]{COLUMN_SHORTCONVERSATION_CHOICE_D_TEST}, null, null, null, null, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM SHORTCONVERSATION_QUESTION_TEST WHERE COLUMN_SHORTCONVERSATION_CHOICE_D_TEST", new String[]{"COLUMN_SHORTCONVERSATION_CHOICE_D_TEST", null, null, null, null, null});
+        //Cursor cursor = db.query(SHORTCONVERSATION_QUESTION_TEST, new String[]{COLUMN_SHORTCONVERSATION_CHOICE_D_TEST}, null, null, null, null, null);
         cursor.moveToFirst();
         strListChoiceD = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
-            strListChoiceD[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTCONVERSATION_CHOICE_D_TEST));
+            strListChoiceD[i] = cursor.getString(cursor.getColumnIndex("COLUMN_SHORTCONVERSATION_CHOICE_D_TEST"));
+            //strListChoiceD[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTCONVERSATION_CHOICE_D_TEST));
             cursor.moveToNext();
         }
         cursor.close();
