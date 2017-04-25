@@ -24,6 +24,8 @@ import java.net.URLConnection;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import static com.xyz.practiceandlearn.Global.basedir;
+
 public class MainActivity extends AppCompatActivity {
 
     private PhotoDatabase objPhotoDatabase;
@@ -40,10 +42,11 @@ public class MainActivity extends AppCompatActivity {
     public static final int progress_bar_type = 0;
 
     // File url to download
-    private static String file_url = "http://103.212.181.17/project/V1.zip";
+    private static String file_url = "http://localhost/V1.zip";
 
-    String zipFile = Environment.getExternalStorageDirectory() + "/V1.zip";
-    String unzipLocation = Environment.getExternalStorageDirectory() + "/sdcard/";
+    String zipFile = basedir.toString() + "/V1.zip";
+    String unzipLocation = basedir.toString();
+    //String unzipLocation = Environment.getExternalStorageDirectory() + "/sdcard/";
 
 
 
@@ -97,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File dir = new File(Environment.getExternalStorageDirectory() + "/sdcard/V1/");
+                File dir = new File(basedir.toString()+"/V1/");
                 if (dir.exists() && dir.isDirectory()) {
                     Toast.makeText(MainActivity.this,"Last varsion",Toast.LENGTH_LONG).show();
                 }else {
@@ -106,6 +109,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //if V2
+        //objMyDatabase = new MyDatabase(this, basedir.toString()+"/V2/TOEIC.db");
+        //if V1
+        Global.objMyDatabase = new MyDatabase(this, basedir.toString()+"/V1/TOEIC.db");
+
 
 
         //AddValues();

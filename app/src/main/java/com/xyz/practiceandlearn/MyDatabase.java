@@ -3,6 +3,11 @@ package com.xyz.practiceandlearn;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
+
+import java.io.File;
+
+import static com.xyz.practiceandlearn.Global.basedir;
 
 /**
  * Created by 10.10 on 1/16/2017.
@@ -43,8 +48,10 @@ public class MyDatabase extends SQLiteOpenHelper {
     private static final String READING_COMPREHENSION_SCRIPT_TEST = "CREATE TABLE ReadingComprehensionScriptTest(Id_reading_script INTEGER PRIMARY KEY, "+" Reading_script TEXT)";
     private static final String READING_COMPREHENSION_QUESTION_TEST = "CREATE TABLE ReadingComprehensionQuestionTest(Id_reading_question INTEGER PRIMARY KEY, "+" Reading_question TEXT, Reading_answer TEXT, Reading_choice_a TEXT, Reading_choice_b TEXT, Reading_choice_c TEXT, Reading_choice_d TEXT, Id_reading_script2 INTEGER)";
 
-    public MyDatabase(Context context) {
-        super(context,"/storage/sdcard/sdcard/V1/TOEIC.db", null, DATABASE_VERSION);
+    public MyDatabase(Context context, String dbname) {
+        super(context,dbname, null, DATABASE_VERSION);
+        //basedir.toString()+"/V1/TOEIC.db"
+        //super(context,"/storage/sdcard/sdcard/V1/TOEIC.db", null, DATABASE_VERSION);
     }
 
 

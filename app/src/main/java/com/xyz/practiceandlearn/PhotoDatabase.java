@@ -7,6 +7,8 @@ import android.os.Environment;
 
 import java.security.PublicKey;
 
+import static com.xyz.practiceandlearn.Global.basedir;
+
 /**
  * Created by 10.10 on 1/16/2017.
  */
@@ -43,7 +45,7 @@ public class PhotoDatabase {
 
     public PhotoDatabase(Context context){
 
-        objMyDatabase = new MyDatabase(context);
+        objMyDatabase = new MyDatabase(context, basedir.toString()+"/V1/TOEIC.db");
         writeSQLite = objMyDatabase.getWritableDatabase();
         readSQLite = objMyDatabase.getReadableDatabase();
 

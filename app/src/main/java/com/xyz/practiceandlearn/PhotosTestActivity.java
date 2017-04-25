@@ -28,6 +28,7 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
+import static com.xyz.practiceandlearn.Global.basedir;
 import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_ANSWER;
 import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_ANSWER_TEST;
 import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_CHOICE_A;
@@ -46,7 +47,7 @@ import static com.xyz.practiceandlearn.PhotoDatabase.PHOTOGRAPHS_QUESTION_TEST;
 
 public class PhotosTestActivity extends AppCompatActivity {
 
-    MyDatabase objMyDatabase;
+
     private static String[] strListChoiceA, strListChoiceB, strListChoiceC, strListChoiceD, strListAnswer;
     //private int currentposition;
     private int currentpage;
@@ -81,7 +82,7 @@ public class PhotosTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photos_test);
 
-        objMyDatabase = new MyDatabase(this);
+
 
         //Global.currentposition;
 
@@ -229,16 +230,16 @@ public class PhotosTestActivity extends AppCompatActivity {
             mPlayer.release();
         }
 
-        String filePath = Environment.getExternalStorageDirectory()+"/AudioPhoto/"+String.valueOf(Global.currentposition+1)+".mp3";
+        String filePath = Environment.getExternalStorageDirectory()+"/AudioPhoto/"+String.valueOf(Global.currentAnswer+1)+".mp3";
         mPlayer = new MediaPlayer();
 
 
         try {
-            if (!Global.played[Global.currentposition]) {
+            if (!Global.played[Global.currentAnswer]) {
                 mPlayer.setDataSource(filePath);
                 mPlayer.prepare();
                 mPlayer.start();
-                Global.played[Global.currentposition] = true;
+                Global.played[Global.currentAnswer] = true;
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -380,7 +381,7 @@ public class PhotosTestActivity extends AppCompatActivity {
     private String[] listChoiceA(){
 
         String strListChoiceA[] = null;
-        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
         Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST, new String[]{COLUMN_PHOTO_CHOICE_A_TEST}, null, null, null, null, null);
         objCursor.moveToFirst();
         strListChoiceA = new String[objCursor.getCount()];
@@ -396,7 +397,7 @@ public class PhotosTestActivity extends AppCompatActivity {
     private String[] listChoiceB(){
 
         String strListChoiceB[] = null;
-        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
         Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST, new String[]{COLUMN_PHOTO_CHOICE_B_TEST}, null, null, null, null, null);
         objCursor.moveToFirst();
         strListChoiceB = new String[objCursor.getCount()];
@@ -413,7 +414,7 @@ public class PhotosTestActivity extends AppCompatActivity {
     private String[] listChoiceC(){
 
         String strListChoiceC[] = null;
-        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
         Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST, new String[]{COLUMN_PHOTO_CHOICE_C_TEST}, null, null, null, null, null);
         objCursor.moveToFirst();
         strListChoiceC = new String[objCursor.getCount()];
@@ -430,7 +431,7 @@ public class PhotosTestActivity extends AppCompatActivity {
     private String[] listChoiceD(){
 
         String strListChoiceD[] = null;
-        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
         Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST, new String[]{COLUMN_PHOTO_CHOICE_D_TEST}, null, null, null, null, null);
         objCursor.moveToFirst();
         strListChoiceD = new String[objCursor.getCount()];
@@ -448,7 +449,7 @@ public class PhotosTestActivity extends AppCompatActivity {
 
 
         String strListAnswer[];
-        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
         Cursor objCursor = db.query(PHOTOGRAPHS_QUESTION_TEST, new String[]{COLUMN_PHOTO_ANSWER_TEST}, null, null, null, null, null);
         objCursor.moveToFirst();
         strListAnswer = new String[objCursor.getCount()];

@@ -1,9 +1,11 @@
 package com.xyz.practiceandlearn;
 
 import android.os.CountDownTimer;
+import android.os.Environment;
 import android.os.Handler;
 import android.widget.TextView;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
@@ -26,6 +28,10 @@ public class Global {
     public static boolean[] collect = new boolean[200];
 
     public static int currentAnswer = 0;
+
+    public static File basedir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+
+    public static MyDatabase objMyDatabase;
 
 
 

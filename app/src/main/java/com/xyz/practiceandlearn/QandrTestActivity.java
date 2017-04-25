@@ -27,7 +27,7 @@ import static com.xyz.practiceandlearn.QuestionAndResponseDatabase.QuestionAndRe
 
 public class QandrTestActivity extends AppCompatActivity {
 
-    MyDatabase objMyDatabase;
+
     //private int currentposition;
     private int currentpage;
     private MediaPlayer mPlayer;
@@ -60,7 +60,7 @@ public class QandrTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qandr_test);
 
-        objMyDatabase = new MyDatabase(this);
+
 
         //currentposition = 0;
 
@@ -176,15 +176,15 @@ public class QandrTestActivity extends AppCompatActivity {
             mPlayer.stop();
             mPlayer.release();
         }
-        String filePath = Environment.getExternalStorageDirectory()+"/AudioQandR/"+String.valueOf(Global.currentposition+1)+".mp3";
+        String filePath = Environment.getExternalStorageDirectory()+"/AudioQandR/"+String.valueOf(Global.currentAnswer+1)+".mp3";
         mPlayer = new MediaPlayer();
 
         try {
-            if (!Global.played[Global.currentposition]) {
+            if (!Global.played[Global.currentAnswer]) {
                 mPlayer.setDataSource(filePath);
                 mPlayer.prepare();
                 mPlayer.start();
-                Global.played[Global.currentposition] = true;
+                Global.played[Global.currentAnswer] = true;
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -293,7 +293,7 @@ public class QandrTestActivity extends AppCompatActivity {
     private String[] listAnswer(){
 
         String strListAnswer[];
-        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
         Cursor objCursor = db.query(QuestionAndResponse_Question_TEST, new String[]{COLUMN_QANDR_ANSWER_TEST}, null, null, null, null, null);
         objCursor.moveToFirst();
         strListAnswer = new String[objCursor.getCount()];
