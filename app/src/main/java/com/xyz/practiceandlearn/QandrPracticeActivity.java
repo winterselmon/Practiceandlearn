@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static com.xyz.practiceandlearn.Global.basedir;
 import static com.xyz.practiceandlearn.QuestionAndResponseDatabase.COLUMN_ID_QANDR_CHOICE;
 import static com.xyz.practiceandlearn.QuestionAndResponseDatabase.COLUMN_ID_QANDR_QUESTION;
 import static com.xyz.practiceandlearn.QuestionAndResponseDatabase.COLUMN_QANDR_ANSWER;
@@ -25,7 +26,8 @@ import static com.xyz.practiceandlearn.QuestionAndResponseDatabase.QuestionAndRe
 
 public class QandrPracticeActivity extends AppCompatActivity {
 
-    private MyDatabase objMyDatabase;
+
+    MyDatabase objMyDatabase;
     private String sql = COLUMN_ID_QANDR_QUESTION + "<=30";
     private String sql2 = COLUMN_ID_QANDR_CHOICE + "<=30";
     private static String[] strQuestion, strChoiceA, strChoiceB, strChoiceC, strChoiceDes, strAnswer;
@@ -42,7 +44,8 @@ public class QandrPracticeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qandr_practice);
 
-        objMyDatabase = new MyDatabase(this);
+        objMyDatabase = new MyDatabase(this, basedir.toString() + "/V1/TOEIC.db");
+
         currentposition = 0;
         showanswer = false;
         showanswer(0);
@@ -269,10 +272,12 @@ public class QandrPracticeActivity extends AppCompatActivity {
 
         String strListQuestion[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor objCursor = db.rawQuery("QuestionAndResponse_Question WHERE COLUMN_QANDR_QUESTION", new String[]{"COLUMN_QANDR_QUESTION", null, null, null, null, null});
         Cursor objCursor = db.query(QuestionAndResponse_Question, new String[]{COLUMN_QANDR_QUESTION}, sql, null, null, null, null);
         objCursor.moveToFirst();
         strListQuestion = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
+            //strListQuestion[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_QANDR_QUESTION"));
             strListQuestion[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_QANDR_QUESTION));
             objCursor.moveToNext();
         }
@@ -285,10 +290,12 @@ public class QandrPracticeActivity extends AppCompatActivity {
 
         String strListAnswer[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor objCursor = db.rawQuery("QuestionAndResponse_Question WHERE COLUMN_QANDR_ANSWER", new String[]{"COLUMN_QANDR_ANSWER", null, null, null, null, null});
         Cursor objCursor = db.query(QuestionAndResponse_Question, new String[]{COLUMN_QANDR_ANSWER}, sql, null, null, null, null);
         objCursor.moveToFirst();
         strListAnswer = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
+            //strListAnswer[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_QANDR_ANSWER"));
             strListAnswer[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_QANDR_ANSWER));
             objCursor.moveToNext();
         }
@@ -301,10 +308,12 @@ public class QandrPracticeActivity extends AppCompatActivity {
 
         String strListChoiceA[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor objCursor = db.rawQuery("SELECT * FROM QUESTIONANDRESPONSE_CHOICE WHERE COLUMN_QANDR_CHOICE_A", new String[]{"COLUMN_QANDR_CHOICE_A", null, null, null, null, null});
         Cursor objCursor = db.query(QUESTIONANDRESPONSE_CHOICE, new String[]{COLUMN_QANDR_CHOICE_A}, sql2, null, null, null, null);
         objCursor.moveToFirst();
         strListChoiceA = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
+            //strListChoiceA[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_QANDR_CHOICE_A"));
             strListChoiceA[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_QANDR_CHOICE_A));
             objCursor.moveToNext();
         }
@@ -318,10 +327,12 @@ public class QandrPracticeActivity extends AppCompatActivity {
 
         String strListChoiceB[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor objCursor = db.rawQuery("SELECT * FROM QUESTIONANDRESPONSE_CHOICE WHERE COLUMN_QANDR_CHOICE_B", new String[]{"COLUMN_QANDR_CHOICE_B", null, null, null, null, null});
         Cursor objCursor = db.query(QUESTIONANDRESPONSE_CHOICE, new String[]{COLUMN_QANDR_CHOICE_B}, sql2, null, null, null, null);
         objCursor.moveToFirst();
         strListChoiceB = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
+            //strListChoiceB[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_QANDR_CHOICE_B"));
             strListChoiceB[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_QANDR_CHOICE_B));
             objCursor.moveToNext();
         }
@@ -335,10 +346,12 @@ public class QandrPracticeActivity extends AppCompatActivity {
 
         String strListChoiceC[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor objCursor = db.rawQuery("QUESTIONANDRESPONSE_CHOICE WHERE COLUMN_QANDR_CHOICE_C", new String[]{"COLUMN_QANDR_CHOICE_C", null, null, null, null, null});
         Cursor objCursor = db.query(QUESTIONANDRESPONSE_CHOICE, new String[]{COLUMN_QANDR_CHOICE_C}, sql2, null, null, null, null);
         objCursor.moveToFirst();
         strListChoiceC = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
+            //strListChoiceC[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_QANDR_CHOICE_C"));
             strListChoiceC[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_QANDR_CHOICE_C));
             objCursor.moveToNext();
         }
@@ -352,10 +365,12 @@ public class QandrPracticeActivity extends AppCompatActivity {
 
         String strListChoiceDes[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor objCursor = db.rawQuery("SELECT * FROM QUESTIONANDRESPONSE_CHOICE WHERE COLUMN_QANDR_DES", new String[]{"COLUMN_QANDR_DES", null, null, null, null, null});
         Cursor objCursor = db.query(QUESTIONANDRESPONSE_CHOICE, new String[]{COLUMN_QANDR_DES}, sql2, null, null, null, null);
         objCursor.moveToFirst();
         strListChoiceDes = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
+            //strListChoiceDes[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_QANDR_DES"));
             strListChoiceDes[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_QANDR_DES));
             objCursor.moveToNext();
         }

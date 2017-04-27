@@ -11,6 +11,7 @@ import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import static com.xyz.practiceandlearn.Global.basedir;
 import static com.xyz.practiceandlearn.TextCompletionDatabase.COLUMN_TEXTCOM_ANSWER;
 import static com.xyz.practiceandlearn.TextCompletionDatabase.COLUMN_TEXTCOM_CHOICE_A;
 import static com.xyz.practiceandlearn.TextCompletionDatabase.COLUMN_TEXTCOM_CHOICE_B;
@@ -25,7 +26,7 @@ import static com.xyz.practiceandlearn.TextCompletionDatabase.TEXTCOMPLETION_SCR
 
 public class TextCompletionActivity extends AppCompatActivity {
 
-    private MyDatabase objMyDatabase;
+    MyDatabase objMyDatabase;
     private String[] strScript, strQuestion,strAnswer, strChoiceA, strChoiceB, strChoiceC, strChoiceD, strDes;
     private int currentposition;
     private static final int maxrow = 6;
@@ -37,7 +38,7 @@ public class TextCompletionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_completion);
 
-        objMyDatabase = new MyDatabase(this);
+        objMyDatabase = new MyDatabase(this, basedir.toString() + "/V1/TOEIC.db");
 
         currentposition = 0;
 
@@ -249,10 +250,12 @@ public class TextCompletionActivity extends AppCompatActivity {
 
         String strListScript[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor cursor = db.rawQuery("SELECT * FROM TEXTCOMPLETION_SCRIPT WHERE COLUMN_TEXTCOM_SCRIPT", new String[]{"COLUMN_TEXTCOM_SCRIPT", null, null, null, null, null});
         Cursor cursor = db.query(TEXTCOMPLETION_SCRIPT, new String[]{COLUMN_TEXTCOM_SCRIPT}, null, null, null, null, null);
         cursor.moveToFirst();
         strListScript = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
+            //strListScript[i] = cursor.getString(cursor.getColumnIndex("COLUMN_TEXTCOM_SCRIPT"));
             strListScript[i] = cursor.getString(cursor.getColumnIndex(COLUMN_TEXTCOM_SCRIPT));
             cursor.moveToNext();
         }
@@ -266,10 +269,12 @@ public class TextCompletionActivity extends AppCompatActivity {
 
         String strListQuestion[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor cursor = db.rawQuery("SELECT * FROM TEXTCOMPLETION_QUESTION WHERE COLUMN_TEXTCOM_QUESTION", new String[]{"COLUMN_TEXTCOM_QUESTION", null, null, null, null, null});
         Cursor cursor = db.query(TEXTCOMPLETION_QUESTION, new String[]{COLUMN_TEXTCOM_QUESTION}, null, null, null, null, null);
         cursor.moveToFirst();
         strListQuestion = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
+            //strListQuestion[i] = cursor.getString(cursor.getColumnIndex("COLUMN_TEXTCOM_QUESTION"));
             strListQuestion[i] = cursor.getString(cursor.getColumnIndex(COLUMN_TEXTCOM_QUESTION));
             cursor.moveToNext();
         }
@@ -283,10 +288,12 @@ public class TextCompletionActivity extends AppCompatActivity {
 
         String strListAnswer[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor cursor = db.rawQuery("SELECT * FROM TEXTCOMPLETION_QUESTION WHERE COLUMN_TEXTCOM_ANSWER", new String[]{"COLUMN_TEXTCOM_ANSWER}, null, null, null, null, null"});
         Cursor cursor = db.query(TEXTCOMPLETION_QUESTION, new String[]{COLUMN_TEXTCOM_ANSWER}, null, null, null, null, null);
         cursor.moveToFirst();
         strListAnswer = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
+            //strListAnswer[i] = cursor.getString(cursor.getColumnIndex("COLUMN_TEXTCOM_ANSWER"));
             strListAnswer[i] = cursor.getString(cursor.getColumnIndex(COLUMN_TEXTCOM_ANSWER));
             cursor.moveToNext();
         }
@@ -300,10 +307,12 @@ public class TextCompletionActivity extends AppCompatActivity {
 
         String strListChoiceA[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor cursor = db.rawQuery("TEXTCOMPLETION_QUESTION WHERE COLUMN_TEXTCOM_CHOICE_A", new String[]{"COLUMN_TEXTCOM_CHOICE_A", null, null, null, null, null});
         Cursor cursor = db.query(TEXTCOMPLETION_QUESTION, new String[]{COLUMN_TEXTCOM_CHOICE_A}, null, null, null, null, null);
         cursor.moveToFirst();
         strListChoiceA = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
+            //strListChoiceA[i] = cursor.getString(cursor.getColumnIndex("COLUMN_TEXTCOM_CHOICE_A"));
             strListChoiceA[i] = cursor.getString(cursor.getColumnIndex(COLUMN_TEXTCOM_CHOICE_A));
             cursor.moveToNext();
         }
@@ -317,10 +326,12 @@ public class TextCompletionActivity extends AppCompatActivity {
 
         String strListChoiceB[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor cursor = db.rawQuery("SELECT * FROM TEXTCOMPLETION_QUESTION WHERE COLUMN_TEXTCOM_CHOICE_B", new String[]{"COLUMN_TEXTCOM_CHOICE_B", null, null, null, null, null});
         Cursor cursor = db.query(TEXTCOMPLETION_QUESTION, new String[]{COLUMN_TEXTCOM_CHOICE_B}, null, null, null, null, null);
         cursor.moveToFirst();
         strListChoiceB = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
+            //strListChoiceB[i] = cursor.getString(cursor.getColumnIndex("COLUMN_TEXTCOM_CHOICE_B"));
             strListChoiceB[i] = cursor.getString(cursor.getColumnIndex(COLUMN_TEXTCOM_CHOICE_B));
             cursor.moveToNext();
         }
@@ -334,10 +345,12 @@ public class TextCompletionActivity extends AppCompatActivity {
 
         String strListChoiceC[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor cursor = db.rawQuery("SELECT * FROM TEXTCOMPLETION_QUESTION WHERE COLUMN_TEXTCOM_CHOICE_C", new String[]{"COLUMN_TEXTCOM_CHOICE_C", null, null, null, null, null});
         Cursor cursor = db.query(TEXTCOMPLETION_QUESTION, new String[]{COLUMN_TEXTCOM_CHOICE_C}, null, null, null, null, null);
         cursor.moveToFirst();
         strListChoiceC = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
+            //strListChoiceC[i] = cursor.getString(cursor.getColumnIndex("COLUMN_TEXTCOM_CHOICE_C"));
             strListChoiceC[i] = cursor.getString(cursor.getColumnIndex(COLUMN_TEXTCOM_CHOICE_C));
             cursor.moveToNext();
         }
@@ -351,10 +364,12 @@ public class TextCompletionActivity extends AppCompatActivity {
 
         String strListChoiceD[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor cursor = db.rawQuery("SELECT * FROM TEXTCOMPLETION_QUESTION WHERE COLUMN_TEXTCOM_CHOICE_D", new String[]{"COLUMN_TEXTCOM_CHOICE_D", null, null, null, null, null});
         Cursor cursor = db.query(TEXTCOMPLETION_QUESTION, new String[]{COLUMN_TEXTCOM_CHOICE_D}, null, null, null, null, null);
         cursor.moveToFirst();
         strListChoiceD = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
+            //strListChoiceD[i] = cursor.getString(cursor.getColumnIndex("COLUMN_TEXTCOM_CHOICE_D"));
             strListChoiceD[i] = cursor.getString(cursor.getColumnIndex(COLUMN_TEXTCOM_CHOICE_D));
             cursor.moveToNext();
         }
@@ -368,10 +383,12 @@ public class TextCompletionActivity extends AppCompatActivity {
 
         String strListChoiceDes[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor cursor = db.rawQuery("SELECT * FROM TEXTCOMPLETION_QUESTION WHERE COLUMN_TEXTCOM_DES", new String[]{"COLUMN_TEXTCOM_DES", null, null, null, null, null});
         Cursor cursor = db.query(TEXTCOMPLETION_QUESTION, new String[]{COLUMN_TEXTCOM_DES}, null, null, null, null, null);
         cursor.moveToFirst();
         strListChoiceDes = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
+            //strListChoiceDes[i] = cursor.getString(cursor.getColumnIndex("COLUMN_TEXTCOM_DES"));
             strListChoiceDes[i] = cursor.getString(cursor.getColumnIndex(COLUMN_TEXTCOM_DES));
             cursor.moveToNext();
         }

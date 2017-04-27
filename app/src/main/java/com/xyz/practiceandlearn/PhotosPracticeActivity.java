@@ -13,6 +13,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static com.xyz.practiceandlearn.Global.basedir;
+
 import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_ID_PHOTO_CHOICE;
 import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_ID_PHOTO_QUESTION;
 import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_ANSWER;
@@ -26,11 +28,11 @@ import static com.xyz.practiceandlearn.PhotoDatabase.PHOTOGRAPHS_QUESTION;
 
 public class PhotosPracticeActivity extends AppCompatActivity {
 
-    private MyDatabase objMyDatabase;
+    MyDatabase objMyDatabase;
     private int currentposition;
     private boolean showanswer;
     private static final int maxrow = 39;
-    private static String[] COLUMNS = {COLUMN_PHOTO_CHOICE_A, COLUMN_PHOTO_CHOICE_B, COLUMN_PHOTO_CHOICE_C, COLUMN_PHOTO_CHOICE_D,};
+    //private static String[] COLUMNS = {COLUMN_PHOTO_CHOICE_A, COLUMN_PHOTO_CHOICE_B, COLUMN_PHOTO_CHOICE_C, COLUMN_PHOTO_CHOICE_D,};
     private static String sql = COLUMN_ID_PHOTO_CHOICE + "<=40";
     private static String sql2 = COLUMN_ID_PHOTO_QUESTION + "<=40";
     private static String[] strListChoiceA, strListChoiceB, strListChoiceC, strListChoiceD, strListDes, strListAnswer;
@@ -50,7 +52,8 @@ public class PhotosPracticeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photos_practice);
 
-        objMyDatabase = new MyDatabase(this);
+        objMyDatabase = new MyDatabase(this, basedir.toString() + "/V1/TOEIC.db");
+
         currentposition = 0;
         showanswer = false;
         showanswer(0);
@@ -305,10 +308,12 @@ public class PhotosPracticeActivity extends AppCompatActivity {
 
         String strListChoiceA[] = null;
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor objCursor = db.rawQuery("SELECT * FROM PHOTOGRAPHS_CHOICE WHERE COLUMN_PHOTO_CHOICE_A", new String[]{"COLUMN_PHOTO_CHOICE_A", null, null, null, null, null});
         Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE, new String[]{COLUMN_PHOTO_CHOICE_A}, sql, null, null, null, null);
         objCursor.moveToFirst();
         strListChoiceA = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
+            //strListChoiceA[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_PHOTO_CHOICE_A"));
             strListChoiceA[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_PHOTO_CHOICE_A));
             objCursor.moveToNext();
         }   // for
@@ -321,10 +326,12 @@ public class PhotosPracticeActivity extends AppCompatActivity {
 
         String strListChoiceB[] = null;
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor objCursor = db.rawQuery("SELECT * FROM PHOTOGRAPHS_CHOICE WHERE COLUMN_PHOTO_CHOICE_B", new String[]{"COLUMN_PHOTO_CHOICE_B", null, null, null, null, null});
         Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE, new String[]{COLUMN_PHOTO_CHOICE_B}, sql, null, null, null, null);
         objCursor.moveToFirst();
         strListChoiceB = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
+            //strListChoiceB[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_PHOTO_CHOICE_B"));
             strListChoiceB[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_PHOTO_CHOICE_B));
             objCursor.moveToNext();
         }   // for
@@ -338,10 +345,12 @@ public class PhotosPracticeActivity extends AppCompatActivity {
 
         String strListChoiceC[] = null;
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor objCursor = db.rawQuery("SELECT * FROM PHOTOGRAPHS_CHOICE WHERE COLUMN_PHOTO_CHOICE_C", new String[]{"COLUMN_PHOTO_CHOICE_C",null, null, null, null, null});
         Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE, new String[]{COLUMN_PHOTO_CHOICE_C}, sql, null, null, null, null);
         objCursor.moveToFirst();
         strListChoiceC = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
+            //strListChoiceC[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_PHOTO_CHOICE_C"));
             strListChoiceC[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_PHOTO_CHOICE_C));
             objCursor.moveToNext();
         }   // for
@@ -355,10 +364,12 @@ public class PhotosPracticeActivity extends AppCompatActivity {
 
         String strListChoiceD[] = null;
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor objCursor = db.rawQuery("SELECT * FROM PHOTOGRAPHS_CHOICE WHERE COLUMN_PHOTO_CHOICE_D", new String[]{"COLUMN_PHOTO_CHOICE_D", null, null, null, null, null});
         Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE, new String[]{COLUMN_PHOTO_CHOICE_D}, sql, null, null, null, null);
         objCursor.moveToFirst();
         strListChoiceD = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
+            //strListChoiceD[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_PHOTO_CHOICE_D"));
             strListChoiceD[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_PHOTO_CHOICE_D));
             objCursor.moveToNext();
         }   // for
@@ -372,10 +383,12 @@ public class PhotosPracticeActivity extends AppCompatActivity {
 
         String strListChoiceDes[] = null;
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor objCursor = db.rawQuery("SELECT * FROM PHOTOGRAPHS_CHOICE WHERE COLUMN_PHOTO_DES", new String[]{"COLUMN_PHOTO_DES",null, null, null, null, null});
         Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE, new String[]{COLUMN_PHOTO_DES}, sql, null, null, null, null);
         objCursor.moveToFirst();
         strListChoiceDes = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
+            //strListChoiceDes[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_PHOTO_DES"));
             strListChoiceDes[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_PHOTO_DES));
             objCursor.moveToNext();
         }   // for
@@ -387,12 +400,14 @@ public class PhotosPracticeActivity extends AppCompatActivity {
 
     private String[] listAnswer(){
 
-        String strListAnswer[];
+        String strListAnswer[] = null;
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor objCursor = db.rawQuery("SELECT * FROM PHOTOGRAPHS_QUESTION WHERE COLUMN_PHOTO_ANSWER", new String[]{"COLUMN_PHOTO_ANSWER",null,null, null, null, null});
         Cursor objCursor = db.query(PHOTOGRAPHS_QUESTION, new String[]{COLUMN_PHOTO_ANSWER}, sql2, null, null, null, null);
         objCursor.moveToFirst();
         strListAnswer = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
+            //strListAnswer[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_PHOTO_ANSWER"));
             strListAnswer[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_PHOTO_ANSWER));
             objCursor.moveToNext();
         }
@@ -402,3 +417,5 @@ public class PhotosPracticeActivity extends AppCompatActivity {
 
     }
 }
+
+

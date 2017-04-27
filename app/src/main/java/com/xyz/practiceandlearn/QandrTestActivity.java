@@ -20,14 +20,16 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.Arrays;
 
-//import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_ANSWER_TEST;
-//import static com.xyz.practiceandlearn.PhotoDatabase.PHOTOGRAPHS_QUESTION_TEST;
-//import static com.xyz.practiceandlearn.QuestionAndResponseDatabase.COLUMN_QANDR_ANSWER_TEST;
-//import static com.xyz.practiceandlearn.QuestionAndResponseDatabase.QuestionAndResponse_Question_TEST;
+import static com.xyz.practiceandlearn.Global.basedir;
+
+import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_ANSWER_TEST;
+import static com.xyz.practiceandlearn.PhotoDatabase.PHOTOGRAPHS_QUESTION_TEST;
+import static com.xyz.practiceandlearn.QuestionAndResponseDatabase.COLUMN_QANDR_ANSWER_TEST;
+import static com.xyz.practiceandlearn.QuestionAndResponseDatabase.QuestionAndResponse_Question_TEST;
 
 public class QandrTestActivity extends AppCompatActivity {
 
-
+    MyDatabase objMyDatabase;
     //private int currentposition;
     private int currentpage;
     private MediaPlayer mPlayer;
@@ -60,7 +62,7 @@ public class QandrTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qandr_test);
 
-
+        objMyDatabase = new MyDatabase(this, basedir.toString() + "/V1/TOEIC.db");
 
         //currentposition = 0;
 
@@ -294,14 +296,14 @@ public class QandrTestActivity extends AppCompatActivity {
     private String[] listAnswer(){
 
         String strListAnswer[];
-        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
-        Cursor objCursor = db.rawQuery("SELECT * FROM QuestionAndResponse_Question_TEST WHERE COLUMN_QANDR_ANSWER_TEST", new String[]{"COLUMN_QANDR_ANSWER_TEST", null, null, null, null, null});
-        //Cursor objCursor = db.query(QuestionAndResponse_Question_TEST, new String[]{COLUMN_QANDR_ANSWER_TEST}, null, null, null, null, null);
+        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor objCursor = db.rawQuery("SELECT * FROM QuestionAndResponse_Question_TEST WHERE COLUMN_QANDR_ANSWER_TEST", new String[]{"COLUMN_QANDR_ANSWER_TEST", null, null, null, null, null});
+        Cursor objCursor = db.query(QuestionAndResponse_Question_TEST, new String[]{COLUMN_QANDR_ANSWER_TEST}, null, null, null, null, null);
         objCursor.moveToFirst();
         strListAnswer = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
-            strListAnswer[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_QANDR_ANSWER_TEST"));
-            //strListAnswer[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_QANDR_ANSWER_TEST));
+            //strListAnswer[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_QANDR_ANSWER_TEST"));
+            strListAnswer[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_QANDR_ANSWER_TEST));
             objCursor.moveToNext();
         }
         objCursor.close();

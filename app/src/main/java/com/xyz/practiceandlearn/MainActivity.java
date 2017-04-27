@@ -28,17 +28,31 @@ import static com.xyz.practiceandlearn.Global.basedir;
 
 public class MainActivity extends AppCompatActivity {
 
+    MyDatabase objMyDatabase;
+    private PhotoDatabase objPhotoDatabase;
+    private QuestionAndResponseDatabase objQandR;
+    private ShortConDatabase objShortCon;
+    private IncompleteDatabase objIncomplete;
+    private ReadingComprehensionDatabase objReading;
+    private ReadingComprehensionDatabase objReadingPractice;
+    private ShortTalkDatabase objShortTalkScript, objShortTalkQuestion;
+    private TextCompletionDatabase objTextCompletionScript, objTextCompletionQuestion;
+
+
     // Progress Dialog
     private ProgressDialog pDialog;
     public static final int progress_bar_type = 0;
 
     // File url to download
-    private static String file_url = "http://localhost/V1.zip";
+    private static String file_url = "http://103.212.181.17/project/V1.zip";
+    //private static String file_url = "http://localhost/V1.zip";
     private static String file_url2 = "http://localhost/V2.zip";
 
     String zipFile = basedir.toString() + "/V1.zip";
-    String unzipLocation = basedir.toString();
+    String unzipLocation = basedir.toString() + "/V1/";
     //String unzipLocation = Environment.getExternalStorageDirectory() + "/sdcard/";
+
+
 
 
     @Override
@@ -54,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
         //Global.played[2] = false;
         //if (!Global.played[2])
         //    Toast.makeText(getBaseContext(),"played 2 false",Toast.LENGTH_LONG).show();
-
 
 
         Button btn = (Button) findViewById(R.id.button);
@@ -83,30 +96,59 @@ public class MainActivity extends AppCompatActivity {
 
                 File dir2 = new File(basedir.toString() + "/V2/");
                 File dir1 = new File(basedir.toString() + "/V1/");
-                if (dir2.exists() && dir2.isDirectory()) {
-                    new MainActivity.DownloadFileFromURL().execute(file_url2);
-                    Toast.makeText(getBaseContext(),"LOAD V2",Toast.LENGTH_SHORT).show();
-                } else if (dir1.exists() && dir1.isDirectory()) {
-                    //(dir1.exists() && dir1.isDirectory())
+
+                if (dir1.exists() && dir1.isDirectory()) {
+                    Toast.makeText(getBaseContext(), "Last version", Toast.LENGTH_SHORT).show();
+                } else {
                     new MainActivity.DownloadFileFromURL().execute(file_url);
-                    Toast.makeText(getBaseContext(),"LOAD V1",Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
+        //(this, basedir.toString() + "/V1/TOEIC.db");
+        //objPhotoDatabase = new PhotoDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
+
+        //objPhotoDatabase = new PhotoDatabase(this);
+        //objQandR = new QuestionAndResponseDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
+        //objShortCon = new ShortConDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
+        //objIncomplete = new IncompleteDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
+        //objReading = new ReadingComprehensionDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
+        //objReadingPractice = new ReadingComprehensionDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
+        //objShortTalkScript = new ShortTalkDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
+        //objShortTalkQuestion = new ShortTalkDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
+        //objTextCompletionScript = new TextCompletionDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
+        //objTextCompletionQuestion = new TextCompletionDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
+
+
         File pathdatabaseV2 = new File(basedir.toString() + "/V2/TOEIC.db");
         File pathdatabaseV1 = new File(basedir.toString() + "/V1/TOEIC.db");
-        if (pathdatabaseV2.exists() && pathdatabaseV2.isDirectory()) {
 
-            if (pathdatabaseV1.exists() && pathdatabaseV1.isDirectory()) {
-                Global.objMyDatabase = new MyDatabase(this, basedir.toString() + "/V1/TOEIC.db");
-            } else {
-                Global.objMyDatabase = new MyDatabase(this, basedir.toString() + "/V2/TOEIC.db");
-            }
+
+
+        //if (pathdatabaseV1.exists() && pathdatabaseV1.isDirectory()) {
+            //objMyDatabase = new MyDatabase(this, basedir.toString() + "/V1/TOEIC.db");
+            //Toast.makeText(getBaseContext(),"V1",Toast.LENGTH_SHORT).show();
 
         }
-        //objMyDatabase = new MyDatabase(this, basedir.toString()+"/V2/TOEIC.db");
+
+
+
+        //File pathdatabaseV2 = new File(basedir.toString() + "/V2/TOEIC.db");
+        //File pathdatabaseV1 = new File(basedir.toString() + "/V1/TOEIC.db");
+        //if (pathdatabaseV2.exists() && pathdatabaseV2.isDirectory()) {
+
+            //if (pathdatabaseV1.exists() && pathdatabaseV1.isDirectory()) {
+                //Global.objMyDatabase = new MyDatabase(this, basedir.toString() + "/V1/TOEIC.db");
+            //} else {
+             //   Global.objMyDatabase = new MyDatabase(this, basedir.toString() + "/V2/TOEIC.db");
+            //}
+
+        //}
+
         //if V1
+        //objMyDatabase = new MyDatabase(this, basedir.toString()+"/V2/TOEIC.db");
+        //if V2
+        //objMyDatabase = new MyDatabase(this, basedir.toString()+"/V1/TOEIC.db");
 
 
         //AddValues();
@@ -131,7 +173,6 @@ public class MainActivity extends AppCompatActivity {
         //AddValuesToReadingComprehensionTest();
 
 
-    }
 
     @Override
     protected Dialog onCreateDialog(int id) {
@@ -184,8 +225,7 @@ public class MainActivity extends AppCompatActivity {
                         8192);
 
                 // Output stream
-                OutputStream output = new FileOutputStream(Environment
-                        .getExternalStorageDirectory().toString()
+                OutputStream output = new FileOutputStream(Global.basedir
                         + "/V1.zip");
 
                 byte data[] = new byte[1024];

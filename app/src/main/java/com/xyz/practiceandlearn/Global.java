@@ -29,11 +29,13 @@ public class Global {
 
     public static int currentAnswer = 0;
 
-    public static File basedir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+    //public static File basedir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
 
-    public static MyDatabase objMyDatabase;
+    public static String basedir = Environment.getExternalStorageDirectory() + "/sdcard/";
+
+    //public static File basedir = Environment.getExternalStorageDirectory();
 
 
-
+    //public static MyDatabase objMyDatabase;
 
 }

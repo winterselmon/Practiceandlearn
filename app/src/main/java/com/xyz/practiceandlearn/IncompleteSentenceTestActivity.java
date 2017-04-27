@@ -14,19 +14,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-//import static com.xyz.practiceandlearn.IncompleteDatabase.COLUMN_INCOMPLETE_ANSWER_TEST;
-//import static com.xyz.practiceandlearn.IncompleteDatabase.COLUMN_INCOMPLETE_CHOICE_A_TEST;
-//import static com.xyz.practiceandlearn.IncompleteDatabase.COLUMN_INCOMPLETE_CHOICE_B_TEST;
-//import static com.xyz.practiceandlearn.IncompleteDatabase.COLUMN_INCOMPLETE_CHOICE_C_TEST;
-//import static com.xyz.practiceandlearn.IncompleteDatabase.COLUMN_INCOMPLETE_CHOICE_D_TEST;
-//import static com.xyz.practiceandlearn.IncompleteDatabase.COLUMN_INCOMPLETE_QUESTION_TEST;
-//import static com.xyz.practiceandlearn.IncompleteDatabase.INCOMPLETE_CHOICE_TEST;
-//import static com.xyz.practiceandlearn.IncompleteDatabase.INCOMPLETE_QUESTION_TEST;
+import static com.xyz.practiceandlearn.Global.basedir;
+import static com.xyz.practiceandlearn.IncompleteDatabase.COLUMN_INCOMPLETE_ANSWER_TEST;
+import static com.xyz.practiceandlearn.IncompleteDatabase.COLUMN_INCOMPLETE_CHOICE_A_TEST;
+import static com.xyz.practiceandlearn.IncompleteDatabase.COLUMN_INCOMPLETE_CHOICE_B_TEST;
+import static com.xyz.practiceandlearn.IncompleteDatabase.COLUMN_INCOMPLETE_CHOICE_C_TEST;
+import static com.xyz.practiceandlearn.IncompleteDatabase.COLUMN_INCOMPLETE_CHOICE_D_TEST;
+import static com.xyz.practiceandlearn.IncompleteDatabase.COLUMN_INCOMPLETE_QUESTION_TEST;
+import static com.xyz.practiceandlearn.IncompleteDatabase.INCOMPLETE_CHOICE_TEST;
+import static com.xyz.practiceandlearn.IncompleteDatabase.INCOMPLETE_QUESTION_TEST;
 
 
 public class IncompleteSentenceTestActivity extends AppCompatActivity {
 
-
+    MyDatabase objMyDatabase;
     private String[] strQuestion, strAnswer, strChoiceA, strChoiceB, strChoiceC, strChoiceD;
     //private int currentposition;
     private int currentpage;
@@ -57,7 +58,7 @@ public class IncompleteSentenceTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_incomplete_sentence_test);
 
-
+        objMyDatabase = new MyDatabase(this, basedir.toString() + "/V1/TOEIC.db");
 
         //currentposition = 0;
 
@@ -296,14 +297,14 @@ public class IncompleteSentenceTestActivity extends AppCompatActivity {
     private String[] listQuestion(){
 
         String strListQuestion[];
-        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
-        Cursor objCursor = db.rawQuery("SELECT * FROM INCOMPLETE_QUESTION_TEST WHERE COLUMN_INCOMPLETE_QUESTION_TEST", new String[]{"COLUMN_INCOMPLETE_QUESTION_TEST", null, null, null, null, null});
-        //Cursor objCursor = db.query(INCOMPLETE_QUESTION_TEST, new String[]{COLUMN_INCOMPLETE_QUESTION_TEST}, null, null, null, null, null);
+        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor objCursor = db.rawQuery("SELECT * FROM INCOMPLETE_QUESTION_TEST WHERE COLUMN_INCOMPLETE_QUESTION_TEST", new String[]{"COLUMN_INCOMPLETE_QUESTION_TEST", null, null, null, null, null});
+        Cursor objCursor = db.query(INCOMPLETE_QUESTION_TEST, new String[]{COLUMN_INCOMPLETE_QUESTION_TEST}, null, null, null, null, null);
         objCursor.moveToFirst();
         strListQuestion = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
-            strListQuestion[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_INCOMPLETE_QUESTION_TEST"));
-            //strListQuestion[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_INCOMPLETE_QUESTION_TEST));
+            //strListQuestion[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_INCOMPLETE_QUESTION_TEST"));
+            strListQuestion[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_INCOMPLETE_QUESTION_TEST));
             objCursor.moveToNext();
         }
         objCursor.close();
@@ -315,14 +316,14 @@ public class IncompleteSentenceTestActivity extends AppCompatActivity {
     private String[] listAnswer(){
 
         String strListAnswer[];
-        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
-        Cursor objCursor = db.rawQuery("SELECT * FROM INCOMPLETE_QUESTION_TEST WHERE COLUMN_INCOMPLETE_ANSWER_TEST", new String[]{"COLUMN_INCOMPLETE_ANSWER_TEST", null, null, null, null, null});
-        //Cursor objCursor = db.query(INCOMPLETE_QUESTION_TEST, new String[]{COLUMN_INCOMPLETE_ANSWER_TEST}, null, null, null, null, null);
+        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor objCursor = db.rawQuery("SELECT * FROM INCOMPLETE_QUESTION_TEST WHERE COLUMN_INCOMPLETE_ANSWER_TEST", new String[]{"COLUMN_INCOMPLETE_ANSWER_TEST", null, null, null, null, null});
+        Cursor objCursor = db.query(INCOMPLETE_QUESTION_TEST, new String[]{COLUMN_INCOMPLETE_ANSWER_TEST}, null, null, null, null, null);
         objCursor.moveToFirst();
         strListAnswer = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
-            strListAnswer[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_INCOMPLETE_ANSWER_TEST"));
-            //strListAnswer[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_INCOMPLETE_ANSWER_TEST));
+            //strListAnswer[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_INCOMPLETE_ANSWER_TEST"));
+            strListAnswer[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_INCOMPLETE_ANSWER_TEST));
             objCursor.moveToNext();
         }
         objCursor.close();
@@ -334,14 +335,14 @@ public class IncompleteSentenceTestActivity extends AppCompatActivity {
     private String[] listChoiceA() {
 
         String strListChoiceA[];
-        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
-        Cursor objCursor = db.rawQuery("SELECT * FROM INCOMPLETE_CHOICE_TEST WHERE COLUMN_INCOMPLETE_CHOICE_A_TEST", new String[]{"COLUMN_INCOMPLETE_CHOICE_A_TEST", null, null, null, null, null});
-        //Cursor objCursor = db.query(INCOMPLETE_CHOICE_TEST, new String[]{COLUMN_INCOMPLETE_CHOICE_A_TEST}, null, null, null, null, null);
+        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor objCursor = db.rawQuery("SELECT * FROM INCOMPLETE_CHOICE_TEST WHERE COLUMN_INCOMPLETE_CHOICE_A_TEST", new String[]{"COLUMN_INCOMPLETE_CHOICE_A_TEST", null, null, null, null, null});
+        Cursor objCursor = db.query(INCOMPLETE_CHOICE_TEST, new String[]{COLUMN_INCOMPLETE_CHOICE_A_TEST}, null, null, null, null, null);
         objCursor.moveToFirst();
         strListChoiceA = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
-            strListChoiceA[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_INCOMPLETE_CHOICE_A_TEST"));
-            //strListChoiceA[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_INCOMPLETE_CHOICE_A_TEST));
+            //strListChoiceA[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_INCOMPLETE_CHOICE_A_TEST"));
+            strListChoiceA[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_INCOMPLETE_CHOICE_A_TEST));
             objCursor.moveToNext();
         }
         objCursor.close();
@@ -353,14 +354,14 @@ public class IncompleteSentenceTestActivity extends AppCompatActivity {
     private String[] listChoiceB() {
 
         String strListChoiceB[];
-        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
-        Cursor objCursor = db.rawQuery("SELECT * FROM INCOMPLETE_CHOICE_TEST WHERE COLUMN_INCOMPLETE_CHOICE_B_TEST", new String[]{"COLUMN_INCOMPLETE_CHOICE_B_TEST", null, null, null, null, null});
-        //Cursor objCursor = db.query(INCOMPLETE_CHOICE_TEST, new String[]{COLUMN_INCOMPLETE_CHOICE_B_TEST}, null, null, null, null, null);
+        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor objCursor = db.rawQuery("SELECT * FROM INCOMPLETE_CHOICE_TEST WHERE COLUMN_INCOMPLETE_CHOICE_B_TEST", new String[]{"COLUMN_INCOMPLETE_CHOICE_B_TEST", null, null, null, null, null});
+        Cursor objCursor = db.query(INCOMPLETE_CHOICE_TEST, new String[]{COLUMN_INCOMPLETE_CHOICE_B_TEST}, null, null, null, null, null);
         objCursor.moveToFirst();
         strListChoiceB = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
-            strListChoiceB[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_INCOMPLETE_CHOICE_B_TEST"));
-            //strListChoiceB[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_INCOMPLETE_CHOICE_B_TEST));
+            //strListChoiceB[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_INCOMPLETE_CHOICE_B_TEST"));
+            strListChoiceB[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_INCOMPLETE_CHOICE_B_TEST));
             objCursor.moveToNext();
         }
         objCursor.close();
@@ -372,14 +373,14 @@ public class IncompleteSentenceTestActivity extends AppCompatActivity {
     private String[] listChoiceC() {
 
         String strListChoiceC[];
-        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
-        Cursor objCursor = db.rawQuery("SELECT * FROM INCOMPLETE_CHOICE_TEST WHERE COLUMN_INCOMPLETE_CHOICE_C_TEST", new String[]{"COLUMN_INCOMPLETE_CHOICE_C_TEST", null, null, null, null, null});
-        //Cursor objCursor = db.query(INCOMPLETE_CHOICE_TEST, new String[]{COLUMN_INCOMPLETE_CHOICE_C_TEST}, null, null, null, null, null);
+        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor objCursor = db.rawQuery("SELECT * FROM INCOMPLETE_CHOICE_TEST WHERE COLUMN_INCOMPLETE_CHOICE_C_TEST", new String[]{"COLUMN_INCOMPLETE_CHOICE_C_TEST", null, null, null, null, null});
+        Cursor objCursor = db.query(INCOMPLETE_CHOICE_TEST, new String[]{COLUMN_INCOMPLETE_CHOICE_C_TEST}, null, null, null, null, null);
         objCursor.moveToFirst();
         strListChoiceC = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
-            strListChoiceC[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_INCOMPLETE_CHOICE_C_TEST"));
-            //strListChoiceC[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_INCOMPLETE_CHOICE_C_TEST));
+            //strListChoiceC[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_INCOMPLETE_CHOICE_C_TEST"));
+            strListChoiceC[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_INCOMPLETE_CHOICE_C_TEST));
             objCursor.moveToNext();
         }
         objCursor.close();
@@ -391,14 +392,14 @@ public class IncompleteSentenceTestActivity extends AppCompatActivity {
     private String[] listChoiceD() {
 
         String strListChoiceD[];
-        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
-        Cursor objCursor = db.rawQuery("SELECT * FROM INCOMPLETE_CHOICE_TEST WHERE COLUMN_INCOMPLETE_CHOICE_D_TEST", new String[]{"COLUMN_INCOMPLETE_CHOICE_D_TEST", null, null, null, null, null});
-        //Cursor objCursor = db.query(INCOMPLETE_CHOICE_TEST, new String[]{COLUMN_INCOMPLETE_CHOICE_D_TEST}, null, null, null, null, null);
+        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        //Cursor objCursor = db.rawQuery("SELECT * FROM INCOMPLETE_CHOICE_TEST WHERE COLUMN_INCOMPLETE_CHOICE_D_TEST", new String[]{"COLUMN_INCOMPLETE_CHOICE_D_TEST", null, null, null, null, null});
+        Cursor objCursor = db.query(INCOMPLETE_CHOICE_TEST, new String[]{COLUMN_INCOMPLETE_CHOICE_D_TEST}, null, null, null, null, null);
         objCursor.moveToFirst();
         strListChoiceD = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
-            strListChoiceD[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_INCOMPLETE_CHOICE_D_TEST"));
-            //strListChoiceD[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_INCOMPLETE_CHOICE_D_TEST));
+            //strListChoiceD[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_INCOMPLETE_CHOICE_D_TEST"));
+            strListChoiceD[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_INCOMPLETE_CHOICE_D_TEST));
             objCursor.moveToNext();
         }
         objCursor.close();

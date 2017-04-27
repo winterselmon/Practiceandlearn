@@ -1,12 +1,16 @@
 package com.xyz.practiceandlearn;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
+import android.support.v7.app.AlertDialog;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.os.CountDownTimer;
 import android.os.Environment;
@@ -28,17 +32,21 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
-//import static com.xyz.practiceandlearn.Global.basedir;
-//import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_ANSWER;
-//import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_ANSWER_TEST;
-//import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_CHOICE_A;
-//import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_CHOICE_A_TEST;
-//import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_CHOICE_B;
-//import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_CHOICE_B_TEST;
-//import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_CHOICE_C;
-//import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_CHOICE_C_TEST;
-//import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_CHOICE_D;
-//import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_CHOICE_D_TEST;
+import static com.xyz.practiceandlearn.MyDatabase.PHOTOGRAPHS_CHOICE_TEST;
+import static com.xyz.practiceandlearn.MyDatabase.PHOTOGRAPHS_QUESTION_TEST;
+
+
+import static com.xyz.practiceandlearn.Global.basedir;
+import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_ANSWER;
+import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_ANSWER_TEST;
+import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_CHOICE_A;
+import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_CHOICE_A_TEST;
+import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_CHOICE_B;
+import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_CHOICE_B_TEST;
+import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_CHOICE_C;
+import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_CHOICE_C_TEST;
+import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_CHOICE_D;
+import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_CHOICE_D_TEST;
 //import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_DES;
 //import static com.xyz.practiceandlearn.PhotoDatabase.PHOTOGRAPHS_CHOICE;
 //import static com.xyz.practiceandlearn.PhotoDatabase.PHOTOGRAPHS_CHOICE_TEST;
@@ -47,7 +55,7 @@ import java.util.concurrent.TimeUnit;
 
 public class PhotosTestActivity extends AppCompatActivity {
 
-
+    MyDatabase objMyDatabase;
     private static String[] strListChoiceA, strListChoiceB, strListChoiceC, strListChoiceD, strListAnswer;
     //private int currentposition;
     private int currentpage;
@@ -81,6 +89,11 @@ public class PhotosTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photos_test);
+
+        String photoDb = basedir.toString() + "V1/TOEIC.db";
+        Toast.makeText(getBaseContext(),photoDb,Toast.LENGTH_LONG).show();
+        objMyDatabase = new MyDatabase(this, photoDb );
+
 
 
 
@@ -144,16 +157,16 @@ public class PhotosTestActivity extends AppCompatActivity {
 
         //clearcheck();
 
-        next();
+        //next();
 
-        back();
+        //back();
 
-        showpicture();
+        //showpicture();
 
 
-        playSound();
+        //playSound();
 
-        collectpoint();
+        //collectpoint();
 
 
     }
@@ -251,11 +264,12 @@ public class PhotosTestActivity extends AppCompatActivity {
         Arrays.fill(Global.played, false);
         Arrays.fill(Global.collect,false);
 
+        Toast.makeText(getBaseContext(),"setup array",Toast.LENGTH_LONG).show();
         strListChoiceA = listChoiceA();
-        strListChoiceB = listChoiceB();
-        strListChoiceC = listChoiceC();
-        strListChoiceD = listChoiceD();
-        strListAnswer = listAnswer();
+        //strListChoiceB = listChoiceB();
+        //strListChoiceC = listChoiceC();
+        //strListChoiceD = listChoiceD();
+        //strListAnswer = listAnswer();
 
     }   //setup Arrar
 
@@ -353,13 +367,9 @@ public class PhotosTestActivity extends AppCompatActivity {
 
                     playSound();
                     clearcheck();
-
-
                 }
-
             }
         });
-
     }
 
     private void clearcheck() {
@@ -368,7 +378,8 @@ public class PhotosTestActivity extends AppCompatActivity {
         rdogroup1.clearCheck();
     }
 
-
+    public void onBackPressed(){
+    }
 
 
     @Override
@@ -380,33 +391,51 @@ public class PhotosTestActivity extends AppCompatActivity {
 
     private String[] listChoiceA(){
 
+
         String strListChoiceA[] = null;
-        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
-        Cursor objCursor = db.rawQuery("SELECT * FROM PHOTOGRAPHS_CHOICE_TEST WHERE COLUMN_PHOTO_CHOICE_A_TEST",new String[]{"COLUMN_PHOTO_CHOICE_A_TEST", null, null, null, null, null});
-        //Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST, new String[]{COLUMN_PHOTO_CHOICE_A_TEST}, null, null, null, null, null);
-        objCursor.moveToFirst();
-        strListChoiceA = new String[objCursor.getCount()];
-        for (int i=0; i<objCursor.getCount(); i++){
-            strListChoiceA[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_PHOTO_CHOICE_A_TEST"));
-            //strListChoiceA[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_PHOTO_CHOICE_A_TEST"));
-            objCursor.moveToNext();
-        }   // for
-        objCursor.close();
+        //Toast.makeText(getBaseContext(),"before getRead",Toast.LENGTH_LONG).show();
+        //SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        try {
+            Toast.makeText(getBaseContext(),"before getRead",Toast.LENGTH_LONG).show();
+            SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+
+            //Toast.makeText(getBaseContext(),"after getRead",Toast.LENGTH_LONG).show();
+            Cursor objCursor = db.query("SELECT" + PHOTOGRAPHS_CHOICE_TEST + "FROM" + COLUMN_PHOTO_CHOICE_A_TEST, new String[]{COLUMN_PHOTO_CHOICE_A_TEST}, null, null, null, null, null);
+            //Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST, new String[]{COLUMN_PHOTO_CHOICE_A_TEST}, null, null, null, null, null);
+            Toast.makeText(getBaseContext(),"after query",Toast.LENGTH_LONG).show();
+            //objCursor.moveToFirst();
+            //Toast.makeText(getBaseContext(),"after movetofrist",Toast.LENGTH_LONG).show();
+            //strListChoiceA = new String[objCursor.getCount()];
+            //Toast.makeText(getBaseContext(),objCursor.getCount(),Toast.LENGTH_LONG).show();
+            //for (int i=0; i<objCursor.getCount(); i++){
+            //    strListChoiceA[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_PHOTO_CHOICE_A_TEST));
+             //   objCursor.moveToNext();
+            //}   // for
+            //objCursor.close();
+
+
+        }catch(SQLException sqle){
+
+            throw sqle;
+        }
+
 
         return strListChoiceA;
     }
 
     private String[] listChoiceB(){
 
+        //String TABLE_NAME = "PHOTOGRAPHS_CHOICE_TEST";
+        //String COL_NAME = "COLUMN_PHOTO_CHOICE_B_TEST";
         String strListChoiceB[] = null;
-        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
-        //Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST, new String[]{COLUMN_PHOTO_CHOICE_B_TEST}, null, null, null, null, null);
-        Cursor objCursor = db.rawQuery("SELECT * FROM PHOTOGRAPHS_CHOICE_TEST WHERE COLUMN_PHOTO_CHOICE_B_TEST",new String[]{"COLUMN_PHOTO_CHOICE_B_TEST", null, null, null, null, null});
+        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST, new String[]{COLUMN_PHOTO_CHOICE_B_TEST}, null, null, null, null, null);
+        //Cursor objCursor = db.rawQuery("SELECT" + COL_NAME + "FROM" + TABLE_NAME ,new String[]{COL_NAME, null, null, null, null, null});
         objCursor.moveToFirst();
         strListChoiceB = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
-            strListChoiceB[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_PHOTO_CHOICE_B_TEST"));
-            //strListChoiceB[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_PHOTO_CHOICE_B_TEST"));
+            //strListChoiceB[i] = objCursor.getString(objCursor.getColumnIndex(COL_NAME));
+            strListChoiceB[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_PHOTO_CHOICE_B_TEST));
             objCursor.moveToNext();
         }   // for
         objCursor.close();
@@ -417,15 +446,17 @@ public class PhotosTestActivity extends AppCompatActivity {
 
     private String[] listChoiceC(){
 
+        //String TABLE_NAME = "PHOTOGRAPHS_CHOICE_TEST";
+        //String COL_NAME = "COLUMN_PHOTO_CHOICE_C_TEST";
         String strListChoiceC[] = null;
-        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
-        //Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST, new String[]{COLUMN_PHOTO_CHOICE_C_TEST}, null, null, null, null, null);
-        Cursor objCursor = db.rawQuery("SELECT * FROM PHOTOGRAPHS_CHOICE_TEST WHERE COLUMN_PHOTO_CHOICE_C_TEST",new String[]{"COLUMN_PHOTO_CHOICE_C_TEST", null, null, null, null, null});
+        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST, new String[]{COLUMN_PHOTO_CHOICE_C_TEST}, null, null, null, null, null);
+        //Cursor objCursor = db.rawQuery("SELECT" + COL_NAME + "FROM" + TABLE_NAME ,new String[]{COL_NAME, null, null, null, null, null});
         objCursor.moveToFirst();
         strListChoiceC = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
-            strListChoiceC[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_PHOTO_CHOICE_C_TEST"));
-            //strListChoiceD[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_PHOTO_CHOICE_C_TEST"));
+            //strListChoiceC[i] = objCursor.getString(objCursor.getColumnIndex(COL_NAME));
+            strListChoiceD[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_PHOTO_CHOICE_C_TEST));
             objCursor.moveToNext();
         }   // for
         objCursor.close();
@@ -436,15 +467,18 @@ public class PhotosTestActivity extends AppCompatActivity {
 
     private String[] listChoiceD(){
 
+        //String TABLE_NAME = "PHOTOGRAPHS_CHOICE_TEST";
+        //String COL_NAME = "COLUMN_PHOTO_CHOICE_D_TEST";
+
         String strListChoiceD[] = null;
-        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
-        //Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST, new String[]{COLUMN_PHOTO_CHOICE_D_TEST}, null, null, null, null, null);
-        Cursor objCursor = db.rawQuery("SELECT * FROM PHOTOGRAPHS_CHOICE_TEST WHERE COLUMN_PHOTO_CHOICE_D_TEST",new String[]{"COLUMN_PHOTO_CHOICE_D_TEST", null, null, null, null, null});
+        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST, new String[]{COLUMN_PHOTO_CHOICE_D_TEST}, null, null, null, null, null);
+        //Cursor objCursor = db.rawQuery("SELECT" + COL_NAME + "FROM" + TABLE_NAME ,new String[]{COL_NAME, null, null, null, null, null});
         objCursor.moveToFirst();
         strListChoiceD = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
-            strListChoiceD[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_PHOTO_CHOICE_D_TEST"));
-            //strListChoiceD[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_PHOTO_CHOICE_D_TEST"));
+            //strListChoiceD[i] = objCursor.getString(objCursor.getColumnIndex(COL_NAME));
+            strListChoiceD[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_PHOTO_CHOICE_D_TEST));
             objCursor.moveToNext();
         }   // for
         objCursor.close();
@@ -455,16 +489,18 @@ public class PhotosTestActivity extends AppCompatActivity {
 
     private String[] listAnswer(){
 
+        //String TABLE_NAME = "PHOTOGRAPHS_CHOICE_TEST";
+        //String COL_NAME = "COLUMN_PHOTO_ANSWER_TEST";
 
         String strListAnswer[];
-        SQLiteDatabase db = Global.objMyDatabase.getReadableDatabase();
-        //Cursor objCursor = db.query(PHOTOGRAPHS_QUESTION_TEST, new String[]{COLUMN_PHOTO_ANSWER_TEST}, null, null, null, null, null);
-        Cursor objCursor = db.rawQuery("SELECT * FROM PHOTOGRAPHS_CHOICE_TEST WHERE COLUMN_PHOTO_ANSWER_TEST",new String[]{"COLUMN_PHOTO_ANSWER_TEST", null, null, null, null, null});
+        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+        Cursor objCursor = db.query(PHOTOGRAPHS_QUESTION_TEST, new String[]{COLUMN_PHOTO_ANSWER_TEST}, null, null, null, null, null);
+        //Cursor objCursor = db.rawQuery("SELECT" + COL_NAME + "FROM" + TABLE_NAME ,new String[]{COL_NAME, null, null, null, null, null});
         objCursor.moveToFirst();
         strListAnswer = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
-            strListAnswer[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_PHOTO_ANSWER_TEST"));
-            //strListAnswer[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_PHOTO_ANSWER_TEST));
+            //strListAnswer[i] = objCursor.getString(objCursor.getColumnIndex(COL_NAME));
+            strListAnswer[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_PHOTO_ANSWER_TEST));
             objCursor.moveToNext();
         }
         objCursor.close();
