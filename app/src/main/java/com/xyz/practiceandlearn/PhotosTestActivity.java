@@ -32,8 +32,10 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
-import static com.xyz.practiceandlearn.MyDatabase.PHOTOGRAPHS_CHOICE_TEST;
-import static com.xyz.practiceandlearn.MyDatabase.PHOTOGRAPHS_QUESTION_TEST;
+import static com.xyz.practiceandlearn.Global.basedirPhoto;
+import static com.xyz.practiceandlearn.Global.basedirSound;
+import static com.xyz.practiceandlearn.PhotoDatabase.PHOTOGRAPHS_CHOICE_TEST;
+import static com.xyz.practiceandlearn.PhotoDatabase.PHOTOGRAPHS_QUESTION_TEST;
 
 
 import static com.xyz.practiceandlearn.Global.basedir;
@@ -83,6 +85,7 @@ public class PhotosTestActivity extends AppCompatActivity {
             timerHandler.postDelayed(this, 500);
         }
     };
+
 
 
     @Override
@@ -155,18 +158,17 @@ public class PhotosTestActivity extends AppCompatActivity {
 
         clearlayout();
 
-        //clearcheck();
+        clearcheck();
 
-        //next();
+        next();
 
-        //back();
+        back();
 
-        //showpicture();
+        showpicture();
 
+        playSound();
 
-        //playSound();
-
-        //collectpoint();
+        collectpoint();
 
 
     }
@@ -222,7 +224,7 @@ public class PhotosTestActivity extends AppCompatActivity {
 
     private void showpicture() {
 
-        File imgFile = new File(Global.basedir +"/photoTest/"+String.valueOf(Global.currentposition+1)+".png");
+        File imgFile = new File(basedirPhoto +"/photoTest/"+String.valueOf(Global.currentposition+1)+".png");
 
         if(imgFile.exists()){
 
@@ -243,7 +245,7 @@ public class PhotosTestActivity extends AppCompatActivity {
             mPlayer.release();
         }
 
-        String filePath = Global.basedir +"/AudioPhoto/"+String.valueOf(Global.currentAnswer+1)+".mp3";
+        String filePath = basedirSound +"/AudioPhoto/"+String.valueOf(Global.currentAnswer+1)+".mp3";
         mPlayer = new MediaPlayer();
 
 
@@ -399,27 +401,24 @@ public class PhotosTestActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(),"before getRead",Toast.LENGTH_LONG).show();
             SQLiteDatabase db = objMyDatabase.getReadableDatabase();
 
-            //Toast.makeText(getBaseContext(),"after getRead",Toast.LENGTH_LONG).show();
-            Cursor objCursor = db.query("SELECT" + PHOTOGRAPHS_CHOICE_TEST + "FROM" + COLUMN_PHOTO_CHOICE_A_TEST, new String[]{COLUMN_PHOTO_CHOICE_A_TEST}, null, null, null, null, null);
+            Toast.makeText(getBaseContext(),"after getRead",Toast.LENGTH_LONG).show();
+            Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST ,null, null, null, null, null,COLUMN_PHOTO_CHOICE_A_TEST,null);
             //Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST, new String[]{COLUMN_PHOTO_CHOICE_A_TEST}, null, null, null, null, null);
             Toast.makeText(getBaseContext(),"after query",Toast.LENGTH_LONG).show();
-            //objCursor.moveToFirst();
-            //Toast.makeText(getBaseContext(),"after movetofrist",Toast.LENGTH_LONG).show();
-            //strListChoiceA = new String[objCursor.getCount()];
-            //Toast.makeText(getBaseContext(),objCursor.getCount(),Toast.LENGTH_LONG).show();
-            //for (int i=0; i<objCursor.getCount(); i++){
-            //    strListChoiceA[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_PHOTO_CHOICE_A_TEST));
-             //   objCursor.moveToNext();
-            //}   // for
-            //objCursor.close();
+            objCursor.moveToFirst();
+            Toast.makeText(getBaseContext(),"after movetofrist",Toast.LENGTH_LONG).show();
+            strListChoiceA = new String[objCursor.getCount()];
+            //Toast.makeText(getBaseContext(),strListChoiceA,Toast.LENGTH_LONG).show();
+            for (int i=0; i<objCursor.getCount(); i++){
+                strListChoiceA[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_PHOTO_CHOICE_A_TEST));
+                objCursor.moveToNext();
+            }   // for
+            objCursor.close();
 
 
         }catch(SQLException sqle){
-
             throw sqle;
         }
-
-
         return strListChoiceA;
     }
 

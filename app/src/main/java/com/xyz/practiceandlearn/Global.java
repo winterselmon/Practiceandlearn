@@ -33,7 +33,9 @@ public class Global {
 
     public static String basedir = Environment.getExternalStorageDirectory() + "/sdcard/";
 
-    //public static File basedir = Environment.getExternalStorageDirectory();
+    public static File basedirPhoto = Environment.getExternalStorageDirectory();
+
+    public static File basedirSound = Environment.getExternalStorageDirectory();
 
 
     //public static MyDatabase objMyDatabase;

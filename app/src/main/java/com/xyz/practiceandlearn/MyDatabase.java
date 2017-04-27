@@ -47,6 +47,7 @@ public class MyDatabase extends SQLiteOpenHelper {
     public static final String TEXTCOMPLETION_QUESTION_TEST = "CREATE TABLE TextCompletionQuestionTest(Id_textcom_question INTEGER PRIMARY KEY, "+" Textcom_question TEXT, Textcom_answer TEXT, Textcom_choice_a TEXT, Textcom_choice_b TEXT, Textcom_choice_c TEXT, Textcom_choice_d TEXT, Id_textcom_script2 INTEGER)";
     public static final String READING_COMPREHENSION_SCRIPT_TEST = "CREATE TABLE ReadingComprehensionScriptTest(Id_reading_script INTEGER PRIMARY KEY, "+" Reading_script TEXT)";
     public static final String READING_COMPREHENSION_QUESTION_TEST = "CREATE TABLE ReadingComprehensionQuestionTest(Id_reading_question INTEGER PRIMARY KEY, "+" Reading_question TEXT, Reading_answer TEXT, Reading_choice_a TEXT, Reading_choice_b TEXT, Reading_choice_c TEXT, Reading_choice_d TEXT, Id_reading_script2 INTEGER)";
+    public String Photo_choice_a;
 
     //photo database
 
