@@ -1,5 +1,6 @@
 package com.xyz.practiceandlearn;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -7,6 +8,7 @@ import android.media.MediaPlayer;
 import android.os.Environment;
 import android.os.Handler;
 import android.support.annotation.IdRes;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -22,6 +24,7 @@ import java.util.Arrays;
 
 import static com.xyz.practiceandlearn.Global.basedir;
 
+import static com.xyz.practiceandlearn.Global.basedirSound;
 import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_ANSWER_TEST;
 import static com.xyz.practiceandlearn.PhotoDatabase.PHOTOGRAPHS_QUESTION_TEST;
 import static com.xyz.practiceandlearn.QuestionAndResponseDatabase.COLUMN_QANDR_ANSWER_TEST;
@@ -178,16 +181,17 @@ public class QandrTestActivity extends AppCompatActivity {
             mPlayer.stop();
             mPlayer.release();
         }
-        String filePath = Global.basedir +"/AudioQandR/"+String.valueOf(Global.currentAnswer+1)+".mp3";
+        String filePath =basedir +"/V1/AudioQandR/"+String.valueOf(Global.currentSound+1)+".mp3";
+        //Toast.makeText(getBaseContext(), filePath, Toast.LENGTH_SHORT).show();
         //String filePath = Environment.getExternalStorageDirectory()+"/AudioQandR/"+String.valueOf(Global.currentAnswer+1)+".mp3";
         mPlayer = new MediaPlayer();
 
         try {
-            if (!Global.played[Global.currentAnswer]) {
+            if (!Global.played[Global.currentSound]) {
                 mPlayer.setDataSource(filePath);
                 mPlayer.prepare();
                 mPlayer.start();
-                Global.played[Global.currentAnswer] = true;
+                Global.played[Global.currentSound] = true;
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -206,6 +210,7 @@ public class QandrTestActivity extends AppCompatActivity {
                     return;
                 }
                 Global.currentAnswer--;
+                Global.currentSound--;
 
                 if (Global.currentposition == 0) {
                     if (currentpage == 0) {
@@ -251,6 +256,7 @@ public class QandrTestActivity extends AppCompatActivity {
 
                 Global.currentposition++;
                 Global.currentAnswer++;
+                Global.currentSound++;
 
 
                 if (Global.currentposition > maxrow) {
@@ -277,6 +283,27 @@ public class QandrTestActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void onBackPressed(){
+        new AlertDialog.Builder(this)
+                .setTitle("Stop the test?")
+                .setMessage("Are you sure you want to quit to test?")
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(QandrTestActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
     private void clearcheck() {

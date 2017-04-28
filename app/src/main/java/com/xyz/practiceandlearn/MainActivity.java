@@ -21,6 +21,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Arrays;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -104,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
 
         //(this, basedir.toString() + "/V1/TOEIC.db");
         //objPhotoDatabase = new PhotoDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");

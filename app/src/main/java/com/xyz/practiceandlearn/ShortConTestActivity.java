@@ -1,11 +1,13 @@
 package com.xyz.practiceandlearn;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
 import android.os.Environment;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 import java.io.IOException;
 
 import static com.xyz.practiceandlearn.Global.basedir;
+import static com.xyz.practiceandlearn.Global.basedirSound;
 import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_ID_SHORTCONVERSATION_QUESTION;
 import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_ID_SHORTCONVERSATION_SCRIPT;
 import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_SHORTCONVERSATION_ANSWER;
@@ -205,16 +208,17 @@ public class ShortConTestActivity extends AppCompatActivity {
             mPlayer.stop();
             mPlayer.release();
         }
-        String filePath = Global.basedir +"/AudioShortCon/"+String.valueOf(Global.currentAnswer+1)+".mp3";
+        String filePath = basedir +"/V1/AudioShortCon/"+String.valueOf(Global.currentSound+1)+".mp3";
+        //Toast.makeText(getBaseContext(), filePath, Toast.LENGTH_SHORT).show();
         //String filePath = Environment.getExternalStorageDirectory()+"/AudioShortCon/"+String.valueOf(Global.currentAnswer+1)+".mp3";
         mPlayer = new MediaPlayer();
 
         try {
-            if (!Global.played[Global.currentAnswer]) {
+            if (!Global.played[Global.currentSound]) {
                 mPlayer.setDataSource(filePath);
                 mPlayer.prepare();
                 mPlayer.start();
-                Global.played[Global.currentAnswer] = true;
+                Global.played[Global.currentSound] = true;
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -431,7 +435,9 @@ public class ShortConTestActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                Global.currentAnswer +=3 ;
+                Global.currentAnswer += 3 ;
+
+                Global.currentSound++;
 
                 Global.currentposition++;
 
@@ -516,6 +522,27 @@ public class ShortConTestActivity extends AppCompatActivity {
 
     }
 
+    public void onBackPressed(){
+        new AlertDialog.Builder(this)
+                .setTitle("Stop the test?")
+                .setMessage("Are you sure you want to quit to test?")
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(ShortConTestActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+
     private void clearcheck() {
 
         RadioGroup rdogroup1 = (RadioGroup) findViewById(R.id.rdoGroupA_shortCon_test);
@@ -557,7 +584,7 @@ public class ShortConTestActivity extends AppCompatActivity {
         String strListAnswer[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
         //Cursor cursor = db.rawQuery("SELECT * FROM SHORTCONVERSATION_QUESTION_TEST WHERE COLUMN_SHORTCONVERSATION_ANSWER_TEST", new String[]{"COLUMN_SHORTCONVERSATION_ANSWER_TEST", null, null, null, null, null});
-        Cursor cursor = db.query(SHORTCONVERSATION_QUESTION_TEST, new String[]{COLUMN_SHORTCONVERSATION_ANSWER_TEST}, null, null, null, null, null);
+        Cursor cursor = db.query(SHORTCONVERSATION_QUESTION_TEST, new String[]{COLUMN_SHORTCONVERSATION_ANSWER_TEST}, null, null, null, null ,null);
         cursor.moveToFirst();
         strListAnswer = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
@@ -576,7 +603,7 @@ public class ShortConTestActivity extends AppCompatActivity {
         String strListChoiceA[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
         //Cursor cursor = db.rawQuery("SELECT * FROM SHORTCONVERSATION_QUESTION_TEST WHERE COLUMN_SHORTCONVERSATION_CHOICE_A_TEST", new String[]{"COLUMN_SHORTCONVERSATION_CHOICE_A_TEST", null, null, null, null, null});
-        Cursor cursor = db.query(SHORTCONVERSATION_QUESTION_TEST, new String[]{COLUMN_SHORTCONVERSATION_CHOICE_A_TEST}, null, null, null, null, null);
+        Cursor cursor = db.query(SHORTCONVERSATION_QUESTION_TEST, new String[]{COLUMN_SHORTCONVERSATION_CHOICE_A_TEST}, null, null, null, null,null);
         cursor.moveToFirst();
         strListChoiceA = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
@@ -595,7 +622,7 @@ public class ShortConTestActivity extends AppCompatActivity {
         String strListChoiceB[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
         //Cursor cursor = db.rawQuery("SELECT * FROM SHORTCONVERSATION_QUESTION_TEST WHERE COLUMN_SHORTCONVERSATION_CHOICE_B_TEST ", new String[]{"COLUMN_SHORTCONVERSATION_CHOICE_B_TEST", null, null, null, null, null});
-        Cursor cursor = db.query(SHORTCONVERSATION_QUESTION_TEST, new String[]{COLUMN_SHORTCONVERSATION_CHOICE_B_TEST}, null, null, null, null, null);
+        Cursor cursor = db.query(SHORTCONVERSATION_QUESTION_TEST, new String[]{COLUMN_SHORTCONVERSATION_CHOICE_B_TEST}, null, null, null, null,null);
         cursor.moveToFirst();
         strListChoiceB = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
@@ -614,7 +641,7 @@ public class ShortConTestActivity extends AppCompatActivity {
         String strListChoiceC[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
         //Cursor cursor = db.rawQuery("SELECT * FROM SHORTCONVERSATION_QUESTION_TEST WHERE COLUMN_SHORTCONVERSATION_CHOICE_C_TEST", new String[]{"COLUMN_SHORTCONVERSATION_CHOICE_C_TEST", null, null, null, null, null});
-        Cursor cursor = db.query(SHORTCONVERSATION_QUESTION_TEST, new String[]{COLUMN_SHORTCONVERSATION_CHOICE_C_TEST}, null, null, null, null, null);
+        Cursor cursor = db.query(SHORTCONVERSATION_QUESTION_TEST, new String[]{COLUMN_SHORTCONVERSATION_CHOICE_C_TEST}, null, null, null, null,null);
         cursor.moveToFirst();
         strListChoiceC = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
@@ -633,7 +660,7 @@ public class ShortConTestActivity extends AppCompatActivity {
         String strListChoiceD[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
         //Cursor cursor = db.rawQuery("SELECT * FROM SHORTCONVERSATION_QUESTION_TEST WHERE COLUMN_SHORTCONVERSATION_CHOICE_D_TEST", new String[]{"COLUMN_SHORTCONVERSATION_CHOICE_D_TEST", null, null, null, null, null});
-        Cursor cursor = db.query(SHORTCONVERSATION_QUESTION_TEST, new String[]{COLUMN_SHORTCONVERSATION_CHOICE_D_TEST}, null, null, null, null, null);
+        Cursor cursor = db.query(SHORTCONVERSATION_QUESTION_TEST, new String[]{COLUMN_SHORTCONVERSATION_CHOICE_D_TEST}, null, null, null, null,null);
         cursor.moveToFirst();
         strListChoiceD = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {

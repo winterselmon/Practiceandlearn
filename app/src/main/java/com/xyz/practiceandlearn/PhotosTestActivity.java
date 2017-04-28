@@ -1,6 +1,7 @@
 package com.xyz.practiceandlearn;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -168,9 +169,6 @@ public class PhotosTestActivity extends AppCompatActivity {
 
         playSound();
 
-        collectpoint();
-
-
     }
 
 
@@ -181,6 +179,7 @@ public class PhotosTestActivity extends AppCompatActivity {
             if (strListAnswer[Global.currentposition].equals("A")) {
 
                 Global.collect[Global.currentAnswer] = true;
+                Toast.makeText(getBaseContext(),"True",Toast.LENGTH_LONG).show();
 
             } else {
                 Global.collect[Global.currentAnswer] = false;
@@ -245,16 +244,16 @@ public class PhotosTestActivity extends AppCompatActivity {
             mPlayer.release();
         }
 
-        String filePath = basedirSound +"/AudioPhoto/"+String.valueOf(Global.currentAnswer+1)+".mp3";
+        String filePath = basedir+"/V1/AudioPhoto/"+String.valueOf(Global.currentSound+1)+".mp3";
         mPlayer = new MediaPlayer();
 
 
         try {
-            if (!Global.played[Global.currentAnswer]) {
+            if (!Global.played[Global.currentSound]) {
                 mPlayer.setDataSource(filePath);
                 mPlayer.prepare();
                 mPlayer.start();
-                Global.played[Global.currentAnswer] = true;
+                Global.played[Global.currentSound] = true;
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -263,15 +262,15 @@ public class PhotosTestActivity extends AppCompatActivity {
 
     private void setupArrar() {
 
-        Arrays.fill(Global.played, false);
-        Arrays.fill(Global.collect,false);
+        //Arrays.fill(Global.played, false);
+        //Arrays.fill(Global.collect,false);
 
-        Toast.makeText(getBaseContext(),"setup array",Toast.LENGTH_LONG).show();
+        //Toast.makeText(getBaseContext(),"setup array",Toast.LENGTH_LONG).show();
         strListChoiceA = listChoiceA();
-        //strListChoiceB = listChoiceB();
-        //strListChoiceC = listChoiceC();
-        //strListChoiceD = listChoiceD();
-        //strListAnswer = listAnswer();
+        strListChoiceB = listChoiceB();
+        strListChoiceC = listChoiceC();
+        strListChoiceD = listChoiceD();
+        strListAnswer = listAnswer();
 
     }   //setup Arrar
 
@@ -304,6 +303,7 @@ public class PhotosTestActivity extends AppCompatActivity {
                 }
                 Global.currentAnswer--;
                 Global.currentposition--;
+                Global.currentSound--;
                 if (Global.currentposition>=0) {
 
                     String strNumber = String.valueOf(Global.currentposition + 1) + "/10";
@@ -350,6 +350,7 @@ public class PhotosTestActivity extends AppCompatActivity {
 
                 Global.currentposition++;
                 Global.currentAnswer++;
+                Global.currentSound++;
 
                 if (Global.currentposition > maxrow) {
                     Global.currentposition = 0;
@@ -381,6 +382,24 @@ public class PhotosTestActivity extends AppCompatActivity {
     }
 
     public void onBackPressed(){
+        new AlertDialog.Builder(this)
+                .setTitle("Stop the test?")
+                .setMessage("Are you sure you want to quit to test?")
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(PhotosTestActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
 
@@ -398,15 +417,15 @@ public class PhotosTestActivity extends AppCompatActivity {
         //Toast.makeText(getBaseContext(),"before getRead",Toast.LENGTH_LONG).show();
         //SQLiteDatabase db = objMyDatabase.getReadableDatabase();
         try {
-            Toast.makeText(getBaseContext(),"before getRead",Toast.LENGTH_LONG).show();
+            //Toast.makeText(getBaseContext(),"before getRead",Toast.LENGTH_LONG).show();
             SQLiteDatabase db = objMyDatabase.getReadableDatabase();
 
-            Toast.makeText(getBaseContext(),"after getRead",Toast.LENGTH_LONG).show();
-            Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST ,null, null, null, null, null,COLUMN_PHOTO_CHOICE_A_TEST,null);
+            //Toast.makeText(getBaseContext(),"after getRead",Toast.LENGTH_LONG).show();
+            Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST , new String[]{COLUMN_PHOTO_CHOICE_A_TEST},null, null, null, null, null,null);
             //Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST, new String[]{COLUMN_PHOTO_CHOICE_A_TEST}, null, null, null, null, null);
-            Toast.makeText(getBaseContext(),"after query",Toast.LENGTH_LONG).show();
+            //Toast.makeText(getBaseContext(),"after query",Toast.LENGTH_LONG).show();
             objCursor.moveToFirst();
-            Toast.makeText(getBaseContext(),"after movetofrist",Toast.LENGTH_LONG).show();
+            //Toast.makeText(getBaseContext(),"after movetofrist",Toast.LENGTH_LONG).show();
             strListChoiceA = new String[objCursor.getCount()];
             //Toast.makeText(getBaseContext(),strListChoiceA,Toast.LENGTH_LONG).show();
             for (int i=0; i<objCursor.getCount(); i++){
@@ -427,17 +446,26 @@ public class PhotosTestActivity extends AppCompatActivity {
         //String TABLE_NAME = "PHOTOGRAPHS_CHOICE_TEST";
         //String COL_NAME = "COLUMN_PHOTO_CHOICE_B_TEST";
         String strListChoiceB[] = null;
-        SQLiteDatabase db = objMyDatabase.getReadableDatabase();
-        Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST, new String[]{COLUMN_PHOTO_CHOICE_B_TEST}, null, null, null, null, null);
-        //Cursor objCursor = db.rawQuery("SELECT" + COL_NAME + "FROM" + TABLE_NAME ,new String[]{COL_NAME, null, null, null, null, null});
-        objCursor.moveToFirst();
-        strListChoiceB = new String[objCursor.getCount()];
-        for (int i=0; i<objCursor.getCount(); i++){
-            //strListChoiceB[i] = objCursor.getString(objCursor.getColumnIndex(COL_NAME));
-            strListChoiceB[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_PHOTO_CHOICE_B_TEST));
-            objCursor.moveToNext();
-        }   // for
-        objCursor.close();
+        try {
+            //Toast.makeText(getBaseContext(), "before getRead B", Toast.LENGTH_LONG).show();
+            SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+            //Toast.makeText(getBaseContext(), "after getRead B", Toast.LENGTH_LONG).show();
+            Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST, null, null, null, null, null, COLUMN_PHOTO_CHOICE_B_TEST, null);
+            //Toast.makeText(getBaseContext(), "after query B", Toast.LENGTH_LONG).show();
+            //Cursor objCursor = db.rawQuery("SELECT" + COL_NAME + "FROM" + TABLE_NAME ,new String[]{COL_NAME, null, null, null, null, null});
+            objCursor.moveToFirst();
+            //Toast.makeText(getBaseContext(), "after movetofrist B", Toast.LENGTH_LONG).show();
+            strListChoiceB = new String[objCursor.getCount()];
+            for (int i = 0; i < objCursor.getCount(); i++) {
+                //strListChoiceB[i] = objCursor.getString(objCursor.getColumnIndex(COL_NAME));
+                strListChoiceB[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_PHOTO_CHOICE_B_TEST));
+                objCursor.moveToNext();
+            }   // for
+            objCursor.close();
+
+        }catch (SQLException sqle){
+            throw sqle;
+        }
 
         return strListChoiceB;
 
@@ -448,17 +476,23 @@ public class PhotosTestActivity extends AppCompatActivity {
         //String TABLE_NAME = "PHOTOGRAPHS_CHOICE_TEST";
         //String COL_NAME = "COLUMN_PHOTO_CHOICE_C_TEST";
         String strListChoiceC[] = null;
+        try {
+
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
-        Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST, new String[]{COLUMN_PHOTO_CHOICE_C_TEST}, null, null, null, null, null);
+        Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST,null ,null, null, null, null,COLUMN_PHOTO_CHOICE_C_TEST, null);
         //Cursor objCursor = db.rawQuery("SELECT" + COL_NAME + "FROM" + TABLE_NAME ,new String[]{COL_NAME, null, null, null, null, null});
         objCursor.moveToFirst();
         strListChoiceC = new String[objCursor.getCount()];
         for (int i=0; i<objCursor.getCount(); i++){
             //strListChoiceC[i] = objCursor.getString(objCursor.getColumnIndex(COL_NAME));
-            strListChoiceD[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_PHOTO_CHOICE_C_TEST));
+            strListChoiceC[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_PHOTO_CHOICE_C_TEST));
             objCursor.moveToNext();
         }   // for
         objCursor.close();
+
+        }catch (SQLException sqle){
+            throw sqle;
+        }
 
         return strListChoiceC;
 
@@ -470,8 +504,10 @@ public class PhotosTestActivity extends AppCompatActivity {
         //String COL_NAME = "COLUMN_PHOTO_CHOICE_D_TEST";
 
         String strListChoiceD[] = null;
+        try{
+
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
-        Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST, new String[]{COLUMN_PHOTO_CHOICE_D_TEST}, null, null, null, null, null);
+        Cursor objCursor = db.query(PHOTOGRAPHS_CHOICE_TEST, null, null, null, null, null,COLUMN_PHOTO_CHOICE_D_TEST,null);
         //Cursor objCursor = db.rawQuery("SELECT" + COL_NAME + "FROM" + TABLE_NAME ,new String[]{COL_NAME, null, null, null, null, null});
         objCursor.moveToFirst();
         strListChoiceD = new String[objCursor.getCount()];
@@ -481,6 +517,10 @@ public class PhotosTestActivity extends AppCompatActivity {
             objCursor.moveToNext();
         }   // for
         objCursor.close();
+
+    }catch (SQLException sqle){
+        throw sqle;
+    }
 
         return strListChoiceD;
 
@@ -492,8 +532,9 @@ public class PhotosTestActivity extends AppCompatActivity {
         //String COL_NAME = "COLUMN_PHOTO_ANSWER_TEST";
 
         String strListAnswer[];
+        try {
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
-        Cursor objCursor = db.query(PHOTOGRAPHS_QUESTION_TEST, new String[]{COLUMN_PHOTO_ANSWER_TEST}, null, null, null, null, null);
+        Cursor objCursor = db.query(PHOTOGRAPHS_QUESTION_TEST, new String[]{COLUMN_PHOTO_ANSWER_TEST}, null, null, null, null,null);
         //Cursor objCursor = db.rawQuery("SELECT" + COL_NAME + "FROM" + TABLE_NAME ,new String[]{COL_NAME, null, null, null, null, null});
         objCursor.moveToFirst();
         strListAnswer = new String[objCursor.getCount()];
@@ -503,6 +544,10 @@ public class PhotosTestActivity extends AppCompatActivity {
             objCursor.moveToNext();
         }
         objCursor.close();
+
+        }catch(SQLException sqle){
+            throw sqle;
+        }
 
         return strListAnswer;
 

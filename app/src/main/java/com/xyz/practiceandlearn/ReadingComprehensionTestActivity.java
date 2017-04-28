@@ -1,9 +1,12 @@
 package com.xyz.practiceandlearn;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -481,6 +484,27 @@ public class ReadingComprehensionTestActivity extends AppCompatActivity {
         Toast.makeText(getBaseContext(),"Score = " + S ,Toast.LENGTH_LONG).show();
     }
 
+    public void onBackPressed(){
+        new AlertDialog.Builder(this)
+                .setTitle("Stop the test?")
+                .setMessage("Are you sure you want to quit to test?")
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(ReadingComprehensionTestActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+
     private void clearcheck() {
 
         RadioGroup rdogroup1 = (RadioGroup) findViewById(R.id.rdoGroupA_Reading_test);
@@ -494,6 +518,7 @@ public class ReadingComprehensionTestActivity extends AppCompatActivity {
     private String[] listScript(){
 
         String strListScript[];
+        try{
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
         //Cursor objCursor = db.rawQuery("SELECT * FROM READINGCOMPREHENSION_SCRIPT_TEST WHERE COLUMN_READING_SCRIPT_TEST", new String[]{"COLUMN_READING_SCRIPT_TEST", null, null, null, null, null});
         Cursor objCursor = db.query(READINGCOMPREHENSION_SCRIPT_TEST, new String[]{COLUMN_READING_SCRIPT_TEST}, null, null, null, null, null);
@@ -505,6 +530,10 @@ public class ReadingComprehensionTestActivity extends AppCompatActivity {
             objCursor.moveToNext();
         }
         objCursor.close();
+
+        } catch (SQLException sqle) {
+            throw sqle;
+        }
 
         return strListScript;
 
@@ -532,6 +561,7 @@ public class ReadingComprehensionTestActivity extends AppCompatActivity {
     private String[] listAnswer() {
 
         String strListAnswer[];
+        try {
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
         //Cursor cursor = db.rawQuery("SELECT * FROM READINGCOMPREHENSION_QUESTION_TEST WHERE COLUMN_READING_ANSWER_TEST", new String[]{"COLUMN_READING_ANSWER_TEST", null, null, null, null, null});
         Cursor cursor = db.query(READINGCOMPREHENSION_QUESTION_TEST, new String[]{COLUMN_READING_ANSWER_TEST}, null, null, null, null, null);
@@ -543,6 +573,10 @@ public class ReadingComprehensionTestActivity extends AppCompatActivity {
             cursor.moveToNext();
         }
         cursor.close();
+
+    } catch (SQLException sqle) {
+        throw sqle;
+    }
 
         return strListAnswer;
 

@@ -1,9 +1,12 @@
 package com.xyz.practiceandlearn;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -188,6 +191,7 @@ public class TextComTestActivity extends AppCompatActivity {
 
     private void setupArray() {
 
+        Toast.makeText(getBaseContext(),"setup array",Toast.LENGTH_SHORT).show();
         strScript = listScript();
         strQuestion = listQuestion();
         strAnswer = listAnswer();
@@ -221,6 +225,7 @@ public class TextComTestActivity extends AppCompatActivity {
         rdoD1.setText("D."+strChoiceD[Global.currentposition*3]);
 
         //Choice2
+
         RadioButton rdoA2 = (RadioButton) findViewById(R.id.rdoA2_TextCom_test);
         rdoA2.setText("A."+strChoiceA[Global.currentposition*3+1]);
         RadioButton rdoB2 = (RadioButton) findViewById(R.id.rdoB2_TextCom_test);
@@ -239,6 +244,7 @@ public class TextComTestActivity extends AppCompatActivity {
         rdoC3.setText("C."+strChoiceC[Global.currentposition*3+2]);
         RadioButton rdoD3 = (RadioButton) findViewById(R.id.rdoD3_TextCom_test);
         rdoD3.setText("D."+strChoiceD[Global.currentposition*3+2]);
+
 
     }
 
@@ -474,6 +480,27 @@ public class TextComTestActivity extends AppCompatActivity {
 
     }
 
+    public void onBackPressed(){
+        new AlertDialog.Builder(this)
+                .setTitle("Stop the test?")
+                .setMessage("Are you sure you want to quit to test?")
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(TextComTestActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+
     private void clearcheck() {
 
         RadioGroup rdogroup1 = (RadioGroup) findViewById(R.id.rdoGroupA_TextCom_test);
@@ -486,19 +513,23 @@ public class TextComTestActivity extends AppCompatActivity {
 
     private String[] listScript() {
 
-        String strListScript[];
+        String strListScript[] = null;
+        try {
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
         //Cursor cursor = db.rawQuery("SELECT * FROM TEXTCOMPLETION_SCRIPT_TEST WHERE COLUMN_TEXTCOM_SCRIPT_TEST", new String[]{"COLUMN_TEXTCOM_SCRIPT_TEST", null, null, null, null, null});
-        Cursor cursor = db.query(TEXTCOMPLETION_QUESTION_TEST, new String[]{COLUMN_TEXTCOM_SCRIPT_TEST}, null, null, null, null, null);
-        cursor.moveToFirst();
-        strListScript = new String[cursor.getCount()];
-        for (int i=0; i<cursor.getCount(); i++) {
-            //strListScript[i] = cursor.getString(cursor.getColumnIndex("COLUMN_TEXTCOM_SCRIPT_TEST"));
-            strListScript[i] = cursor.getString(cursor.getColumnIndex(COLUMN_TEXTCOM_SCRIPT_TEST));
-            cursor.moveToNext();
-        }
-        cursor.close();
+        Cursor cursor = db.query(TEXTCOMPLETION_SCRIPT_TEST , new String[]{COLUMN_TEXTCOM_SCRIPT_TEST}, null, null, null, null, null);
+            cursor.moveToFirst();
+            strListScript = new String[cursor.getCount()];
+            for (int i=0; i<cursor.getCount(); i++) {
+            //    //strListScript[i] = cursor.getString(cursor.getColumnIndex("COLUMN_TEXTCOM_SCRIPT_TEST"));
+               strListScript[i] = cursor.getString(cursor.getColumnIndex(COLUMN_TEXTCOM_SCRIPT_TEST));
+                cursor.moveToNext();
+            }
+            cursor.close();
 
+        } catch (SQLException sqle) {
+            throw sqle;
+        }
         return strListScript;
 
     }
@@ -506,6 +537,7 @@ public class TextComTestActivity extends AppCompatActivity {
     private String[] listQuestion() {
 
         String strListQuestion[];
+        try{
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
         //Cursor cursor = db.rawQuery("SELECT * FROM TEXTCOMPLETION_QUESTION_TEST WHERE COLUMN_TEXTCOM_QUESTION_TEST", new String[]{"COLUMN_TEXTCOM_QUESTION_TEST", null, null, null, null, null});
         Cursor cursor = db.query(TEXTCOMPLETION_QUESTION_TEST, new String[]{COLUMN_TEXTCOM_QUESTION_TEST}, null, null, null, null, null);
@@ -518,6 +550,10 @@ public class TextComTestActivity extends AppCompatActivity {
         }
         cursor.close();
 
+        } catch (SQLException sqle) {
+            throw sqle;
+        }
+
         return strListQuestion;
 
     }
@@ -525,7 +561,9 @@ public class TextComTestActivity extends AppCompatActivity {
     private String[] listAnswer() {
 
         String strListAnswer[];
+        try {
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
+            Toast.makeText(getBaseContext(), "after readdatabase3", Toast.LENGTH_SHORT).show();
         //Cursor cursor = db.rawQuery("SELECT * FROM TEXTCOMPLETION_QUESTION_TEST WHERE COLUMN_TEXTCOM_ANSWER_TEST", new String[]{"COLUMN_TEXTCOM_ANSWER_TEST", null, null, null, null, null});
         Cursor cursor = db.query(TEXTCOMPLETION_QUESTION_TEST, new String[]{COLUMN_TEXTCOM_ANSWER_TEST}, null, null, null, null, null);
         cursor.moveToFirst();
@@ -536,6 +574,9 @@ public class TextComTestActivity extends AppCompatActivity {
             cursor.moveToNext();
         }
         cursor.close();
+        } catch (SQLException sqle) {
+            throw sqle;
+        }
 
         return strListAnswer;
 
@@ -544,9 +585,11 @@ public class TextComTestActivity extends AppCompatActivity {
     private String[] listChoiceA() {
 
         String strListChoiceA[];
+        try {
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
-        //Cursor cursor = db.rawQuery("SELECT * FROM TEXTCOMPLETION_QUESTION_TEST WHERE COLUMN_TEXTCOM_CHOICE_A_TEST", new String[]{"COLUMN_TEXTCOM_CHOICE_A_TEST", null, null, null, null, null});
-        Cursor cursor = db.query(TEXTCOMPLETION_QUESTION_TEST, new String[]{COLUMN_TEXTCOM_CHOICE_A_TEST}, null, null, null, null, null);
+            Toast.makeText(getBaseContext(), "after readdatabase4", Toast.LENGTH_SHORT).show();
+            //Cursor cursor = db.rawQuery("SELECT * FROM TEXTCOMPLETION_QUESTION_TEST WHERE COLUMN_TEXTCOM_CHOICE_A_TEST", new String[]{"COLUMN_TEXTCOM_CHOICE_A_TEST", null, null, null, null, null});
+        Cursor cursor = db.query(TEXTCOMPLETION_QUESTION_TEST, new String[]{COLUMN_TEXTCOM_CHOICE_A_TEST},null, null, null, null, null, null);
         cursor.moveToFirst();
         strListChoiceA = new String[cursor.getCount()];
         for (int i=0; i<cursor.getCount(); i++) {
@@ -555,6 +598,9 @@ public class TextComTestActivity extends AppCompatActivity {
             cursor.moveToNext();
         }
         cursor.close();
+        } catch (SQLException sqle) {
+            throw sqle;
+        }
 
         return strListChoiceA;
 

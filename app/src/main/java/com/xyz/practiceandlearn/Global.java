@@ -29,6 +29,8 @@ public class Global {
 
     public static int currentAnswer = 0;
 
+    public static int currentSound = 0;
+
     //public static File basedir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
 
     public static String basedir = Environment.getExternalStorageDirectory() + "/sdcard/";
