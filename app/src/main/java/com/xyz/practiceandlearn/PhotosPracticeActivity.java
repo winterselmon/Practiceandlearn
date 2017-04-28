@@ -4,6 +4,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +17,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.File;
+import java.io.IOException;
 
 import static com.xyz.practiceandlearn.Global.basedir;
 
@@ -57,11 +62,11 @@ public class PhotosPracticeActivity extends AppCompatActivity {
 
         objMyDatabase = new MyDatabase(this, basedir.toString() + "/V1/TOEIC.db");
 
-        currentposition = 0;
+        //currentposition = 0;
         showanswer = false;
         showanswer(0);
 
-        playSound(0);
+        playSound();
 
         setupArrar();
 
@@ -87,7 +92,8 @@ public class PhotosPracticeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                playSound(currentposition);
+                playSound();
+                //playSound(currentposition);
 
             }
         });
@@ -132,7 +138,8 @@ public class PhotosPracticeActivity extends AppCompatActivity {
 
                 clearcheck();
 
-                playSound(currentposition);
+                playSound();
+                //playSound(currentposition);
 
                 clearlayout();
 
@@ -151,32 +158,45 @@ public class PhotosPracticeActivity extends AppCompatActivity {
 
                 showanswer = false;
 
+
+
                 if (currentposition<maxrow)
                     currentposition++;
 
-                createlistview(currentposition);
+                    createlistview(currentposition);
 
-                clearcheck();
+                    clearcheck();
 
-                playSound(currentposition);
+                    playSound();
+                    //playSound(currentposition);
 
-                clearlayout();
+                    clearlayout();
+                    showanswer(currentposition);
 
-                showanswer(currentposition);
             }
         });
 
     }
 
-    private void playSound(int p) {
+    private void playSound() {
         if (mPlayer !=null){
             mPlayer.stop();
             mPlayer.release();
         }
 
+        String filePath = basedir+"/V1/AudioPhotoPratice/"+String.valueOf(currentposition+1)+".mp3";
+        mPlayer = new MediaPlayer();
 
-        mPlayer = MediaPlayer.create(this,mySound[p]);
-        mPlayer.start();
+        try {
+            mPlayer.setDataSource(filePath);
+            mPlayer.prepare();
+            mPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //mPlayer = MediaPlayer.create(this,mySound[p]);
+        //mPlayer.start();
 
     }
 
@@ -310,9 +330,15 @@ public class PhotosPracticeActivity extends AppCompatActivity {
 
     private void createlistview(int p) {
 
-        ImageView imglist = (ImageView) findViewById(R.id.imgPhotos);
-        imglist.setBackgroundResource(myTarget[p]);
+        File imgFile = new File(basedir + "/V1/PhotoPratice/" + String.valueOf(currentposition + 1) + ".png");
 
+        if (imgFile.exists()) {
+
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            ImageView imglist = (ImageView) findViewById(R.id.imgPhotos);
+            imglist.setImageBitmap(myBitmap);
+
+        }
     }
 
     private void clearcheck() {

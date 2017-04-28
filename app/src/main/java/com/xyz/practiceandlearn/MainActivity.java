@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 File dir2 = new File(basedir.toString() + "/V2/");
-                File dir1 = new File(basedir.toString() + "/V1/");
+                File dir1 = new File(basedir.toString() + "/V1.zip");
 
                 if (dir1.exists() && dir1.isDirectory()) {
                     Toast.makeText(getBaseContext(), "Last version", Toast.LENGTH_SHORT).show();
