@@ -16,6 +16,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 
+import java.io.IOException;
+
 import static com.xyz.practiceandlearn.Global.basedir;
 import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_ID_SHORTCONVERSATION_QUESTION;
 import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_ID_SHORTCONVERSATION_SCRIPT;
@@ -54,13 +56,11 @@ public class ShortConversationActivity extends AppCompatActivity {
         ScrollView scrollView = (ScrollView) findViewById(R.id.activity_short_conversation);
         scrollView.setFocusable(false);
 
-        currentposition = 0;
-
         showScript = false;
 
         showAnswer = false;
 
-        playSound(0);
+        playSound();
 
         setupArray();
 
@@ -71,6 +71,8 @@ public class ShortConversationActivity extends AppCompatActivity {
         showAnswer();
 
         back();
+
+        play();
 
         next();
 
@@ -101,6 +103,21 @@ public class ShortConversationActivity extends AppCompatActivity {
         strChoiceC = listChoiceC();
         strChoiceD = listChoiceD();
         strDes = listChoiceDes();
+
+    }
+
+    private void play() {
+
+        Button btnPlay = (Button) findViewById(R.id.btnPlay3);
+        btnPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                playSound();
+                //playSound(currentposition);
+
+            }
+        });
 
     }
 
@@ -230,7 +247,7 @@ public class ShortConversationActivity extends AppCompatActivity {
 
                 //clearlayout();
 
-                playSound(currentposition);
+                playSound();
 
                 showScript();
 
@@ -274,7 +291,7 @@ public class ShortConversationActivity extends AppCompatActivity {
 
                 //clearlayout();
 
-                playSound(currentposition);
+                playSound();
 
                 showScript();
 
@@ -317,17 +334,26 @@ public class ShortConversationActivity extends AppCompatActivity {
                 .show();
     }
 
-    private void playSound(int p) {
+
+
+    private void playSound() {
         if (mPlayer !=null){
             mPlayer.stop();
             mPlayer.release();
         }
 
+        String filePath = basedir+"/V1/AudioShortConPratice/"+String.valueOf(currentposition+1)+".mp3";
+        mPlayer = new MediaPlayer();
 
-        mPlayer = MediaPlayer.create(this,mySound[p]);
-        mPlayer.start();
-
+        try {
+            mPlayer.setDataSource(filePath);
+            mPlayer.prepare();
+            mPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @Override
     protected void onPause() {

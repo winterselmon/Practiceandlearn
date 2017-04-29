@@ -38,11 +38,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hi"
+        android:text=" You will hear some conversations between two people. You will be asked to answer three questions about what the speakers say in each conversation. Select the best response to each question and mark the letter (A),(B),(C), or (D) on your answer sheet. The conversations will not be printed in your test book and will be spoken only one time."
         android:textSize="18dp"
         android:layout_below="@id/Part3name"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"/>
 
     <Button
         android:layout_width="wrap_content"

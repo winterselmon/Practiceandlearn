@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:text=""
             android:id="@+id/txtScript"
+            android:layout_marginLeft="5dp"
             android:layout_below="@+id/btnScript"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -92,7 +93,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="match_parent"
             android:id="@+id/relativequestionB"
             android:layout_below="@+id/relativequestionA"
             android:layout_alignParentLeft="true"
@@ -150,7 +151,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/relativequestionB"

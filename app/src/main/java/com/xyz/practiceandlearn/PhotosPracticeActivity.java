@@ -201,13 +201,27 @@ public class PhotosPracticeActivity extends AppCompatActivity {
     }
 
     private void playTrue(){
-        soundtrue = MediaPlayer.create(this,R.raw.soundtrue);
-        soundtrue.start();
+        String filePath = basedir+"/V1/soundtrue.mp3";
+        mPlayer = new MediaPlayer();
+        try {
+            mPlayer.setDataSource(filePath);
+            mPlayer.prepare();
+            mPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void playWrong(){
-        soundwrong = MediaPlayer.create(this,R.raw.soundwrong);
-        soundwrong.start();
+        String filePath = basedir+"/V1/soundwrong.mp3";
+        mPlayer = new MediaPlayer();
+        try {
+            mPlayer.setDataSource(filePath);
+            mPlayer.prepare();
+            mPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

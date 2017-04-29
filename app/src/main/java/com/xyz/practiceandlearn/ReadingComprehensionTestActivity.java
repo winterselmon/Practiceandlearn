@@ -299,7 +299,7 @@ public class ReadingComprehensionTestActivity extends AppCompatActivity {
 
     private void next() {
 
-        Button btnNext = (Button) findViewById(R.id.btnNext7_test);
+        final Button btnNext = (Button) findViewById(R.id.btnNext7_test);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -308,6 +308,11 @@ public class ReadingComprehensionTestActivity extends AppCompatActivity {
                 Global.currentAnswer += 3;
 
                 Global.currentposition++;
+
+                if (Global.currentposition == maxrow) {
+                    Button btnend = (Button) findViewById(R.id.btnNext7_test);
+                    btnNext.setText("Finish");
+                }
 
                 if (Global.currentposition > maxrow) {
                     Global.currentposition = 0;

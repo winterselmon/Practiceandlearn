@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:text=""
             android:id="@+id/txtScriptTextCom"
+            android:layout_marginLeft="5dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
@@ -235,14 +236,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/relativeAnswerDesTextCom"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp" >
 
             <Button
                 android:text="Back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginStart="25dp"
                 android:id="@+id/btnBack6"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />

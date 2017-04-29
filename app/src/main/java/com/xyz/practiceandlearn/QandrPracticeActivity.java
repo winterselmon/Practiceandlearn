@@ -15,6 +15,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 import static com.xyz.practiceandlearn.Global.basedir;
 import static com.xyz.practiceandlearn.QuestionAndResponseDatabase.COLUMN_ID_QANDR_CHOICE;
 import static com.xyz.practiceandlearn.QuestionAndResponseDatabase.COLUMN_ID_QANDR_QUESTION;
@@ -53,7 +55,7 @@ public class QandrPracticeActivity extends AppCompatActivity {
         showanswer = false;
         showanswer(0);
 
-        playSound(0);
+        playSound();
 
         setupArray();
 
@@ -76,7 +78,8 @@ public class QandrPracticeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                playSound(currentposition);
+                playSound();
+                //playSound(currentposition);
 
             }
         });
@@ -95,11 +98,10 @@ public class QandrPracticeActivity extends AppCompatActivity {
                 if (currentposition>0)
                     currentposition--;
 
-
-
                 clearcheck();
 
-                playSound(currentposition);
+                playSound();
+                //playSound(currentposition);
 
                 clearlayout();
 
@@ -123,7 +125,8 @@ public class QandrPracticeActivity extends AppCompatActivity {
 
                 clearcheck();
 
-                playSound(currentposition);
+                playSound();
+                //playSound(currentposition);
 
                 clearlayout();
 
@@ -133,26 +136,47 @@ public class QandrPracticeActivity extends AppCompatActivity {
 
     }
 
-    private void playSound(int p) {
+    private void playSound() {
         if (mPlayer !=null){
             mPlayer.stop();
             mPlayer.release();
         }
 
+        String filePath = basedir+"/V1/AudioQandRPratice/"+String.valueOf(currentposition+1)+".mp3";
+        mPlayer = new MediaPlayer();
 
-        mPlayer = MediaPlayer.create(this,mySound[p]);
-        mPlayer.start();
+        try{
+            mPlayer.setDataSource(filePath);
+            mPlayer.prepare();
+            mPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
     private void playTrue(){
-        soundtrue = MediaPlayer.create(this,R.raw.soundtrue);
-        soundtrue.start();
+        String filePath = basedir+"/V1/soundtrue.mp3";
+        mPlayer = new MediaPlayer();
+        try {
+            mPlayer.setDataSource(filePath);
+            mPlayer.prepare();
+            mPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void playWrong(){
-        soundwrong = MediaPlayer.create(this,R.raw.soundwrong);
-        soundwrong.start();
+        String filePath = basedir+"/V1/soundwrong.mp3";
+        mPlayer = new MediaPlayer();
+        try {
+            mPlayer.setDataSource(filePath);
+            mPlayer.prepare();
+            mPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showanswer(final int p) {
@@ -183,12 +207,12 @@ public class QandrPracticeActivity extends AppCompatActivity {
                         if (chkA){
                             //playSound
                             playTrue();
-                            Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
                         }
                         else {
 
                             playWrong();
-                            Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -197,12 +221,12 @@ public class QandrPracticeActivity extends AppCompatActivity {
                         if (chkB){
                             //playSound
                             playTrue();
-                            Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
                         }
                         else {
 
                             playWrong();
-                            Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -211,12 +235,12 @@ public class QandrPracticeActivity extends AppCompatActivity {
                         if (chkC){
                             //playSound
                             playTrue();
-                            Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
                         }
                         else {
 
                             playWrong();
-                            Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
                         }
 
                     }

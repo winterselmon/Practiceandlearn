@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaPlayer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import java.io.IOException;
 
 import static com.xyz.practiceandlearn.Global.basedir;
 import static com.xyz.practiceandlearn.ReadingComprehensionDatabase.COLUMN_ID_READING_SCRIPT;
@@ -34,6 +37,7 @@ public class ReadingComprehensionActivity extends AppCompatActivity {
     private int currentposition;
     private static final int maxrow = 9;
     private boolean showAnswer;
+    private MediaPlayer mPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -225,6 +229,7 @@ public class ReadingComprehensionActivity extends AppCompatActivity {
         });
 
     }
+
 
     public void onBackPressed(){
         new AlertDialog.Builder(this)

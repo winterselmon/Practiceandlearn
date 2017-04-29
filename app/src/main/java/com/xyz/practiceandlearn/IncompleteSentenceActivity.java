@@ -15,6 +15,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 import static com.xyz.practiceandlearn.Global.basedir;
 
 import static com.xyz.practiceandlearn.IncompleteDatabase.COLUMN_ID_INCOMPLETE_CHOICE;
@@ -37,7 +39,7 @@ public class IncompleteSentenceActivity extends AppCompatActivity {
     private String[] strQuestion, strAnswer, strChoiceA, strChoiceB, strChoiceC, strChoiceD, strDes;
     private int currentposition;
     private boolean showanswer;
-    private MediaPlayer soundtrue,soundwrong;
+    private MediaPlayer mPlayer;
     private static final int maxrow = 49;
 
     @Override
@@ -73,16 +75,6 @@ public class IncompleteSentenceActivity extends AppCompatActivity {
         strChoiceD = listChoiceD();
         strDes = listDes();
 
-    }
-
-    private void playTrue(){
-        soundtrue = MediaPlayer.create(this,R.raw.soundtrue);
-        soundtrue.start();
-    }
-
-    private void playWrong(){
-        soundwrong = MediaPlayer.create(this,R.raw.soundwrong);
-        soundwrong.start();
     }
 
     private void showQuestionAndChoice(final int p){
@@ -156,12 +148,12 @@ public class IncompleteSentenceActivity extends AppCompatActivity {
                         if (chkA){
                             //playSound
                             playTrue();
-                            Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
                         }
                         else {
 
                             playWrong();
-                            Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -170,12 +162,12 @@ public class IncompleteSentenceActivity extends AppCompatActivity {
                         if (chkB){
                             //playSound
                             playTrue();
-                            Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
                         }
                         else {
 
                             playWrong();
-                            Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -184,12 +176,12 @@ public class IncompleteSentenceActivity extends AppCompatActivity {
                         if (chkC){
                             //playSound
                             playTrue();
-                            Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
                         }
                         else {
 
                             playWrong();
-                            Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -198,12 +190,12 @@ public class IncompleteSentenceActivity extends AppCompatActivity {
                         if (chkD){
                             //playSound
                             playTrue();
-                            Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
                         }
                         else {
 
                             playWrong();
-                            Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -247,6 +239,30 @@ public class IncompleteSentenceActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void playTrue(){
+        String filePath = basedir+"/V1/soundtrue.mp3";
+        mPlayer = new MediaPlayer();
+        try {
+            mPlayer.setDataSource(filePath);
+            mPlayer.prepare();
+            mPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void playWrong(){
+        String filePath = basedir+"/V1/soundwrong.mp3";
+        mPlayer = new MediaPlayer();
+        try {
+            mPlayer.setDataSource(filePath);
+            mPlayer.prepare();
+            mPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void onBackPressed(){

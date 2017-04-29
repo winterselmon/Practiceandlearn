@@ -15,6 +15,8 @@ import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import java.io.IOException;
+
 import static com.xyz.practiceandlearn.Global.basedir;
 import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_ANSWER;
 import static com.xyz.practiceandlearn.ShortTalkDatabase.COLUMN_SHORTTALK_CHOICE_A;
@@ -36,8 +38,8 @@ public class ShortTalkActivity extends AppCompatActivity {
     private boolean showScript;
     private boolean showAnswer;
     private MediaPlayer mPlayer;
-    //private int[] mySound = {R.raw.short1, R.raw.short2, R.raw.short3, R.raw.short4, R.raw.short5, R.raw.short6, R.raw.short7, R.raw.short8, R.raw.short9, R.raw.short10,
-            //R.raw.short11,R.raw.short12,R.raw.short13,R.raw.short14,R.raw.short15,R.raw.short16,R.raw.short17,R.raw.short18,R.raw.short19,R.raw.short20};
+    private int[] mySound = {R.raw.short1, R.raw.short2, R.raw.short3, R.raw.short4, R.raw.short5, R.raw.short6, R.raw.short7, R.raw.short8, R.raw.short9, R.raw.short10,
+            R.raw.short11,R.raw.short12,R.raw.short13,R.raw.short14,R.raw.short15,R.raw.short16,R.raw.short17,R.raw.short18,R.raw.short19,R.raw.short20};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,8 @@ public class ShortTalkActivity extends AppCompatActivity {
         next();
 
         clearcheck();
+
+        playSound();
 
     }
 
@@ -209,6 +213,7 @@ public class ShortTalkActivity extends AppCompatActivity {
 
                 //clearlayout();
 
+                playSound();
                 //playSound(currentposition);
 
                 showScript();
@@ -252,6 +257,7 @@ public class ShortTalkActivity extends AppCompatActivity {
 
                 //clearlayout();
 
+                playSound();
                 //playSound(currentposition);
 
                 showScript();
@@ -295,23 +301,29 @@ public class ShortTalkActivity extends AppCompatActivity {
         rdogroup3.clearCheck();
     }
 
-    private void playSound(int p) {
+    private void playSound() {
         if (mPlayer !=null){
             mPlayer.stop();
             mPlayer.release();
         }
 
+        String filePath = basedir+"/V1/AudioShortTalkPratice/"+String.valueOf(currentposition+1)+".mp3";
+        mPlayer = new MediaPlayer();
 
-        //mPlayer = MediaPlayer.create(this,mySound[p]);
-        mPlayer.start();
-
+        try {
+            mPlayer.setDataSource(filePath);
+            mPlayer.prepare();
+            mPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        //mPlayer.stop();
+        mPlayer.stop();
     }
 
     private String[] listScript() {
