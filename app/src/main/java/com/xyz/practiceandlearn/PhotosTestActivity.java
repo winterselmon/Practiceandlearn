@@ -223,7 +223,8 @@ public class PhotosTestActivity extends AppCompatActivity {
 
     private void showpicture() {
 
-        File imgFile = new File(basedirPhoto +"/photoTest/"+String.valueOf(Global.currentposition+1)+".png");
+        File imgFile = new File(basedirPhoto +"/sdcard/V1/photoTest/"+String.valueOf(Global.currentposition+1)+".png");
+        Toast.makeText(getBaseContext(),imgFile.toString(),Toast.LENGTH_SHORT).show();
 
         if(imgFile.exists()){
 
