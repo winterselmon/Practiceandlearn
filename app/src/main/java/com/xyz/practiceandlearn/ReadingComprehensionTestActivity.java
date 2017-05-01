@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import java.io.File;
 
+import static com.xyz.practiceandlearn.Global.BaseDir;
 import static com.xyz.practiceandlearn.Global.basedir;
 
 import static com.xyz.practiceandlearn.ReadingComprehensionDatabase.COLUMN_READING_ANSWER_TEST;
@@ -66,10 +67,21 @@ public class ReadingComprehensionTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reading_comprehension_test);
 
-        File photoDB = new File(basedir.toString() + "/V1/TOEIC.db");
-        File photoDB2 = new File(basedir.toString() + "/V2/TOEIC.db");
+        File photoDB = new File(BaseDir+ "/V1/TOEIC.db");
+        File photoDB2 = new File(BaseDir+ "/V1/V2/TOEIC2.db");
 
-        objMyDatabase = new MyDatabase(this, photoDB);
+        if (photoDB2.exists()) {
+            objMyDatabase = new MyDatabase(this, photoDB2);
+            Toast.makeText(getBaseContext(),"Database V.2",Toast.LENGTH_SHORT).show();
+        } else if (photoDB.exists()) {
+            objMyDatabase = new MyDatabase(this, photoDB);
+            Toast.makeText(getBaseContext(),"Database V.1",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getBaseContext(),"no Data base",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+//        objMyDatabase = new MyDatabase(this, photoDB);
 
         //currentposition = 0;
 
@@ -315,7 +327,6 @@ public class ReadingComprehensionTestActivity extends AppCompatActivity {
                 Global.currentposition++;
 
                 if (Global.currentposition == maxrow) {
-                    Button btnend = (Button) findViewById(R.id.btnNext7_test);
                     btnNext.setText("Finish");
                 }
 

@@ -14,10 +14,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
 
+import static com.xyz.practiceandlearn.Global.BaseDir;
 import static com.xyz.practiceandlearn.Global.basedir;
 import static com.xyz.practiceandlearn.TextCompletionDatabase.COLUMN_TEXTCOM_ANSWER;
 import static com.xyz.practiceandlearn.TextCompletionDatabase.COLUMN_TEXTCOM_CHOICE_A;
@@ -46,11 +48,22 @@ public class TextCompletionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_completion);
 
-        File photoDB = new File(basedir.toString() + "/V1/TOEIC.db");
-        File photoDB2 = new File(basedir.toString() + "/V2/TOEIC.db");
+        File photoDB = new File(BaseDir+ "/V1/TOEIC.db");
+        File photoDB2 = new File(BaseDir+ "/V1/V2/TOEIC2.db");
+
+        if (photoDB2.exists()) {
+            objMyDatabase = new MyDatabase(this, photoDB2);
+            Toast.makeText(getBaseContext(),"Database V.2",Toast.LENGTH_SHORT).show();
+        } else if (photoDB.exists()) {
+            objMyDatabase = new MyDatabase(this, photoDB);
+            Toast.makeText(getBaseContext(),"Database V.1",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getBaseContext(),"no Data base",Toast.LENGTH_SHORT).show();
+            return;
+        }
 
 
-        objMyDatabase = new MyDatabase(this, photoDB);
+//        objMyDatabase = new MyDatabase(this, photoDB);
 
         currentposition = 0;
 

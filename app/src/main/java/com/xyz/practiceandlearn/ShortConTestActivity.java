@@ -21,7 +21,9 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.IOException;
 
+import static com.xyz.practiceandlearn.Global.BaseDir;
 import static com.xyz.practiceandlearn.Global.basedir;
+import static com.xyz.practiceandlearn.Global.basedirPhoto;
 import static com.xyz.practiceandlearn.Global.basedirSound;
 import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_ID_SHORTCONVERSATION_QUESTION;
 import static com.xyz.practiceandlearn.ShortConDatabase.COLUMN_ID_SHORTCONVERSATION_SCRIPT;
@@ -74,10 +76,21 @@ public class ShortConTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_short_con_test);
 
-        File photoDB = new File(basedir.toString() + "/V1/TOEIC.db");
-        File photoDB2 = new File(basedir.toString() + "/V2/TOEIC.db");
+        File photoDB = new File(BaseDir+ "/V1/TOEIC.db");
+        File photoDB2 = new File(BaseDir+ "/V1/V2/TOEIC2.db");
 
-        objMyDatabase = new MyDatabase(this, photoDB);
+        if (photoDB2.exists()) {
+            objMyDatabase = new MyDatabase(this, photoDB2);
+            Toast.makeText(getBaseContext(),"Database V.2",Toast.LENGTH_SHORT).show();
+        } else if (photoDB.exists()) {
+            objMyDatabase = new MyDatabase(this, photoDB);
+            Toast.makeText(getBaseContext(),"Database V.1",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getBaseContext(),"no Data base",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+//        objMyDatabase = new MyDatabase(this, photoDB);
 
         currentpage = 2;
 
@@ -208,18 +221,33 @@ public class ShortConTestActivity extends AppCompatActivity {
 
     private void playSound() {
 
+        File photoDB = new File(basedirSound+ "/V1/AudioShortCon/");
+        File photoDB2 = new File(basedirSound + "/V1/V2/AudioShortCon/");
+        File filepath = null;
+
         if (mPlayer !=null){
             mPlayer.stop();
             mPlayer.release();
         }
-        String filePath = basedir +"/V1/AudioShortCon/"+String.valueOf(Global.currentSound+1)+".mp3";
-        //Toast.makeText(getBaseContext(), filePath, Toast.LENGTH_SHORT).show();
+
+        if (photoDB2.exists()) {
+            filepath = new File(basedirPhoto +"/V1/V2/AudioShortCon/"+String.valueOf(Global.currentposition+1)+".mp3");
+        } else if (photoDB.exists()) {
+
+            filepath = new File(basedirPhoto +"/V1/AudioShortCon/"+String.valueOf(Global.currentposition+1)+".mp3");
+
+        } else {
+            Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+//        String filePath = basedir +"/V1/AudioShortCon/"+String.valueOf(Global.currentSound+1)+".mp3";
         //String filePath = Environment.getExternalStorageDirectory()+"/AudioShortCon/"+String.valueOf(Global.currentAnswer+1)+".mp3";
         mPlayer = new MediaPlayer();
 
         try {
             if (!Global.played[Global.currentSound]) {
-                mPlayer.setDataSource(filePath);
+                mPlayer.setDataSource(String.valueOf(filepath));
                 mPlayer.prepare();
                 mPlayer.start();
                 Global.played[Global.currentSound] = true;

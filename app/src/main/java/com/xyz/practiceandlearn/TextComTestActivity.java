@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import java.io.File;
 
+import static com.xyz.practiceandlearn.Global.BaseDir;
 import static com.xyz.practiceandlearn.Global.basedir;
 import static com.xyz.practiceandlearn.TextCompletionDatabase.COLUMN_TEXTCOM_ANSWER_TEST;
 import static com.xyz.practiceandlearn.TextCompletionDatabase.COLUMN_TEXTCOM_CHOICE_A_TEST;
@@ -65,10 +66,21 @@ public class TextComTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_com_test);
 
-        File photoDB = new File(basedir.toString() + "/V1/TOEIC.db");
-        File photoDB2 = new File(basedir.toString() + "/V2/TOEIC.db");
+        File photoDB = new File(BaseDir+ "/V1/TOEIC.db");
+        File photoDB2 = new File(BaseDir+ "/V1/V2/TOEIC2.db");
 
-        objMyDatabase = new MyDatabase(this, photoDB);
+        if (photoDB2.exists()) {
+            objMyDatabase = new MyDatabase(this, photoDB2);
+            Toast.makeText(getBaseContext(),"Database V.2",Toast.LENGTH_SHORT).show();
+        } else if (photoDB.exists()) {
+            objMyDatabase = new MyDatabase(this, photoDB);
+            Toast.makeText(getBaseContext(),"Database V.1",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getBaseContext(),"no Data base",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+//        objMyDatabase = new MyDatabase(this, photoDB);
 
         //currentposition = 0;
 

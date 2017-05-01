@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                File dir2 = new File(BaseDir + "/V2.zip");
+                File dir2 = new File(BaseDir + "/V1/V2/");
                 File dir1 = new File(BaseDir + "/V1.zip");
 
 
