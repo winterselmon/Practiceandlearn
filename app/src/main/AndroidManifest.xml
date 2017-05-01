@@ -15,7 +15,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/japanesedragon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -41,7 +41,7 @@
         <activity android:name=".IncompleteSentenceTestActivity" />
         <activity android:name=".TextComTestActivity" />
         <activity android:name=".ReadingComprehensionTestActivity" />
-        <activity android:name=".Update" />
+        <!--<activity android:name=".Update" />-->
         <activity android:name=".ShowScoreActivity" />
         <activity android:name=".DescriptionPhotoActivity" />
         <activity android:name=".DescriptionQandRActivity" />

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
 
+import java.io.File;
 import java.security.PublicKey;
 
 import static com.xyz.practiceandlearn.Global.basedir;
@@ -43,7 +44,7 @@ public class PhotoDatabase {
     public static final String COLUMN_PHOTO_CHOICE_D_TEST = "Photo_choice_d";
     public static final String COLUMN_ID_PHOTO_QUESTION2_TEST = "Id_photo_question2";
 
-    public PhotoDatabase(Context context, String dbname){
+    public PhotoDatabase(Context context, File dbname){
 
         objMyDatabase = new MyDatabase(context, dbname);
         writeSQLite = objMyDatabase.getWritableDatabase();

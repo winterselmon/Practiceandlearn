@@ -53,14 +53,11 @@ public class MyDatabase extends SQLiteOpenHelper {
 
 
 
-    public MyDatabase(Context context, String dbname) {
-        super(context,dbname, null, DATABASE_VERSION);
+    public MyDatabase(Context context, File dbname) {
+        super(context, String.valueOf(dbname), null, DATABASE_VERSION);
         //basedir.toString()+"/V1/TOEIC.db"
         //super(context,"/storage/sdcard/sdcard/V1/TOEIC.db", null, DATABASE_VERSION);
     }
-
-
-
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {

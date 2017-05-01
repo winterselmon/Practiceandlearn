@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.io.File;
+
 import static com.xyz.practiceandlearn.Global.basedir;
 
 /**
@@ -44,7 +46,7 @@ public class ReadingComprehensionDatabase {
     public static final String COLUMN_READING_CHOICE_D_TEST = "Reading_choice_d";
 
 
-    public ReadingComprehensionDatabase (Context context, String dbname){
+    public ReadingComprehensionDatabase (Context context, File dbname){
 
         objMyDatabase = new MyDatabase(context, dbname);
         writeSQLite = objMyDatabase.getWritableDatabase();

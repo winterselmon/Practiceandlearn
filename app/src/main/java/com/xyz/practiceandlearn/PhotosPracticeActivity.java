@@ -21,8 +21,11 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.IOException;
 
+import static com.xyz.practiceandlearn.Global.BaseDir;
 import static com.xyz.practiceandlearn.Global.basedir;
 
+import static com.xyz.practiceandlearn.Global.basedirPhoto;
+import static com.xyz.practiceandlearn.Global.basedirSound;
 import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_ID_PHOTO_CHOICE;
 import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_ID_PHOTO_QUESTION;
 import static com.xyz.practiceandlearn.PhotoDatabase.COLUMN_PHOTO_ANSWER;
@@ -44,15 +47,7 @@ public class PhotosPracticeActivity extends AppCompatActivity {
     private static String sql = COLUMN_ID_PHOTO_CHOICE + "<=40";
     private static String sql2 = COLUMN_ID_PHOTO_QUESTION + "<=40";
     private static String[] strListChoiceA, strListChoiceB, strListChoiceC, strListChoiceD, strListDes, strListAnswer;
-    int[] myTarget = {R.drawable.photo1,R.drawable.photo2,R.drawable.photo3,R.drawable.photo4,R.drawable.photo5,R.drawable.photo6,R.drawable.photo7,R.drawable.photo8,R.drawable.photo9,R.drawable.photo10,
-            R.drawable.photo11,R.drawable.photo12,R.drawable.photo13,R.drawable.photo14,R.drawable.photo15,R.drawable.photo16,R.drawable.photo17,R.drawable.photo18,R.drawable.photo19,R.drawable.photo20,
-            R.drawable.photo21,R.drawable.photo22,R.drawable.photo23,R.drawable.photo24,R.drawable.photo25,R.drawable.photo26,R.drawable.photo27,R.drawable.photo28,R.drawable.photo29,R.drawable.photo30,
-            R.drawable.photo31,R.drawable.photo32,R.drawable.photo33,R.drawable.photo34,R.drawable.photo35,R.drawable.photo36,R.drawable.photo37,R.drawable.photo38,R.drawable.photo39,R.drawable.photo40};
     private MediaPlayer mPlayer,soundtrue,soundwrong;
-    int[] mySound = {R.raw.audiophoto1,R.raw.audiophoto2,R.raw.audiophoto3,R.raw.audiophoto4,R.raw.audiophoto5,R.raw.audiophoto6,R.raw.audiophoto7,R.raw.audiophoto8,R.raw.audiophoto9,R.raw.audiophoto10,
-            R.raw.audiophoto11,R.raw.audiophoto12,R.raw.audiophoto13,R.raw.audiophoto14,R.raw.audiophoto15,R.raw.audiophoto16,R.raw.audiophoto17,R.raw.audiophoto18,R.raw.audiophoto19,R.raw.audiophoto20,
-            R.raw.audiophoto21,R.raw.audiophoto22,R.raw.audiophoto23,R.raw.audiophoto24,R.raw.audiophoto25,R.raw.audiophoto26,R.raw.audiophoto27,R.raw.audiophoto28,R.raw.audiophoto29,R.raw.audiophoto30,
-            R.raw.audiophoto31,R.raw.audiophoto32,R.raw.audiophoto33,R.raw.audiophoto34,R.raw.audiophoto35,R.raw.audiophoto36,R.raw.audiophoto37,R.raw.audiophoto38,R.raw.audiophoto39,R.raw.audiophoto40};
     String correctAnswer;
 
     @Override
@@ -60,17 +55,31 @@ public class PhotosPracticeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photos_practice);
 
-        objMyDatabase = new MyDatabase(this, basedir.toString() + "/V1/TOEIC.db");
+        File photoDB = new File(BaseDir + "/V1/TOEIC.db");
+        File photoDB2 = new File(BaseDir + "/V1/V2/TOEIC2.db");
 
+        if (photoDB2.exists()) {
+            objMyDatabase = new MyDatabase(this, photoDB2);
+            Toast.makeText(getBaseContext(),"Database V.2",Toast.LENGTH_SHORT).show();
+        } else if (photoDB.exists()) {
+            objMyDatabase = new MyDatabase(this, photoDB);
+            Toast.makeText(getBaseContext(),"Database V.1",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getBaseContext(),"no Data base",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+//        objMyDatabase = new MyDatabase(this, photoDB);
         //currentposition = 0;
         showanswer = false;
+
         showanswer(0);
 
         playSound();
 
         setupArrar();
 
-        createlistview(0);
+        createlistview();
 
         play();
 
@@ -108,7 +117,9 @@ public class PhotosPracticeActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(PhotosPracticeActivity.this, MainActivity.class);
+                        mPlayer.stop();
                         startActivity(intent);
+
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -134,7 +145,7 @@ public class PhotosPracticeActivity extends AppCompatActivity {
                 if (currentposition>0)
                     currentposition--;
 
-                createlistview(currentposition);
+                createlistview();
 
                 clearcheck();
 
@@ -163,7 +174,7 @@ public class PhotosPracticeActivity extends AppCompatActivity {
                 if (currentposition<maxrow)
                     currentposition++;
 
-                    createlistview(currentposition);
+                    createlistview();
 
                     clearcheck();
 
@@ -179,16 +190,33 @@ public class PhotosPracticeActivity extends AppCompatActivity {
     }
 
     private void playSound() {
+
+        File photoDB = new File(basedirSound+ "/V1/AudioPhotoPratice/");
+        File photoDB2 = new File(basedirSound + "/V1/V2/AudioPhotoPratice/");
+        File filepath = null;
+
+
         if (mPlayer !=null){
             mPlayer.stop();
             mPlayer.release();
         }
 
-        String filePath = basedir+"/V1/AudioPhotoPratice/"+String.valueOf(currentposition+1)+".mp3";
+        if (photoDB2.exists()) {
+            filepath = new File(basedirPhoto +"/V1/V2/AudioPhotoPratice/"+String.valueOf(currentposition+1)+".mp3");
+        } else if (photoDB.exists()) {
+
+            filepath = new File(basedirPhoto +"/V1/AudioPhotoPratice/"+String.valueOf(currentposition+1)+".mp3");
+
+        } else {
+            Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+//        String filePath = BaseDir+"/V1/AudioPhotoPratice/"+String.valueOf(currentposition+1)+".mp3";
         mPlayer = new MediaPlayer();
 
         try {
-            mPlayer.setDataSource(filePath);
+            mPlayer.setDataSource(String.valueOf(filepath));
             mPlayer.prepare();
             mPlayer.start();
         } catch (IOException e) {
@@ -342,10 +370,25 @@ public class PhotosPracticeActivity extends AppCompatActivity {
 
     }   //setup Arrar
 
-    private void createlistview(int p) {
+    private void createlistview() {
 
-        File imgFile = new File(basedir + "/V1/PhotoPratice/" + String.valueOf(currentposition + 1) + ".png");
+        File photoDB = new File(basedirSound+ "/V1/photoPratice/");
+        File photoDB2 = new File(basedirSound + "/V1/V2/photoPratice/");
+        File imgFile = null;
 
+        if (photoDB2.exists()) {
+            imgFile = new File(basedirPhoto +"/V1/V2/photoPratice/"+String.valueOf(currentposition+1)+".png");
+        } else if (photoDB.exists()) {
+
+            imgFile = new File(basedirPhoto +"/V1/photoPratice/"+String.valueOf(currentposition+1)+".png");
+
+        } else {
+            Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+//        File imgFile = new File(basedir + "/V1/PhotoPratice/" + String.valueOf(currentposition + 1) + ".png");
         if (imgFile.exists()) {
 
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());

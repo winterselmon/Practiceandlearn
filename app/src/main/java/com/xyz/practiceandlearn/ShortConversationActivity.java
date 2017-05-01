@@ -16,6 +16,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 
+import java.io.File;
 import java.io.IOException;
 
 import static com.xyz.practiceandlearn.Global.basedir;
@@ -51,7 +52,10 @@ public class ShortConversationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_short_conversation);
 
-        objMyDatabase = new MyDatabase(this, basedir.toString() + "/V1/TOEIC.db");
+        File photoDB = new File(basedir.toString() + "/V1/TOEIC.db");
+        File photoDB2 = new File(basedir.toString() + "/V2/TOEIC.db");
+
+        objMyDatabase = new MyDatabase(this, photoDB);
 
         ScrollView scrollView = (ScrollView) findViewById(R.id.activity_short_conversation);
         scrollView.setFocusable(false);
@@ -321,6 +325,7 @@ public class ShortConversationActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(ShortConversationActivity.this, MainActivity.class);
+                        mPlayer.stop();
                         startActivity(intent);
                     }
                 })

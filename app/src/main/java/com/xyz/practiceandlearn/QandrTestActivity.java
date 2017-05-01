@@ -19,6 +19,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -65,7 +66,10 @@ public class QandrTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qandr_test);
 
-        objMyDatabase = new MyDatabase(this, basedir.toString() + "/V1/TOEIC.db");
+        File photoDB = new File(basedir.toString() + "/V1/TOEIC.db");
+        File photoDB2 = new File(basedir.toString() + "/V2/TOEIC.db");
+
+        objMyDatabase = new MyDatabase(this, photoDB);
 
         //currentposition = 0;
 
@@ -158,9 +162,7 @@ public class QandrTestActivity extends AppCompatActivity {
 
     }
 
-
     private void setupArray(){
-
 
         strListAnswer = listAnswer();
     }
@@ -182,7 +184,6 @@ public class QandrTestActivity extends AppCompatActivity {
             mPlayer.release();
         }
         String filePath =basedir +"/V1/AudioQandR/"+String.valueOf(Global.currentSound+1)+".mp3";
-        //Toast.makeText(getBaseContext(), filePath, Toast.LENGTH_SHORT).show();
         //String filePath = Environment.getExternalStorageDirectory()+"/AudioQandR/"+String.valueOf(Global.currentAnswer+1)+".mp3";
         mPlayer = new MediaPlayer();
 
@@ -293,6 +294,7 @@ public class QandrTestActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(QandrTestActivity.this, MainActivity.class);
+                        mPlayer.stop();
                         startActivity(intent);
                     }
                 })

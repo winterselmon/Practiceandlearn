@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.io.File;
+
 import static com.xyz.practiceandlearn.Global.basedir;
 import static com.xyz.practiceandlearn.IncompleteDatabase.COLUMN_INCOMPLETE_ANSWER_TEST;
 import static com.xyz.practiceandlearn.IncompleteDatabase.COLUMN_INCOMPLETE_CHOICE_A_TEST;
@@ -60,7 +62,10 @@ public class IncompleteSentenceTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_incomplete_sentence_test);
 
-        objMyDatabase = new MyDatabase(this, basedir.toString() + "/V1/TOEIC.db");
+        File photoDB = new File(basedir.toString() + "/V1/TOEIC.db");
+        File photoDB2 = new File(basedir.toString() + "/V2/TOEIC.db");
+
+        objMyDatabase = new MyDatabase(this, photoDB);
 
         //currentposition = 0;
 

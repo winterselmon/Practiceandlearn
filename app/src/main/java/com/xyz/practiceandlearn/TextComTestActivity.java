@@ -17,6 +17,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+
 import static com.xyz.practiceandlearn.Global.basedir;
 import static com.xyz.practiceandlearn.TextCompletionDatabase.COLUMN_TEXTCOM_ANSWER_TEST;
 import static com.xyz.practiceandlearn.TextCompletionDatabase.COLUMN_TEXTCOM_CHOICE_A_TEST;
@@ -63,7 +65,10 @@ public class TextComTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_com_test);
 
-        objMyDatabase = new MyDatabase(this, basedir.toString() + "/V1/TOEIC.db");
+        File photoDB = new File(basedir.toString() + "/V1/TOEIC.db");
+        File photoDB2 = new File(basedir.toString() + "/V2/TOEIC.db");
+
+        objMyDatabase = new MyDatabase(this, photoDB);
 
         //currentposition = 0;
 

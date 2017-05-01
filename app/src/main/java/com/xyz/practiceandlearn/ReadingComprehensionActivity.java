@@ -15,6 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import java.io.File;
 import java.io.IOException;
 
 import static com.xyz.practiceandlearn.Global.basedir;
@@ -44,7 +45,10 @@ public class ReadingComprehensionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reading_comprehension);
 
-        objMyDatabase = new MyDatabase(this, basedir.toString() + "/V1/TOEIC.db");
+        File photoDB = new File(basedir.toString() + "/V1/TOEIC.db");
+        File photoDB2 = new File(basedir.toString() + "/V2/TOEIC.db");
+
+        objMyDatabase = new MyDatabase(this, photoDB);
 
         currentposition = 0;
 

@@ -88,18 +88,30 @@ public class PhotosTestActivity extends AppCompatActivity {
     };
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photos_test);
 
-        String photoDb = basedir.toString() + "V1/TOEIC.db";
-        Toast.makeText(getBaseContext(),photoDb,Toast.LENGTH_LONG).show();
-        objMyDatabase = new MyDatabase(this, photoDb );
+//        String photoDb2 = basedir.toString() + "V2/TOEIC.db";
+//        String photoDb = basedir.toString() + "V1/TOEIC.db";
+        File photoDB = new File(basedirSound+ "/V1/TOEIC.db");
+        File photoDB2 = new File(basedirSound + "/V1/V2/TOEIC2.db");
+
+        if (photoDB2.exists()) {
+            objMyDatabase = new MyDatabase(this, photoDB2);
+            Toast.makeText(getBaseContext(),"hi",Toast.LENGTH_SHORT).show();
+        } else if (photoDB.exists()) {
+            objMyDatabase = new MyDatabase(this, photoDB);
+            Toast.makeText(getBaseContext(),"hi2",Toast.LENGTH_SHORT).show();
+
+        } else {
+            Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
+            return;
+        }
 
 
-
+//        objMyDatabase = new MyDatabase(this, photoDb );
 
         //Global.currentposition;
 
@@ -223,8 +235,24 @@ public class PhotosTestActivity extends AppCompatActivity {
 
     private void showpicture() {
 
-        File imgFile = new File(basedirPhoto +"/sdcard/V1/photoTest/"+String.valueOf(Global.currentposition+1)+".png");
-        Toast.makeText(getBaseContext(),imgFile.toString(),Toast.LENGTH_SHORT).show();
+        File photoDB = new File(basedirSound+ "/V1/photoTest/");
+        File photoDB2 = new File(basedirSound + "/V1/V2/photoTest/");
+        File imgFile = null;
+
+        if (photoDB2.exists()) {
+            imgFile = new File(basedirPhoto +"/V1/V2/photoTest/"+String.valueOf(Global.currentposition+1)+".png");
+        } else if (photoDB.exists()) {
+
+            imgFile = new File(basedirPhoto +"/V1/photoTest/"+String.valueOf(Global.currentposition+1)+".png");
+
+        } else {
+            Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+//        File imgFile = new File(basedirPhoto +"/V1/photoTest/"+String.valueOf(Global.currentposition+1)+".png");
+
+
 
         if(imgFile.exists()){
 
@@ -240,18 +268,33 @@ public class PhotosTestActivity extends AppCompatActivity {
     }
 
     private void playSound() {
+        File photoDB = new File(basedirSound+ "/V1/AudioPhoto/");
+        File photoDB2 = new File(basedirSound + "/V1/V2/AudioPhoto/");
+        File filepath = null;
+
         if (mPlayer !=null){
             mPlayer.stop();
             mPlayer.release();
         }
 
-        String filePath = basedir+"/V1/AudioPhoto/"+String.valueOf(Global.currentSound+1)+".mp3";
+        if (photoDB2.exists()) {
+            filepath = new File(basedirPhoto +"/V1/V2/AudioPhoto/"+String.valueOf(Global.currentposition+1)+".mp3");
+        } else if (photoDB.exists()) {
+
+            filepath = new File(basedirPhoto +"/V1/AudioPhoto/"+String.valueOf(Global.currentposition+1)+".mp3");
+
+        } else {
+            Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+//        String filePath = basedirSound +"/V1/AudioPhoto/"+String.valueOf(Global.currentSound+1)+".mp3";
         mPlayer = new MediaPlayer();
 
 
         try {
             if (!Global.played[Global.currentSound]) {
-                mPlayer.setDataSource(filePath);
+                mPlayer.setDataSource(String.valueOf(filepath));
                 mPlayer.prepare();
                 mPlayer.start();
                 Global.played[Global.currentSound] = true;
@@ -390,6 +433,7 @@ public class PhotosTestActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(PhotosTestActivity.this, MainActivity.class);
+                        mPlayer.stop();
                         startActivity(intent);
                     }
                 })

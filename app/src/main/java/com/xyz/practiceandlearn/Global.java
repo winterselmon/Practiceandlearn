@@ -39,6 +39,8 @@ public class Global {
 
     public static File basedirSound = Environment.getExternalStorageDirectory();
 
+    public static File BaseDir = Environment.getExternalStorageDirectory();
+
 
     //public static MyDatabase objMyDatabase;
 

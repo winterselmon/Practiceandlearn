@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.io.File;
+
 import static com.xyz.practiceandlearn.Global.basedir;
 
 /**
@@ -39,7 +41,7 @@ public class QuestionAndResponseDatabase {
     public static final String COLUMN_QANDR_CHOICE_C_TEST = "Qandr_choice_c";
     public static final String COLUMN_ID_QANDR_QUESTION2_TEST = "Id_qandr_question2";
 
-    public QuestionAndResponseDatabase(Context context, String dbname){
+    public QuestionAndResponseDatabase(Context context, File dbname){
 
         objMyDatabase = new MyDatabase(context, dbname);
         writeSQLite = objMyDatabase.getWritableDatabase();

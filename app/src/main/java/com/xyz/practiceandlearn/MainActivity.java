@@ -25,6 +25,7 @@ import java.util.Arrays;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import static com.xyz.practiceandlearn.Global.BaseDir;
 import static com.xyz.practiceandlearn.Global.basedir;
 
 public class MainActivity extends AppCompatActivity {
@@ -46,11 +47,14 @@ public class MainActivity extends AppCompatActivity {
 
     // File url to download
     private static String file_url = "http://103.212.181.17/project/V1.zip";
-    //private static String file_url = "http://localhost/V1.zip";
-    private static String file_url2 = "http://localhost/V2.zip";
+    private static String file_url2 = "http://103.212.181.17/project/V2.zip";
 
-    String zipFile = basedir.toString() + "/V1.zip";
-    String unzipLocation = basedir.toString() + "/V1/";
+
+    String zipFile = BaseDir.toString() + "/V1.zip";
+    String unzipLocation = BaseDir.toString() + "/V1/";
+
+    String zipFile2 = BaseDir.toString() + "/V2.zip";
+    String unzipLocation2 = BaseDir.toString() + "/V2/";
     //String unzipLocation = Environment.getExternalStorageDirectory() + "/sdcard/";
 
 
@@ -61,7 +65,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        //File dir1 = new File(BaseDir + "/V1/V1.zip");
+        //Toast.makeText(getBaseContext(),dir1.toString(),Toast.LENGTH_LONG).show();
+        //Toast.makeText(getBaseContext(),unzipLocation,Toast.LENGTH_LONG).show();
         //Global.played[1] = true;
         //if (Global.played[1])
         //    Toast.makeText(getBaseContext(),"played 1 ok",Toast.LENGTH_LONG).show();
@@ -95,11 +101,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                File dir2 = new File(basedir.toString() + "/V2/");
-                File dir1 = new File(basedir.toString() + "/V1.zip");
+                File dir2 = new File(BaseDir + "/V2.zip");
+                File dir1 = new File(BaseDir + "/V1.zip");
 
-                if (dir1.exists() && dir1.isDirectory()) {
-                    Toast.makeText(getBaseContext(), "Last version", Toast.LENGTH_SHORT).show();
+
+
+                if (dir2.exists()) {
+                    Toast.makeText(getBaseContext(), "version 2", Toast.LENGTH_SHORT).show();
+                } else if (dir1.exists()) {
+                    new MainActivity.DownloadFileFromURL().execute(file_url2);
+                    Toast.makeText(getBaseContext(), "version 1", Toast.LENGTH_SHORT).show();
                 } else {
                     new MainActivity.DownloadFileFromURL().execute(file_url);
                 }
@@ -227,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
                         8192);
 
                 // Output stream
-                OutputStream output = new FileOutputStream(Global.basedir
+                OutputStream output = new FileOutputStream(Environment.getExternalStorageDirectory()
                         + "/V1.zip");
 
                 byte data[] = new byte[1024];
@@ -250,8 +261,22 @@ public class MainActivity extends AppCompatActivity {
                 // closing streams
                 output.close();
                 input.close();
-                DecompressFast decompressFast = new DecompressFast(zipFile, unzipLocation);
-                decompressFast.unzip();
+
+                File dir2 = new File(BaseDir + "/V2.zip");
+                File dir1 = new File(BaseDir + "/V1.zip");
+
+                if (dir2.exists()) {
+                    DecompressFast decompressFast = new DecompressFast(zipFile2, unzipLocation2);
+                    decompressFast.unzip();
+
+                } else if (dir1.exists()) {
+                    DecompressFast decompressFast = new DecompressFast(zipFile, unzipLocation);
+                    decompressFast.unzip();
+
+                }
+
+                //DecompressFast decompressFast = new DecompressFast(zipFile, unzipLocation);
+                //decompressFast.unzip();
             } catch (Exception e) {
                 Log.e("Error: ", e.getMessage());
             }

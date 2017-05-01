@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.io.File;
+
 import static com.xyz.practiceandlearn.Global.basedir;
 
 /**
@@ -44,7 +46,7 @@ public class ShortConDatabase {
     public static final String COLUMN_SHORTCONVERSATION_CHOICE_D_TEST = "Shortc_choice_d";
 
 
-    public ShortConDatabase(Context context, String dbname){
+    public ShortConDatabase(Context context, File dbname){
 
         objMyDatabase = new MyDatabase(context, dbname);
         writeSQLite = objMyDatabase.getWritableDatabase();

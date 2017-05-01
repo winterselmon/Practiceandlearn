@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.io.File;
 import java.security.PublicKey;
 
 import static com.xyz.practiceandlearn.Global.basedir;
@@ -42,7 +43,7 @@ public class IncompleteDatabase {
     public static final String COLUMN_INCOMPLETE_CHOICE_D_TEST = "Incomplete_choice_d";
     public static final String COLUMN_ID_INCOMPLETE_QUESTION2_TEST = "Id_incomplete_question2";
 
-    public IncompleteDatabase (Context context, String dbname){
+    public IncompleteDatabase (Context context, File dbname){
 
         objMyDatabase = new MyDatabase(context, dbname);
         writeSQLite = objMyDatabase.getWritableDatabase();

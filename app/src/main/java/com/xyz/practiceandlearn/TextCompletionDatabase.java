@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.io.File;
+
 import static com.xyz.practiceandlearn.Global.basedir;
 
 /**
@@ -43,7 +45,7 @@ public class TextCompletionDatabase {
     public static final String COLUMN_TEXTCOM_CHOICE_D_TEST = "Textcom_choice_d";
 
 
-    public TextCompletionDatabase (Context context, String dbname){
+    public TextCompletionDatabase (Context context, File dbname){
 
         objMyDatabase = new MyDatabase(context, dbname);
         writeSQLite = objMyDatabase.getWritableDatabase();
