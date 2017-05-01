@@ -118,8 +118,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //(this, basedir.toString() + "/V1/TOEIC.db");
-        //objPhotoDatabase = new PhotoDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
 
         //objPhotoDatabase = new PhotoDatabase(this);
         //objQandR = new QuestionAndResponseDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
@@ -131,11 +129,6 @@ public class MainActivity extends AppCompatActivity {
         //objShortTalkQuestion = new ShortTalkDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
         //objTextCompletionScript = new TextCompletionDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
         //objTextCompletionQuestion = new TextCompletionDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
-
-
-        File pathdatabaseV2 = new File(basedir.toString() + "/V2/TOEIC.db");
-        File pathdatabaseV1 = new File(basedir.toString() + "/V1/TOEIC.db");
-
 
 
         //if (pathdatabaseV1.exists() && pathdatabaseV1.isDirectory()) {
