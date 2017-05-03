@@ -109,8 +109,6 @@ public class PhotosTestActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
             return;
         }
-
-
 //        objMyDatabase = new MyDatabase(this, photoDb );
 
         //Global.currentposition;
@@ -249,10 +247,7 @@ public class PhotosTestActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
             return;
         }
-
 //        File imgFile = new File(basedirPhoto +"/V1/photoTest/"+String.valueOf(Global.currentposition+1)+".png");
-
-
 
         if(imgFile.exists()){
 

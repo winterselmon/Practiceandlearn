@@ -56,6 +56,8 @@ public class DescriptionPhotoActivity extends AppCompatActivity {//timer
         Arrays.fill(Global.played, false);
         Arrays.fill(Global.collect,false);
 
+        Global.currentposition = 0;
+
     }
     public void onBackPressed(){
         new AlertDialog.Builder(this)
