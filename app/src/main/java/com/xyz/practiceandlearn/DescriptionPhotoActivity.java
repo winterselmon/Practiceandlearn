@@ -49,7 +49,7 @@ public class DescriptionPhotoActivity extends AppCompatActivity {//timer
         });
 
         txttime = (TextView) findViewById(R.id.txttimedesPhoto);
-        if (Global.startTime == 0)
+        //if (Global.startTime == 0)
             Global.startTime = System.currentTimeMillis();
         timerHandler.postDelayed(timerRunnable, 0);
 
