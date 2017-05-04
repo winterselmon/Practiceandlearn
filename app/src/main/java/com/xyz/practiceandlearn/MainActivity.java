@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if (dir2.exists()) {
-                    Toast.makeText(getBaseContext(), "version 2", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "Lastest version", Toast.LENGTH_SHORT).show();
                 } else if (dir1.exists()) {
                     new MainActivity.DownloadFileFromURL().execute(file_url2);
                     Toast.makeText(getBaseContext(), "version 1", Toast.LENGTH_SHORT).show();

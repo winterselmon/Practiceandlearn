@@ -61,12 +61,12 @@ public class ShortConversationActivity extends AppCompatActivity {
 
         if (photoDB2.exists()) {
             objMyDatabase = new MyDatabase(this, photoDB2);
-            Toast.makeText(getBaseContext(),"Database V.2",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(),"Database V.2",Toast.LENGTH_SHORT).show();
         } else if (photoDB.exists()) {
             objMyDatabase = new MyDatabase(this, photoDB);
-            Toast.makeText(getBaseContext(),"Database V.1",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(),"Database V.1",Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getBaseContext(),"no Data base",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(),"no Data base",Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -374,7 +374,7 @@ public class ShortConversationActivity extends AppCompatActivity {
             filepath = new File(basedirPhoto +"/V1/AudioShortConPratice/"+String.valueOf(currentposition+1)+".mp3");
 
         } else {
-            Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
             return;
         }
 

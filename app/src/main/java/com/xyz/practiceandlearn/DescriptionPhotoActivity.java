@@ -57,6 +57,7 @@ public class DescriptionPhotoActivity extends AppCompatActivity {//timer
         Arrays.fill(Global.collect,false);
 
         Global.currentposition = 0;
+        Global.currentAnswer = 0;
 
     }
     public void onBackPressed(){

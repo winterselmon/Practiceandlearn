@@ -100,13 +100,12 @@ public class PhotosTestActivity extends AppCompatActivity {
 
         if (photoDB2.exists()) {
             objMyDatabase = new MyDatabase(this, photoDB2);
-            Toast.makeText(getBaseContext(),"hi",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(),"Database V2",Toast.LENGTH_SHORT).show();
         } else if (photoDB.exists()) {
             objMyDatabase = new MyDatabase(this, photoDB);
-            Toast.makeText(getBaseContext(),"hi2",Toast.LENGTH_SHORT).show();
-
+            Toast.makeText(getBaseContext(),"Database V1",Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(),"No Database",Toast.LENGTH_SHORT).show();
             return;
         }
 //        objMyDatabase = new MyDatabase(this, photoDb );
@@ -189,7 +188,7 @@ public class PhotosTestActivity extends AppCompatActivity {
             if (strListAnswer[Global.currentposition].equals("A")) {
 
                 Global.collect[Global.currentAnswer] = true;
-                Toast.makeText(getBaseContext(),"True",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getBaseContext(),"True",Toast.LENGTH_LONG).show();
 
             } else {
                 Global.collect[Global.currentAnswer] = false;
@@ -279,7 +278,7 @@ public class PhotosTestActivity extends AppCompatActivity {
             filepath = new File(basedirPhoto +"/V1/AudioPhoto/"+String.valueOf(Global.currentposition+1)+".mp3");
 
         } else {
-            Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
             return;
         }
 

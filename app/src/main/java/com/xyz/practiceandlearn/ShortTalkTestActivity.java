@@ -80,12 +80,12 @@ public class ShortTalkTestActivity extends AppCompatActivity {
 
         if (photoDB2.exists()) {
             objMyDatabase = new MyDatabase(this, photoDB2);
-            Toast.makeText(getBaseContext(),"Database V.2",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(),"Database V.2",Toast.LENGTH_SHORT).show();
         } else if (photoDB.exists()) {
             objMyDatabase = new MyDatabase(this, photoDB);
-            Toast.makeText(getBaseContext(),"Database V.1",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(),"Database V.1",Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getBaseContext(),"no Data base",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(),"no Data base",Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -238,7 +238,7 @@ public class ShortTalkTestActivity extends AppCompatActivity {
             filepath = new File(basedirPhoto +"/V1/AudioShortTalk/"+String.valueOf(Global.currentposition+1)+".mp3");
 
         } else {
-            Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -481,9 +481,7 @@ public class ShortTalkTestActivity extends AppCompatActivity {
                     sumScore();
                 } else {
 
-
                     ScrollView scrollView = (ScrollView) findViewById(R.id.activity_short_talk_test);
-
                     scrollView.smoothScrollTo(0,0);
 
                     String strNumber = String.valueOf(Global.currentposition + 1) + "/10";

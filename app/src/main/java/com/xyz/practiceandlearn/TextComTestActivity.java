@@ -71,12 +71,12 @@ public class TextComTestActivity extends AppCompatActivity {
 
         if (photoDB2.exists()) {
             objMyDatabase = new MyDatabase(this, photoDB2);
-            Toast.makeText(getBaseContext(),"Database V.2",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(),"Database V.2",Toast.LENGTH_SHORT).show();
         } else if (photoDB.exists()) {
             objMyDatabase = new MyDatabase(this, photoDB);
-            Toast.makeText(getBaseContext(),"Database V.1",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(),"Database V.1",Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getBaseContext(),"no Data base",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(),"no Data base",Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -208,7 +208,7 @@ public class TextComTestActivity extends AppCompatActivity {
 
     private void setupArray() {
 
-        Toast.makeText(getBaseContext(),"setup array",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getBaseContext(),"setup array",Toast.LENGTH_SHORT).show();
         strScript = listScript();
         strQuestion = listQuestion();
         strAnswer = listAnswer();
@@ -580,7 +580,7 @@ public class TextComTestActivity extends AppCompatActivity {
         String strListAnswer[];
         try {
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
-            Toast.makeText(getBaseContext(), "after readdatabase3", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(), "after readdatabase3", Toast.LENGTH_SHORT).show();
         //Cursor cursor = db.rawQuery("SELECT * FROM TEXTCOMPLETION_QUESTION_TEST WHERE COLUMN_TEXTCOM_ANSWER_TEST", new String[]{"COLUMN_TEXTCOM_ANSWER_TEST", null, null, null, null, null});
         Cursor cursor = db.query(TEXTCOMPLETION_QUESTION_TEST, new String[]{COLUMN_TEXTCOM_ANSWER_TEST}, null, null, null, null, null);
         cursor.moveToFirst();
@@ -604,7 +604,7 @@ public class TextComTestActivity extends AppCompatActivity {
         String strListChoiceA[];
         try {
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
-            Toast.makeText(getBaseContext(), "after readdatabase4", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(), "after readdatabase4", Toast.LENGTH_SHORT).show();
             //Cursor cursor = db.rawQuery("SELECT * FROM TEXTCOMPLETION_QUESTION_TEST WHERE COLUMN_TEXTCOM_CHOICE_A_TEST", new String[]{"COLUMN_TEXTCOM_CHOICE_A_TEST", null, null, null, null, null});
         Cursor cursor = db.query(TEXTCOMPLETION_QUESTION_TEST, new String[]{COLUMN_TEXTCOM_CHOICE_A_TEST},null, null, null, null, null, null);
         cursor.moveToFirst();

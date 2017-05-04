@@ -208,7 +208,7 @@ public class PhotosPracticeActivity extends AppCompatActivity {
             filepath = new File(basedirPhoto +"/V1/AudioPhotoPratice/"+String.valueOf(currentposition+1)+".mp3");
 
         } else {
-            Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -383,7 +383,7 @@ public class PhotosPracticeActivity extends AppCompatActivity {
             imgFile = new File(basedirPhoto +"/V1/photoPratice/"+String.valueOf(currentposition+1)+".png");
 
         } else {
-            Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
             return;
         }
 
