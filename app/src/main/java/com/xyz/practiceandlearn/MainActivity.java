@@ -70,6 +70,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        TextView txtVersion = (TextView) findViewById(R.id.txtversion);
+        File dir1 = new File(basedirSound+ "/V1/TOEIC.db");
+        File dir2 = new File(basedirSound + "/V1/V2/TOEIC2.db");
+        if (dir2.exists()) {
+            txtVersion.setText("Version 2");
+        } else if (dir1.exists()) {
+            txtVersion.setText("Version 1");
+        }
+
 
 
         File fileV2 = new File(basedirSound + "/V1/V2/TOEIC2.db");
@@ -128,21 +137,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-        TextView txtVersion = (TextView) findViewById(R.id.txtversion);
-        File dir1 = new File(basedirSound+ "/V1/TOEIC.db");
-        File dir2 = new File(basedirSound + "/V1/V2/TOEIC2.db");
-        if (dir2.exists()) {
-            txtVersion.setText("Version 2");
-        } else if (dir1.exists()) {
-            txtVersion.setText("Version 1");
-        }
-
-
-
-
-
         //objPhotoDatabase = new PhotoDatabase(this);
         //objQandR = new QuestionAndResponseDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
         //objShortCon = new ShortConDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
