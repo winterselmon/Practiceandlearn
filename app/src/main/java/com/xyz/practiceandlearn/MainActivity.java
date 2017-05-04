@@ -20,6 +20,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Arrays;
@@ -59,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
     String unzipLocation2 = BaseDir.toString() + "/V2/";
     //String unzipLocation = Environment.getExternalStorageDirectory() + "/sdcard/";
 
+    String customURL = "http://103.212.181.17/project/V2.zip";
+
 
 
 
@@ -67,6 +70,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
+        File fileV2 = new File(basedirSound + "/V1/V2/TOEIC2.db");
+        if (fileV2.exists()) {
+        } else {
+            MyTask task = new MyTask();
+            task.execute(customURL);
+        }
 
         //File dir1 = new File(BaseDir + "/V1/V1.zip");
         //Toast.makeText(getBaseContext(),dir1.toString(),Toast.LENGTH_LONG).show();
@@ -107,18 +118,17 @@ public class MainActivity extends AppCompatActivity {
                 File dir2 = new File(BaseDir + "/V1/V2/");
                 File dir1 = new File(BaseDir + "/V1.zip");
 
-
-
                 if (dir2.exists()) {
                     Toast.makeText(getBaseContext(), "Lastest version", Toast.LENGTH_SHORT).show();
                 } else if (dir1.exists()) {
                     new MainActivity.DownloadFileFromURL().execute(file_url2);
-                    Toast.makeText(getBaseContext(), "version 1", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getBaseContext(), "version 1", Toast.LENGTH_SHORT).show();
                 } else {
                     new MainActivity.DownloadFileFromURL().execute(file_url);
                 }
             }
         });
+
 
         TextView txtVersion = (TextView) findViewById(R.id.txtversion);
         File dir1 = new File(basedirSound+ "/V1/TOEIC.db");
@@ -361,6 +371,43 @@ public class MainActivity extends AppCompatActivity {
 
             if (!f.isDirectory()) {
                 f.mkdirs();
+            }
+        }
+    }
+
+    private class MyTask extends AsyncTask<String, Void, Boolean> {
+
+        @Override
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected Boolean doInBackground(String... params) {
+
+            try {
+                HttpURLConnection.setFollowRedirects(false);
+                HttpURLConnection con =  (HttpURLConnection) new URL(params[0]).openConnection();
+                con.setRequestMethod("HEAD");
+                System.out.println(con.getResponseCode());
+                return (con.getResponseCode() == HttpURLConnection.HTTP_OK);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            boolean bResponse = result;
+            if (bResponse==true)
+            {
+                Toast.makeText(MainActivity.this, "New Update", Toast.LENGTH_LONG).show();
+            }
+            else
+            {
+//                Toast.makeText(MainActivity.this, "File does not exist!", Toast.LENGTH_LONG).show();
             }
         }
     }
