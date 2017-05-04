@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
@@ -27,6 +28,7 @@ import java.util.zip.ZipInputStream;
 
 import static com.xyz.practiceandlearn.Global.BaseDir;
 import static com.xyz.practiceandlearn.Global.basedir;
+import static com.xyz.practiceandlearn.Global.basedirSound;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         //File dir1 = new File(BaseDir + "/V1/V1.zip");
         //Toast.makeText(getBaseContext(),dir1.toString(),Toast.LENGTH_LONG).show();
@@ -116,6 +119,17 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        TextView txtVersion = (TextView) findViewById(R.id.txtversion);
+        File dir1 = new File(basedirSound+ "/V1/TOEIC.db");
+        File dir2 = new File(basedirSound + "/V1/V2/TOEIC2.db");
+        if (dir2.exists()) {
+            txtVersion.setText("Version 2");
+        } else if (dir1.exists()) {
+            txtVersion.setText("Version 1");
+        }
+
+
 
 
 
