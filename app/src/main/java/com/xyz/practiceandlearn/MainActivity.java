@@ -123,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 File dir2 = new File(BaseDir + "/V1/V2/");
                 File dir1 = new File(BaseDir + "/V1.zip");
 
@@ -137,6 +136,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // Refresh main activity upon close of dialog box
+//        Intent refresh =new Intent(this, MainActivity.class);
+//        startActivity(refresh);
+
         //objPhotoDatabase = new PhotoDatabase(this);
         //objQandR = new QuestionAndResponseDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
         //objShortCon = new ShortConDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
@@ -195,7 +199,6 @@ public class MainActivity extends AppCompatActivity {
         //AddValuesToIncompleteSentenceTest();
         //AddValuesToTextCompletionTest();
         //AddValuesToReadingComprehensionTest();
-
 
 
     @Override
