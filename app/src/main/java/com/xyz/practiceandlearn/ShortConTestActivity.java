@@ -477,7 +477,6 @@ public class ShortConTestActivity extends AppCompatActivity {
                     Global.currentposition = 0;
                     Intent intent = new Intent(ShortConTestActivity.this, DescriptionShortTalkActivity.class);
                     startActivity(intent);
-                    sumScore();
                 } else {
                     ScrollView scrollView = (ScrollView) findViewById(R.id.activity_short_con_test);
                     scrollView.smoothScrollTo(0,0);

@@ -475,7 +475,6 @@ public class TextComTestActivity extends AppCompatActivity {
                 if (Global.currentposition > maxrow) {
                     Global.currentposition = 0;
                     Intent intent = new Intent(TextComTestActivity.this, DescriptionReadingActivity.class);
-                    sumScore();
                     startActivity(intent);
                 } else {
 

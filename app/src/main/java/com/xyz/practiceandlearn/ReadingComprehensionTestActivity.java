@@ -332,7 +332,6 @@ public class ReadingComprehensionTestActivity extends AppCompatActivity {
 
                 if (Global.currentposition > maxrow) {
                     Global.currentposition = 0;
-                    sumScore();
                     Intent intent = new Intent(ReadingComprehensionTestActivity.this, ShowScoreActivity.class);
                     startActivity(intent);
                 } else {

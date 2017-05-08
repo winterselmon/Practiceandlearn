@@ -37,7 +37,7 @@
                 android:text=""
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="25dp"/>
 
             <RadioGroup
@@ -54,28 +54,28 @@
                     android:layout_marginTop="15dp"
                     android:id="@+id/rdoA_TextCom"
                     android:text="A."
-                    android:layout_marginLeft="15dp" />
+                    android:layout_marginLeft="8dp" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/rdoB_TextCom"
                     android:text="B."
-                    android:layout_marginLeft="15dp" />
+                    android:layout_marginLeft="8dp" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/rdoC_TextCom"
                     android:text="C."
-                    android:layout_marginLeft="15dp"/>
+                    android:layout_marginLeft="8dp"/>
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/rdoD_TextCom"
                     android:text="D."
-                    android:layout_marginLeft="15dp"/>
+                    android:layout_marginLeft="8dp"/>
 
             </RadioGroup>
         </RelativeLayout>
@@ -97,7 +97,7 @@
                 android:text=""
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="15dp"/>
+                android:layout_marginLeft="8dp"/>
 
             <RadioGroup
                 android:layout_width="match_parent"
@@ -112,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/rdoA2_TextCom"
                     android:text="A."
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="15dp"/>
 
                 <RadioButton
@@ -120,21 +120,21 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/rdoB2_TextCom"
                     android:text="B."
-                    android:layout_marginLeft="15dp" />
+                    android:layout_marginLeft="8dp" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/rdoC2_TextCom"
                     android:text="C."
-                    android:layout_marginLeft="15dp"/>
+                    android:layout_marginLeft="8dp"/>
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/rdoD2_TextCom"
                     android:text="D."
-                    android:layout_marginLeft="15dp"/>
+                    android:layout_marginLeft="8dp"/>
 
             </RadioGroup>
         </RelativeLayout>
@@ -155,7 +155,7 @@
                 android:text=""
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="15dp"/>
+                android:layout_marginLeft="8dp"/>
 
             <RadioGroup
                 android:layout_width="match_parent"
@@ -170,7 +170,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/rdoA3_TextCom"
                     android:text="A."
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="15dp"/>
 
                 <RadioButton
@@ -178,21 +178,21 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/rdoB3_TextCom"
                     android:text="B."
-                    android:layout_marginLeft="15dp" />
+                    android:layout_marginLeft="8dp" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/rdoC3_TextCom"
                     android:text="C."
-                    android:layout_marginLeft="15dp"/>
+                    android:layout_marginLeft="8dp"/>
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/rdoD3_TextCom"
                     android:text="D."
-                    android:layout_marginLeft="15dp"/>
+                    android:layout_marginLeft="8dp"/>
 
             </RadioGroup>
         </RelativeLayout>
@@ -209,7 +209,7 @@
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txtDes1_TextCom"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="5dp"/>
 
             <TextView
@@ -218,7 +218,7 @@
                 android:id="@+id/txtDes2_TextCom"
                 android:text=""
                 android:layout_below="@+id/txtDes1_TextCom"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="15dp"/>
 
             <TextView
@@ -227,7 +227,7 @@
                 android:text=""
                 android:id="@+id/txtDes3_TextCom"
                 android:layout_below="@+id/txtDes2_TextCom"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="15dp"/>
 
         </RelativeLayout>

@@ -35,7 +35,7 @@
         android:paddingRight="15dp"
         android:layout_marginLeft="45dp"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="38dp"
         android:id="@+id/txtQuestion_QandR_test" />
 
     <RadioGroup
@@ -45,7 +45,7 @@
         android:layout_below="@+id/txtQuestion_QandR_test"
         android:layout_alignLeft="@+id/txtQuestion_QandR_test"
         android:layout_alignStart="@+id/txtQuestion_QandR_test"
-        android:layout_marginTop="25dp" >
+        android:layout_marginTop="18dp" >
 
         <RadioButton
             android:text="A.Listen and choose"

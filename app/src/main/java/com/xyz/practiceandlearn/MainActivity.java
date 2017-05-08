@@ -2,9 +2,11 @@ package com.xyz.practiceandlearn;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         TextView txtVersion = (TextView) findViewById(R.id.txtversion);
-        File dir1 = new File(basedirSound+ "/V1/TOEIC.db");
+        File dir1 = new File(basedirSound + "/V1/TOEIC.db");
         File dir2 = new File(basedirSound + "/V1/V2/TOEIC2.db");
         if (dir2.exists()) {
             txtVersion.setText("Version 2");
@@ -80,13 +82,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
         File fileV2 = new File(basedirSound + "/V1/V2/TOEIC2.db");
         if (fileV2.exists()) {
         } else {
             MyTask task = new MyTask();
             task.execute(customURL);
         }
+
+        File dirV1 = new File(BaseDir + "/V1.zip");
+
+        if (dirV1.exists()) {
+        } else {
+            new MainActivity.DownloadFileFromURL().execute(file_url);
+        }
+//        new MainActivity.DownloadFileFromURL().execute(file_url);
 
         //File dir1 = new File(BaseDir + "/V1/V1.zip");
         //Toast.makeText(getBaseContext(),dir1.toString(),Toast.LENGTH_LONG).show();
@@ -131,9 +140,9 @@ public class MainActivity extends AppCompatActivity {
                 } else if (dir1.exists()) {
                     new MainActivity.DownloadFileFromURL().execute(file_url2);
                     //Toast.makeText(getBaseContext(), "version 1", Toast.LENGTH_SHORT).show();
-                } else {
-                    new MainActivity.DownloadFileFromURL().execute(file_url);
-                }
+                } //else {
+////                    new MainActivity.DownloadFileFromURL().execute(file_url);
+//                }
             }
         });
 
@@ -316,6 +325,24 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+    public void onBackPressed(){
+        new AlertDialog.Builder(this)
+                .setTitle("Stop the test?")
+                .setMessage("Are you sure you want to quit to test?")
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
 
     class DecompressFast {
         private String _zipFile;
@@ -408,4 +435,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+
 }

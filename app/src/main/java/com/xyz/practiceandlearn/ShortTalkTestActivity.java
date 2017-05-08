@@ -478,7 +478,7 @@ public class ShortTalkTestActivity extends AppCompatActivity {
                     Global.currentposition = 0;
                     Intent intent = new Intent(ShortTalkTestActivity.this, DescriptionIncompleteActivity.class);
                     startActivity(intent);
-                    sumScore();
+
                 } else {
 
                     ScrollView scrollView = (ScrollView) findViewById(R.id.activity_short_talk_test);

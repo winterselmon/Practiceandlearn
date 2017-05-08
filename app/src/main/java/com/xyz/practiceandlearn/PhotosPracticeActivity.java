@@ -60,12 +60,12 @@ public class PhotosPracticeActivity extends AppCompatActivity {
 
         if (photoDB2.exists()) {
             objMyDatabase = new MyDatabase(this, photoDB2);
-            Toast.makeText(getBaseContext(),"Database V.2",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(),"Database V.2",Toast.LENGTH_SHORT).show();
         } else if (photoDB.exists()) {
             objMyDatabase = new MyDatabase(this, photoDB);
-            Toast.makeText(getBaseContext(),"Database V.1",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(),"Database V.1",Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getBaseContext(),"no Data base",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(),"no Data base",Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -111,8 +111,8 @@ public class PhotosPracticeActivity extends AppCompatActivity {
 
     public void onBackPressed(){
         new AlertDialog.Builder(this)
-                .setTitle("Stop the test?")
-                .setMessage("Are you sure you want to quit to test?")
+                .setTitle("Stop the practice?")
+                .setMessage("Are you sure you want to quit to practice?")
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -229,7 +229,7 @@ public class PhotosPracticeActivity extends AppCompatActivity {
     }
 
     private void playTrue(){
-        String filePath = basedir+"/V1/soundtrue.mp3";
+        String filePath = BaseDir +"/V1/soundtrue.mp3";
         mPlayer = new MediaPlayer();
         try {
             mPlayer.setDataSource(filePath);
@@ -241,7 +241,7 @@ public class PhotosPracticeActivity extends AppCompatActivity {
     }
 
     private void playWrong(){
-        String filePath = basedir+"/V1/soundwrong.mp3";
+        String filePath = BaseDir +"/V1/soundwrong.mp3";
         mPlayer = new MediaPlayer();
         try {
             mPlayer.setDataSource(filePath);

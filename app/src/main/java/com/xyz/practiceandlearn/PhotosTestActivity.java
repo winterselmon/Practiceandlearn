@@ -100,12 +100,12 @@ public class PhotosTestActivity extends AppCompatActivity {
 
         if (photoDB2.exists()) {
             objMyDatabase = new MyDatabase(this, photoDB2);
-            Toast.makeText(getBaseContext(),"Database V2",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(),"Database V2",Toast.LENGTH_SHORT).show();
         } else if (photoDB.exists()) {
             objMyDatabase = new MyDatabase(this, photoDB);
-            Toast.makeText(getBaseContext(),"Database V1",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(),"Database V1",Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getBaseContext(),"No Database",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(),"No Database",Toast.LENGTH_SHORT).show();
             return;
         }
 //        objMyDatabase = new MyDatabase(this, photoDb );
@@ -394,7 +394,6 @@ public class PhotosTestActivity extends AppCompatActivity {
                     Global.currentposition = 0;
                     Intent intent = new Intent(PhotosTestActivity.this, DescriptionQandRActivity.class);
                     startActivity(intent);
-                    sumScore();
 
                 } else {
 

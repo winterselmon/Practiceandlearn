@@ -258,7 +258,7 @@ public class IncompleteSentenceActivity extends AppCompatActivity {
     }
 
     private void playTrue(){
-        String filePath = basedir+"/V1/soundtrue.mp3";
+        String filePath = BaseDir+"/V1/soundtrue.mp3";
         mPlayer = new MediaPlayer();
         try {
             mPlayer.setDataSource(filePath);
@@ -270,7 +270,7 @@ public class IncompleteSentenceActivity extends AppCompatActivity {
     }
 
     private void playWrong(){
-        String filePath = basedir+"/V1/soundwrong.mp3";
+        String filePath = BaseDir+"/V1/soundwrong.mp3";
         mPlayer = new MediaPlayer();
         try {
             mPlayer.setDataSource(filePath);
@@ -283,8 +283,8 @@ public class IncompleteSentenceActivity extends AppCompatActivity {
 
     public void onBackPressed(){
         new AlertDialog.Builder(this)
-                .setTitle("Stop the test?")
-                .setMessage("Are you sure you want to quit to test?")
+                .setTitle("Stop the practice?")
+                .setMessage("Are you sure you want to quit to practice?")
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

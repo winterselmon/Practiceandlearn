@@ -288,7 +288,7 @@ public class IncompleteSentenceTestActivity extends AppCompatActivity {
                     Global.currentposition = 0;
                     Intent intent = new Intent(IncompleteSentenceTestActivity.this, DescriptionTextcomActivity.class);
                     startActivity(intent);
-                    sumScore();
+
                 } else {
 
                     String strNumber = String.valueOf(Global.currentposition + 1) + "/40";

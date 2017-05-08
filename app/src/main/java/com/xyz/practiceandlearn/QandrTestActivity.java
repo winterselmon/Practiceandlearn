@@ -251,7 +251,6 @@ public class QandrTestActivity extends AppCompatActivity {
                         Global.currentposition = 9;
                         Intent intent = new Intent(QandrTestActivity.this, PhotosTestActivity.class);
                         startActivity(intent);
-                        sumScore();
                     }
 
                 } else {
@@ -264,8 +263,6 @@ public class QandrTestActivity extends AppCompatActivity {
                         Toast.makeText(getBaseContext().getApplicationContext(), strNumber, Toast.LENGTH_LONG);
                         TextView txtNo = (TextView) findViewById(R.id.txtnum2);
                         txtNo.setText(strNumber);
-
-
                     }
 
                     playSound();
@@ -285,7 +282,6 @@ public class QandrTestActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-
                 Global.currentposition++;
                 Global.currentAnswer++;
                 Global.currentSound++;
@@ -295,7 +291,6 @@ public class QandrTestActivity extends AppCompatActivity {
                     Global.currentposition = 0;
                     Intent intent = new Intent(QandrTestActivity.this, DescriptionShortconActivity.class);
                     startActivity(intent);
-                    sumScore();
 
                 } else {
 
@@ -308,7 +303,6 @@ public class QandrTestActivity extends AppCompatActivity {
                     playSound();
 
                     clearcheck();
-
 
                 }
 

@@ -250,8 +250,8 @@ public class ReadingComprehensionActivity extends AppCompatActivity {
 
     public void onBackPressed(){
         new AlertDialog.Builder(this)
-                .setTitle("Stop the test?")
-                .setMessage("Are you sure you want to quit to test?")
+                .setTitle("Stop the practice?")
+                .setMessage("Are you sure you want to quit to practice?")
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
