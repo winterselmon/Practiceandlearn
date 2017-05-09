@@ -31,10 +31,10 @@
         <ImageView
             android:layout_below="@+id/txttime"
             android:id="@+id/imgPhotosTest"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_gravity="center_horizontal"
-            android:layout_height="170dp"
-            android:layout_width="185dp"
+            android:layout_height="@dimen/imagetest"
+            android:layout_width="@dimen/imagetest"
             android:layout_centerHorizontal="true" />
 
         <RelativeLayout

@@ -14,8 +14,8 @@
             android:id="@+id/imgPhotos"
             android:layout_marginTop="20dp"
             android:layout_gravity="center_horizontal"
-            android:layout_height="165dp"
-            android:layout_width="185dp"
+            android:layout_height="@dimen/imagepractice"
+            android:layout_width="@dimen/imagepractice"
             android:layout_centerHorizontal="true" />
 
     <RelativeLayout
@@ -77,7 +77,7 @@
 
         <RelativeLayout
             android:id="@+id/relative2"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/relative1">
@@ -89,8 +89,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:textSize="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
             android:id="@+id/txtAnswerA" />
 
         </RelativeLayout>
@@ -98,14 +98,15 @@
         <RelativeLayout
             android:layout_marginTop="10dp"
             android:layout_below="@id/relative2"
+            android:layout_centerHorizontal="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <Button
                 android:text="Back"
-                android:layout_marginLeft="25dp"
-                android:layout_width="wrap_content"
+                android:layout_width="85dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:id="@+id/btnBack"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
@@ -113,7 +114,7 @@
 
             <Button
                 android:text="Ans"
-                android:layout_width="wrap_content"
+                android:layout_width="85dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnAns"
                 android:layout_alignParentBottom="true"
@@ -122,16 +123,18 @@
 
             <Button
                 android:text="Next"
-                android:layout_width="wrap_content"
+                android:layout_width="85dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
                 android:layout_toRightOf="@+id/btnAns"
                 android:layout_toEndOf="@+id/btnAns"
                 android:id="@+id/btnNext" />
 
             <Button
                 android:text="Play"
-                android:layout_width="wrap_content"
+                android:layout_width="85dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnPlay"
                 android:layout_alignParentBottom="true"

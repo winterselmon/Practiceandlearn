@@ -2,14 +2,17 @@ package com.xyz.practiceandlearn;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -65,12 +68,11 @@ public class MainActivity extends AppCompatActivity {
     String customURL = "http://103.212.181.17/project/V2.zip";
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         TextView txtVersion = (TextView) findViewById(R.id.txtversion);
         File dir1 = new File(basedirSound + "/V1/TOEIC.db");
@@ -133,11 +135,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 File dir2 = new File(BaseDir + "/V1/V2/");
-                File dir1 = new File(BaseDir + "/V1.zip");
+//                File dir1 = new File(BaseDir + "/V1.zip");
 
                 if (dir2.exists()) {
                     Toast.makeText(getBaseContext(), "Lastest version", Toast.LENGTH_SHORT).show();
-                } else if (dir1.exists()) {
+                } else  {
                     new MainActivity.DownloadFileFromURL().execute(file_url2);
                     //Toast.makeText(getBaseContext(), "version 1", Toast.LENGTH_SHORT).show();
                 } //else {
@@ -145,6 +147,8 @@ public class MainActivity extends AppCompatActivity {
 //                }
             }
         });
+
+
 
         // Refresh main activity upon close of dialog box
 //        Intent refresh =new Intent(this, MainActivity.class);
@@ -328,11 +332,13 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed(){
         new AlertDialog.Builder(this)
                 .setTitle("Stop the test?")
-                .setMessage("Are you sure you want to quit to test?")
+                .setMessage("Are you sure you want to exit?")
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        System.exit(1);
+                        //finish activity
+                        finish();
+                        moveTaskToBack(true);
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -436,6 +442,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+
 
 
 }
