@@ -18,6 +18,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -83,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
             txtVersion.setText("Version 1");
         }
 
-
         File fileV2 = new File(basedirSound + "/V1/V2/TOEIC2.db");
         if (fileV2.exists()) {
         } else {
@@ -95,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (dirV1.exists()) {
         } else {
+            txtVersion.setText("Version 1");
             new MainActivity.DownloadFileFromURL().execute(file_url);
         }
 //        new MainActivity.DownloadFileFromURL().execute(file_url);
@@ -135,19 +137,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 File dir2 = new File(BaseDir + "/V1/V2/");
+                TextView txtVersion = (TextView) findViewById(R.id.txtversion);
 //                File dir1 = new File(BaseDir + "/V1.zip");
 
                 if (dir2.exists()) {
                     Toast.makeText(getBaseContext(), "Lastest version", Toast.LENGTH_SHORT).show();
                 } else  {
                     new MainActivity.DownloadFileFromURL().execute(file_url2);
+                    txtVersion.setText("Version 2");
+
                     //Toast.makeText(getBaseContext(), "version 1", Toast.LENGTH_SHORT).show();
                 } //else {
 ////                    new MainActivity.DownloadFileFromURL().execute(file_url);
 //                }
             }
         });
-
 
 
         // Refresh main activity upon close of dialog box
@@ -295,7 +299,6 @@ public class MainActivity extends AppCompatActivity {
                 if (dir2.exists()) {
                     DecompressFast decompressFast = new DecompressFast(zipFile2, unzipLocation2);
                     decompressFast.unzip();
-
                 } else if (dir1.exists()) {
                     DecompressFast decompressFast = new DecompressFast(zipFile, unzipLocation);
                     decompressFast.unzip();
@@ -331,7 +334,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onBackPressed(){
         new AlertDialog.Builder(this)
-                .setTitle("Stop the test?")
+                .setTitle("Stop the app?")
                 .setMessage("Are you sure you want to exit?")
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
@@ -386,10 +389,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 zin.close();
-
-                Toast.makeText(MainActivity.this, "Unzip complete", Toast.LENGTH_LONG).show();
                 Log.d("Unzip", "Unzipping compleate. path : " + _location);
-
 
             } catch (Exception e) {
                 Log.e("Decompress", "unzip", e);
@@ -442,8 +442,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-
-
-
 }
