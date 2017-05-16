@@ -42,22 +42,22 @@ public class ShortConversationActivity extends AppCompatActivity {
     MyDatabase objMyDatabase;
     private String sql = COLUMN_ID_SHORTCONVERSATION_SCRIPT + "<=20";
     private String sql2 = COLUMN_ID_SHORTCONVERSATION_QUESTION + "<=60";
-    private String[] strScript, strQuestion,strAnswer, strChoiceA, strChoiceB, strChoiceC, strChoiceD, strDes;
+    private String[] strScript, strQuestion, strAnswer, strChoiceA, strChoiceB, strChoiceC, strChoiceD, strDes;
     private int currentposition;
     private static final int maxrow = 9;
     private boolean showScript;
     private boolean showAnswer;
     private MediaPlayer mPlayer;
     private int[] mySound = {R.raw.short1, R.raw.short2, R.raw.short3, R.raw.short4, R.raw.short5, R.raw.short6, R.raw.short7, R.raw.short8, R.raw.short9, R.raw.short10,
-            R.raw.short11,R.raw.short12,R.raw.short13,R.raw.short14,R.raw.short15,R.raw.short16,R.raw.short17,R.raw.short18,R.raw.short19,R.raw.short20};
+            R.raw.short11, R.raw.short12, R.raw.short13, R.raw.short14, R.raw.short15, R.raw.short16, R.raw.short17, R.raw.short18, R.raw.short19, R.raw.short20};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_short_conversation);
 
-        File photoDB = new File(BaseDir+ "/V1/TOEIC.db");
-        File photoDB2 = new File(BaseDir+ "/V1/V2/TOEIC2.db");
+        File photoDB = new File(BaseDir + "/V1/TOEIC.db");
+        File photoDB2 = new File(BaseDir + "/V1/V2/TOEIC2.db");
 
         if (photoDB2.exists()) {
             objMyDatabase = new MyDatabase(this, photoDB2);
@@ -109,7 +109,6 @@ public class ShortConversationActivity extends AppCompatActivity {
         //txtQuestion3.setText(strQuestion[(currentposition*3)+2]);
 
 
-
     }
 
     private void setupArray() {
@@ -140,45 +139,45 @@ public class ShortConversationActivity extends AppCompatActivity {
 
     }
 
-    private void showArray(){
+    private void showArray() {
 
 
         TextView txtQuestion1 = (TextView) findViewById(R.id.txtQuestionA_shortc);
-        txtQuestion1.setText(strQuestion[currentposition*3]);
+        txtQuestion1.setText(strQuestion[currentposition * 3]);
         TextView txtQuestion2 = (TextView) findViewById(R.id.txtQuestionB_shortc);
-        txtQuestion2.setText(strQuestion[(currentposition*3)+1]);
+        txtQuestion2.setText(strQuestion[(currentposition * 3) + 1]);
         TextView txtQuestion3 = (TextView) findViewById(R.id.txtQuestionC_shortc);
-        txtQuestion3.setText(strQuestion[(currentposition*3)+2]);
+        txtQuestion3.setText(strQuestion[(currentposition * 3) + 2]);
 
         //Choice1
         RadioButton rdoA1 = (RadioButton) findViewById(R.id.rdoA_shortc);
-        rdoA1.setText("A."+strChoiceA[currentposition*3]);
+        rdoA1.setText("A." + strChoiceA[currentposition * 3]);
         RadioButton rdoB1 = (RadioButton) findViewById(R.id.rdoB_shortc);
-        rdoB1.setText("B."+strChoiceB[currentposition*3]);
+        rdoB1.setText("B." + strChoiceB[currentposition * 3]);
         RadioButton rdoC1 = (RadioButton) findViewById(R.id.rdoC_shortc);
-        rdoC1.setText("C."+strChoiceC[currentposition*3]);
+        rdoC1.setText("C." + strChoiceC[currentposition * 3]);
         RadioButton rdoD1 = (RadioButton) findViewById(R.id.rdoD_shortc);
-        rdoD1.setText("D."+strChoiceD[currentposition*3]);
+        rdoD1.setText("D." + strChoiceD[currentposition * 3]);
 
         //Choice2
         RadioButton rdoA2 = (RadioButton) findViewById(R.id.rdoA2_shortc);
-        rdoA2.setText("A."+strChoiceA[currentposition*3+1]);
+        rdoA2.setText("A." + strChoiceA[currentposition * 3 + 1]);
         RadioButton rdoB2 = (RadioButton) findViewById(R.id.rdoB2_shortc);
-        rdoB2.setText("B."+strChoiceB[currentposition*3+1]);
+        rdoB2.setText("B." + strChoiceB[currentposition * 3 + 1]);
         RadioButton rdoC2 = (RadioButton) findViewById(R.id.rdoC2_shortc);
-        rdoC2.setText("C."+strChoiceC[currentposition*3+1]);
+        rdoC2.setText("C." + strChoiceC[currentposition * 3 + 1]);
         RadioButton rdoD2 = (RadioButton) findViewById(R.id.rdoD2_shortc);
-        rdoD2.setText("D."+strChoiceD[currentposition*3+1]);
+        rdoD2.setText("D." + strChoiceD[currentposition * 3 + 1]);
 
         //Choice3
         RadioButton rdoA3 = (RadioButton) findViewById(R.id.rdoA3_shortc);
-        rdoA3.setText("A."+strChoiceA[currentposition*3+2]);
+        rdoA3.setText("A." + strChoiceA[currentposition * 3 + 2]);
         RadioButton rdoB3 = (RadioButton) findViewById(R.id.rdoB3_shortc);
-        rdoB3.setText("B."+strChoiceB[currentposition*3+2]);
+        rdoB3.setText("B." + strChoiceB[currentposition * 3 + 2]);
         RadioButton rdoC3 = (RadioButton) findViewById(R.id.rdoC3_shortc);
-        rdoC3.setText("C."+strChoiceC[currentposition*3+2]);
+        rdoC3.setText("C." + strChoiceC[currentposition * 3 + 2]);
         RadioButton rdoD3 = (RadioButton) findViewById(R.id.rdoD3_shortc);
-        rdoD3.setText("D."+strChoiceD[currentposition*3+2]);
+        rdoD3.setText("D." + strChoiceD[currentposition * 3 + 2]);
 
 
     }
@@ -244,13 +243,12 @@ public class ShortConversationActivity extends AppCompatActivity {
 
                 ScrollView scrollView = (ScrollView) findViewById(R.id.activity_short_conversation);
 
-                scrollView.smoothScrollTo(0,0);
+                scrollView.smoothScrollTo(0, 0);
 
                 showAnswer = false;
 
-                if (currentposition>0)
+                if (currentposition > 0)
                     currentposition--;
-
 
 
                 clearcheck();
@@ -287,14 +285,13 @@ public class ShortConversationActivity extends AppCompatActivity {
 
                 ScrollView scrollView = (ScrollView) findViewById(R.id.activity_short_conversation);
 
-                scrollView.smoothScrollTo(0,0);
+                scrollView.smoothScrollTo(0, 0);
 
 
                 showAnswer = false;
 
-                if (currentposition<maxrow)
+                if (currentposition < maxrow)
                     currentposition++;
-
 
 
                 clearcheck();
@@ -332,7 +329,7 @@ public class ShortConversationActivity extends AppCompatActivity {
         rdogroup3.clearCheck();
     }
 
-    public void onBackPressed(){
+    public void onBackPressed() {
         new AlertDialog.Builder(this)
                 .setTitle("Stop the practice?")
                 .setMessage("Are you sure you want to quit to practice?")
@@ -355,23 +352,22 @@ public class ShortConversationActivity extends AppCompatActivity {
     }
 
 
-
     private void playSound() {
 
-        File photoDB = new File(basedirSound+ "/V1/AudioShortConPratice/");
+        File photoDB = new File(basedirSound + "/V1/AudioShortConPratice/");
         File photoDB2 = new File(basedirSound + "/V1/V2/AudioShortConPratice/");
         File filepath = null;
 
-        if (mPlayer !=null){
+        if (mPlayer != null) {
             mPlayer.stop();
             mPlayer.release();
         }
 
         if (photoDB2.exists()) {
-            filepath = new File(basedirPhoto +"/V1/V2/AudioShortConPratice/"+String.valueOf(currentposition+1)+".mp3");
+            filepath = new File(basedirPhoto + "/V1/V2/AudioShortConPratice/" + String.valueOf(currentposition + 1) + ".mp3");
         } else if (photoDB.exists()) {
 
-            filepath = new File(basedirPhoto +"/V1/AudioShortConPratice/"+String.valueOf(currentposition+1)+".mp3");
+            filepath = new File(basedirPhoto + "/V1/AudioShortConPratice/" + String.valueOf(currentposition + 1) + ".mp3");
 
         } else {
             //Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
@@ -385,6 +381,7 @@ public class ShortConversationActivity extends AppCompatActivity {
             mPlayer.setDataSource(String.valueOf(filepath));
             mPlayer.prepare();
             mPlayer.start();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -399,7 +396,7 @@ public class ShortConversationActivity extends AppCompatActivity {
     }
 
 
-    private String[] listScript(){
+    private String[] listScript() {
 
         String strListScript[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
@@ -407,7 +404,7 @@ public class ShortConversationActivity extends AppCompatActivity {
         Cursor cursor = db.query(SHORTCONVERSATION_SCRIPT, new String[]{COLUMN_SHORTCONVERSATION_SCRIPT}, sql, null, null, null, null);
         cursor.moveToFirst();
         strListScript = new String[cursor.getCount()];
-        for (int i=0; i<cursor.getCount(); i++){
+        for (int i = 0; i < cursor.getCount(); i++) {
             //strListScript[i] = cursor.getString(cursor.getColumnIndex("COLUMN_SHORTCONVERSATION_SCRIPT"));
             strListScript[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTCONVERSATION_SCRIPT));
             cursor.moveToNext();
@@ -418,7 +415,7 @@ public class ShortConversationActivity extends AppCompatActivity {
 
     }
 
-    private String[] listQuestion(){
+    private String[] listQuestion() {
 
         String strListQuestion[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
@@ -426,7 +423,7 @@ public class ShortConversationActivity extends AppCompatActivity {
         Cursor cursor = db.query(SHORTCONVERSATION_QUESTION, new String[]{COLUMN_SHORTCONVERSATION_QUESTION}, sql2, null, null, null, null);
         cursor.moveToFirst();
         strListQuestion = new String[cursor.getCount()];
-        for (int i=0; i<cursor.getCount(); i++) {
+        for (int i = 0; i < cursor.getCount(); i++) {
             //strListQuestion[i] = cursor.getString(cursor.getColumnIndex("COLUMN_SHORTCONVERSATION_QUESTION"));
             strListQuestion[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTCONVERSATION_QUESTION));
             cursor.moveToNext();
@@ -445,7 +442,7 @@ public class ShortConversationActivity extends AppCompatActivity {
         Cursor cursor = db.query(SHORTCONVERSATION_QUESTION, new String[]{COLUMN_SHORTCONVERSATION_ANSWER}, sql2, null, null, null, null);
         cursor.moveToFirst();
         strListAnswer = new String[cursor.getCount()];
-        for (int i=0; i<cursor.getCount(); i++) {
+        for (int i = 0; i < cursor.getCount(); i++) {
             //strListAnswer[i] = cursor.getString(cursor.getColumnIndex("COLUMN_SHORTCONVERSATION_ANSWER"));
             strListAnswer[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTCONVERSATION_ANSWER));
             cursor.moveToNext();
@@ -464,7 +461,7 @@ public class ShortConversationActivity extends AppCompatActivity {
         Cursor cursor = db.query(SHORTCONVERSATION_QUESTION, new String[]{COLUMN_SHORTCONVERSATION_CHOICE_A}, sql2, null, null, null, null);
         cursor.moveToFirst();
         strListChoiceA = new String[cursor.getCount()];
-        for (int i=0; i<cursor.getCount(); i++) {
+        for (int i = 0; i < cursor.getCount(); i++) {
             //strListChoiceA[i] = cursor.getString(cursor.getColumnIndex("COLUMN_SHORTCONVERSATION_CHOICE_A"));
             strListChoiceA[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTCONVERSATION_CHOICE_A));
             cursor.moveToNext();
@@ -483,7 +480,7 @@ public class ShortConversationActivity extends AppCompatActivity {
         Cursor cursor = db.query(SHORTCONVERSATION_QUESTION, new String[]{COLUMN_SHORTCONVERSATION_CHOICE_B}, sql2, null, null, null, null);
         cursor.moveToFirst();
         strListChoiceB = new String[cursor.getCount()];
-        for (int i=0; i<cursor.getCount(); i++) {
+        for (int i = 0; i < cursor.getCount(); i++) {
             //strListChoiceB[i] = cursor.getString(cursor.getColumnIndex("COLUMN_SHORTCONVERSATION_CHOICE_B"));
             strListChoiceB[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTCONVERSATION_CHOICE_B));
             cursor.moveToNext();
@@ -502,7 +499,7 @@ public class ShortConversationActivity extends AppCompatActivity {
         Cursor cursor = db.query(SHORTCONVERSATION_QUESTION, new String[]{COLUMN_SHORTCONVERSATION_CHOICE_C}, sql2, null, null, null, null);
         cursor.moveToFirst();
         strListChoiceC = new String[cursor.getCount()];
-        for (int i=0; i<cursor.getCount(); i++) {
+        for (int i = 0; i < cursor.getCount(); i++) {
             //strListChoiceC[i] = cursor.getString(cursor.getColumnIndex("COLUMN_SHORTCONVERSATION_CHOICE_C"));
             strListChoiceC[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTCONVERSATION_CHOICE_C));
             cursor.moveToNext();
@@ -521,7 +518,7 @@ public class ShortConversationActivity extends AppCompatActivity {
         Cursor cursor = db.query(SHORTCONVERSATION_QUESTION, new String[]{COLUMN_SHORTCONVERSATION_CHOICE_D}, sql2, null, null, null, null);
         cursor.moveToFirst();
         strListChoiceD = new String[cursor.getCount()];
-        for (int i=0; i<cursor.getCount(); i++) {
+        for (int i = 0; i < cursor.getCount(); i++) {
             //strListChoiceD[i] = cursor.getString(cursor.getColumnIndex("COLUMN_SHORTCONVERSATION_CHOICE_D"));
             strListChoiceD[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTCONVERSATION_CHOICE_D));
             cursor.moveToNext();
@@ -540,7 +537,7 @@ public class ShortConversationActivity extends AppCompatActivity {
         Cursor cursor = db.query(SHORTCONVERSATION_QUESTION, new String[]{COLUMN_SHORTCONVERSATION_DES}, sql2, null, null, null, null);
         cursor.moveToFirst();
         strListChoiceDes = new String[cursor.getCount()];
-        for (int i=0; i<cursor.getCount(); i++) {
+        for (int i = 0; i < cursor.getCount(); i++) {
             //strListChoiceDes[i] = cursor.getString(cursor.getColumnIndex("COLUMN_SHORTCONVERSATION_DES"));
             strListChoiceDes[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SHORTCONVERSATION_DES));
             cursor.moveToNext();

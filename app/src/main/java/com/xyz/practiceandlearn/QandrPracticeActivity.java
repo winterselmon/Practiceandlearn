@@ -42,11 +42,11 @@ public class QandrPracticeActivity extends AppCompatActivity {
     private static String[] strQuestion, strChoiceA, strChoiceB, strChoiceC, strChoiceDes, strAnswer;
     private boolean showanswer;
     private int currentposition;
-    private MediaPlayer mPlayer,soundtrue,soundwrong;
+    private MediaPlayer mPlayer, soundtrue, soundwrong;
     private static final int maxrow = 29;
-    private int[] mySound = {R.raw.qandr1,R.raw.qandr2,R.raw.qandr3,R.raw.qandr4,R.raw.qandr5,R.raw.qandr6,R.raw.qandr7,R.raw.qandr8,R.raw.qandr9,R.raw.qandr10,
-            R.raw.qandr11,R.raw.qandr12,R.raw.qandr13,R.raw.qandr14,R.raw.qandr15,R.raw.qandr16,R.raw.qandr17,R.raw.qandr18,R.raw.qandr19,R.raw.qandr20,
-            R.raw.qandr21,R.raw.qandr22,R.raw.qandr23,R.raw.qandr24,R.raw.qandr25,R.raw.qandr26,R.raw.qandr27,R.raw.qandr28,R.raw.qandr29,R.raw.qandr30};
+    private int[] mySound = {R.raw.qandr1, R.raw.qandr2, R.raw.qandr3, R.raw.qandr4, R.raw.qandr5, R.raw.qandr6, R.raw.qandr7, R.raw.qandr8, R.raw.qandr9, R.raw.qandr10,
+            R.raw.qandr11, R.raw.qandr12, R.raw.qandr13, R.raw.qandr14, R.raw.qandr15, R.raw.qandr16, R.raw.qandr17, R.raw.qandr18, R.raw.qandr19, R.raw.qandr20,
+            R.raw.qandr21, R.raw.qandr22, R.raw.qandr23, R.raw.qandr24, R.raw.qandr25, R.raw.qandr26, R.raw.qandr27, R.raw.qandr28, R.raw.qandr29, R.raw.qandr30};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +113,7 @@ public class QandrPracticeActivity extends AppCompatActivity {
 
                 showanswer = false;
 
-                if (currentposition>0)
+                if (currentposition > 0)
                     currentposition--;
 
                 clearcheck();
@@ -138,7 +138,7 @@ public class QandrPracticeActivity extends AppCompatActivity {
 
                 showanswer = false;
 
-                if (currentposition<maxrow)
+                if (currentposition < maxrow)
                     currentposition++;
 
                 clearcheck();
@@ -156,30 +156,25 @@ public class QandrPracticeActivity extends AppCompatActivity {
 
     private void playSound() {
 
-        File photoDB = new File(basedirSound+ "/V1/AudioQandRPratice/");
+        File photoDB = new File(basedirSound + "/V1/AudioQandRPratice/");
         File photoDB2 = new File(basedirSound + "/V1/V2/AudioQandRPratice/");
         File filepath = null;
 
-        if (mPlayer !=null){
+        if (mPlayer != null) {
             mPlayer.stop();
             mPlayer.release();
         }
-
         if (photoDB2.exists()) {
-            filepath = new File(basedirPhoto +"/V1/V2/AudioQandRPratice/"+String.valueOf(currentposition+1)+".mp3");
+            filepath = new File(basedirPhoto + "/V1/V2/AudioQandRPratice/" + String.valueOf(currentposition + 1) + ".mp3");
         } else if (photoDB.exists()) {
-
-            filepath = new File(basedirPhoto +"/V1/AudioQandRPratice/"+String.valueOf(currentposition+1)+".mp3");
-
+            filepath = new File(basedirPhoto + "/V1/AudioQandRPratice/" + String.valueOf(currentposition + 1) + ".mp3");
         } else {
-            //Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
             return;
         }
 //        String filePath = basedir+"/V1/AudioQandRPratice/"+String.valueOf(currentposition+1)+".mp3";
         mPlayer = new MediaPlayer();
 
-
-        try{
+        try {
             mPlayer.setDataSource(String.valueOf(filepath));
             mPlayer.prepare();
             mPlayer.start();
@@ -189,11 +184,27 @@ public class QandrPracticeActivity extends AppCompatActivity {
 
     }
 
-    private void playTrue(){
-        String filePath = BaseDir+"/V1/soundtrue.mp3";
+    private void playTrue() {
+
+        File photoDB = new File(basedirSound + "/V1/soundtrue.mp3");
+        File photoDB2 = new File(basedirSound + "/V1/V2/soundtrue.mp3/");
+        File filepath = null;
+
+        if (photoDB2.exists()) {
+            filepath = new File(basedirPhoto + "/V1/V2/soundtrue.mp3");
+        } else if (photoDB.exists()) {
+
+            filepath = new File(basedirPhoto + "/V1/soundtrue.mp3");
+
+        } else {
+            //Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
+            return;
+        }
+//        String filePath = basedirSound +"/V1/V2/soundtrue.mp3";
+
         mPlayer = new MediaPlayer();
         try {
-            mPlayer.setDataSource(filePath);
+            mPlayer.setDataSource(String.valueOf(filepath));
             mPlayer.prepare();
             mPlayer.start();
         } catch (IOException e) {
@@ -201,11 +212,25 @@ public class QandrPracticeActivity extends AppCompatActivity {
         }
     }
 
-    private void playWrong(){
-        String filePath = BaseDir+"/V1/soundwrong.mp3";
+    private void playWrong() {
+
+        File photoDB = new File(basedirSound + "/V1/soundwrong.mp3");
+        File photoDB2 = new File(basedirSound + "/V1/V2/soundwrong.mp3");
+        File filepath = null;
+
+        if (photoDB2.exists()) {
+            filepath = new File(basedirPhoto + "/V1/V2/soundwrong.mp3");
+        } else if (photoDB.exists()) {
+            filepath = new File(basedirPhoto + "/V1/soundwrong.mp3");
+
+        } else {
+            //Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
+            return;
+        }
+//        String filePath = basedirSound +"/V1/V2/soundwrong.mp3";
         mPlayer = new MediaPlayer();
         try {
-            mPlayer.setDataSource(filePath);
+            mPlayer.setDataSource(String.valueOf(filepath));
             mPlayer.prepare();
             mPlayer.start();
         } catch (IOException e) {
@@ -236,51 +261,46 @@ public class QandrPracticeActivity extends AppCompatActivity {
                     Boolean chkA = textChoiceA.isChecked();
                     Boolean chkB = textChoiceB.isChecked();
                     Boolean chkC = textChoiceC.isChecked();
-                    if (strAnswer[currentposition].equals("A")){
+                    if (strAnswer[currentposition].equals("A")) {
 
-                        if (chkA){
+                        if (chkA) {
                             //playSound
                             playTrue();
-                            //Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
-                        }
-                        else {
+//                            Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
+                        } else {
 
                             playWrong();
-                            //Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
                         }
 
                     }
-                    if (strAnswer[currentposition].equals("B")){
+                    if (strAnswer[currentposition].equals("B")) {
 
-                        if (chkB){
+                        if (chkB) {
                             //playSound
                             playTrue();
-                            //Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
-                        }
-                        else {
+//                            Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
+                        } else {
 
                             playWrong();
-                            //Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
                         }
 
                     }
-                    if (strAnswer[currentposition].equals("C")){
+                    if (strAnswer[currentposition].equals("C")) {
 
-                        if (chkC){
+                        if (chkC) {
                             //playSound
                             playTrue();
-                            //Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
-                        }
-                        else {
+//                            Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
+                        } else {
 
                             playWrong();
-                            //Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
                         }
-
                     }
 
-
-                }else {
+                } else {
                     clearlayout();
                 }
                 showanswer = !showanswer;
@@ -290,7 +310,7 @@ public class QandrPracticeActivity extends AppCompatActivity {
 
     }
 
-    private void setupArray(){
+    private void setupArray() {
 
         strQuestion = listQuestion();
         strChoiceA = listChoiceA();
@@ -307,7 +327,7 @@ public class QandrPracticeActivity extends AppCompatActivity {
         rdogroup2.clearCheck();
     }
 
-    public void onBackPressed(){
+    public void onBackPressed() {
         new AlertDialog.Builder(this)
                 .setTitle("Stop the practice?")
                 .setMessage("Are you sure you want to quit to practice?")
@@ -315,8 +335,8 @@ public class QandrPracticeActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(QandrPracticeActivity.this, MainActivity.class);
-                        mPlayer.stop();
                         startActivity(intent);
+                        mPlayer.stop();
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -329,7 +349,7 @@ public class QandrPracticeActivity extends AppCompatActivity {
                 .show();
     }
 
-    private void clearlayout(){
+    private void clearlayout() {
 
         TextView txtQuestion = (TextView) findViewById(R.id.txtQuestion_QandR);
         txtQuestion.setText("Listen to a question and choose the best response.");
@@ -351,7 +371,14 @@ public class QandrPracticeActivity extends AppCompatActivity {
         mPlayer.stop();
     }
 
-    private String[] listQuestion(){
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        mPlayer.stop();
+    }
+
+    private String[] listQuestion() {
 
         String strListQuestion[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
@@ -359,7 +386,7 @@ public class QandrPracticeActivity extends AppCompatActivity {
         Cursor objCursor = db.query(QuestionAndResponse_Question, new String[]{COLUMN_QANDR_QUESTION}, sql, null, null, null, null);
         objCursor.moveToFirst();
         strListQuestion = new String[objCursor.getCount()];
-        for (int i=0; i<objCursor.getCount(); i++){
+        for (int i = 0; i < objCursor.getCount(); i++) {
             //strListQuestion[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_QANDR_QUESTION"));
             strListQuestion[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_QANDR_QUESTION));
             objCursor.moveToNext();
@@ -369,7 +396,7 @@ public class QandrPracticeActivity extends AppCompatActivity {
         return strListQuestion;
     }
 
-    private String[] listAnswer(){
+    private String[] listAnswer() {
 
         String strListAnswer[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
@@ -377,7 +404,7 @@ public class QandrPracticeActivity extends AppCompatActivity {
         Cursor objCursor = db.query(QuestionAndResponse_Question, new String[]{COLUMN_QANDR_ANSWER}, sql, null, null, null, null);
         objCursor.moveToFirst();
         strListAnswer = new String[objCursor.getCount()];
-        for (int i=0; i<objCursor.getCount(); i++){
+        for (int i = 0; i < objCursor.getCount(); i++) {
             //strListAnswer[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_QANDR_ANSWER"));
             strListAnswer[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_QANDR_ANSWER));
             objCursor.moveToNext();
@@ -387,7 +414,7 @@ public class QandrPracticeActivity extends AppCompatActivity {
         return strListAnswer;
     }
 
-    private String[] listChoiceA(){
+    private String[] listChoiceA() {
 
         String strListChoiceA[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
@@ -395,7 +422,7 @@ public class QandrPracticeActivity extends AppCompatActivity {
         Cursor objCursor = db.query(QUESTIONANDRESPONSE_CHOICE, new String[]{COLUMN_QANDR_CHOICE_A}, sql2, null, null, null, null);
         objCursor.moveToFirst();
         strListChoiceA = new String[objCursor.getCount()];
-        for (int i=0; i<objCursor.getCount(); i++){
+        for (int i = 0; i < objCursor.getCount(); i++) {
             //strListChoiceA[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_QANDR_CHOICE_A"));
             strListChoiceA[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_QANDR_CHOICE_A));
             objCursor.moveToNext();
@@ -406,7 +433,7 @@ public class QandrPracticeActivity extends AppCompatActivity {
 
     }
 
-    private String[] listChoiceB(){
+    private String[] listChoiceB() {
 
         String strListChoiceB[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
@@ -414,7 +441,7 @@ public class QandrPracticeActivity extends AppCompatActivity {
         Cursor objCursor = db.query(QUESTIONANDRESPONSE_CHOICE, new String[]{COLUMN_QANDR_CHOICE_B}, sql2, null, null, null, null);
         objCursor.moveToFirst();
         strListChoiceB = new String[objCursor.getCount()];
-        for (int i=0; i<objCursor.getCount(); i++){
+        for (int i = 0; i < objCursor.getCount(); i++) {
             //strListChoiceB[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_QANDR_CHOICE_B"));
             strListChoiceB[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_QANDR_CHOICE_B));
             objCursor.moveToNext();
@@ -425,7 +452,7 @@ public class QandrPracticeActivity extends AppCompatActivity {
 
     }
 
-    private String[] listChoiceC(){
+    private String[] listChoiceC() {
 
         String strListChoiceC[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
@@ -433,7 +460,7 @@ public class QandrPracticeActivity extends AppCompatActivity {
         Cursor objCursor = db.query(QUESTIONANDRESPONSE_CHOICE, new String[]{COLUMN_QANDR_CHOICE_C}, sql2, null, null, null, null);
         objCursor.moveToFirst();
         strListChoiceC = new String[objCursor.getCount()];
-        for (int i=0; i<objCursor.getCount(); i++){
+        for (int i = 0; i < objCursor.getCount(); i++) {
             //strListChoiceC[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_QANDR_CHOICE_C"));
             strListChoiceC[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_QANDR_CHOICE_C));
             objCursor.moveToNext();
@@ -444,7 +471,7 @@ public class QandrPracticeActivity extends AppCompatActivity {
 
     }
 
-    private String[] listChoiceDes(){
+    private String[] listChoiceDes() {
 
         String strListChoiceDes[];
         SQLiteDatabase db = objMyDatabase.getReadableDatabase();
@@ -452,7 +479,7 @@ public class QandrPracticeActivity extends AppCompatActivity {
         Cursor objCursor = db.query(QUESTIONANDRESPONSE_CHOICE, new String[]{COLUMN_QANDR_DES}, sql2, null, null, null, null);
         objCursor.moveToFirst();
         strListChoiceDes = new String[objCursor.getCount()];
-        for (int i=0; i<objCursor.getCount(); i++){
+        for (int i = 0; i < objCursor.getCount(); i++) {
             //strListChoiceDes[i] = objCursor.getString(objCursor.getColumnIndex("COLUMN_QANDR_DES"));
             strListChoiceDes[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_QANDR_DES));
             objCursor.moveToNext();

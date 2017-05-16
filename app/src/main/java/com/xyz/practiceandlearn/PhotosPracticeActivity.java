@@ -41,6 +41,7 @@ public class PhotosPracticeActivity extends AppCompatActivity {
 
     MyDatabase objMyDatabase;
     private int currentposition;
+    private int currentsound;
     private boolean showanswer;
     private static final int maxrow = 39;
     //private static String[] COLUMNS = {COLUMN_PHOTO_CHOICE_A, COLUMN_PHOTO_CHOICE_B, COLUMN_PHOTO_CHOICE_C, COLUMN_PHOTO_CHOICE_D,};
@@ -70,7 +71,7 @@ public class PhotosPracticeActivity extends AppCompatActivity {
         }
 
 //        objMyDatabase = new MyDatabase(this, photoDB);
-        //currentposition = 0;
+        currentposition = 0;
         showanswer = false;
 
         showanswer(0);
@@ -117,8 +118,8 @@ public class PhotosPracticeActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(PhotosPracticeActivity.this, MainActivity.class);
-                        mPlayer.stop();
                         startActivity(intent);
+                        mPlayer.stop();
 
                     }
                 })
@@ -229,10 +230,26 @@ public class PhotosPracticeActivity extends AppCompatActivity {
     }
 
     private void playTrue(){
-        String filePath = BaseDir +"/V1/soundtrue.mp3";
+
+        File photoDB = new File(basedirSound+ "/V1/soundtrue.mp3");
+        File photoDB2 = new File(basedirSound + "/V1/V2/soundtrue.mp3/");
+        File filepath = null;
+
+        if (photoDB2.exists()) {
+            filepath = new File(basedirPhoto +"/V1/V2/soundtrue.mp3");
+        } else if (photoDB.exists()) {
+
+            filepath = new File(basedirPhoto +"/V1/soundtrue.mp3");
+
+        } else {
+            //Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
+            return;
+        }
+//        String filePath = basedirSound +"/V1/V2/soundtrue.mp3";
+
         mPlayer = new MediaPlayer();
         try {
-            mPlayer.setDataSource(filePath);
+            mPlayer.setDataSource(String.valueOf(filepath));
             mPlayer.prepare();
             mPlayer.start();
         } catch (IOException e) {
@@ -241,10 +258,25 @@ public class PhotosPracticeActivity extends AppCompatActivity {
     }
 
     private void playWrong(){
-        String filePath = BaseDir +"/V1/soundwrong.mp3";
+
+        File photoDB = new File(basedirSound+ "/V1/soundwrong.mp3");
+        File photoDB2 = new File(basedirSound + "/V1/V2/soundwrong.mp3");
+        File filepath = null;
+
+        if (photoDB2.exists()) {
+            filepath = new File(basedirPhoto +"/V1/V2/soundwrong.mp3");
+        } else if (photoDB.exists()) {
+            filepath = new File(basedirPhoto +"/V1/soundwrong.mp3");
+
+        } else {
+            //Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+//        String filePath = basedirSound +"/V1/V2/soundwrong.mp3";
         mPlayer = new MediaPlayer();
         try {
-            mPlayer.setDataSource(filePath);
+            mPlayer.setDataSource(String.valueOf(filepath));
             mPlayer.prepare();
             mPlayer.start();
         } catch (IOException e) {
@@ -296,12 +328,12 @@ public class PhotosPracticeActivity extends AppCompatActivity {
                         if (chkA){
                             //playSound
                             playTrue();
-                            //Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
                         }
                         else {
 
                             playWrong();
-                            //Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -310,12 +342,12 @@ public class PhotosPracticeActivity extends AppCompatActivity {
                         if (chkB){
                             //playSound
                             playTrue();
-                            //Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
                         }
                         else {
 
                             playWrong();
-                            //Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -324,12 +356,12 @@ public class PhotosPracticeActivity extends AppCompatActivity {
                         if (chkC){
                             //playSound
                             playTrue();
-                            //Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
                         }
                         else {
 
                             playWrong();
-                            //Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -338,12 +370,12 @@ public class PhotosPracticeActivity extends AppCompatActivity {
                         if (chkD){
                             //playSound
                             playTrue();
-                            //Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
                         }
                         else {
 
                             playWrong();
-                            //Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -407,6 +439,13 @@ public class PhotosPracticeActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+
+        mPlayer.stop();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
 
         mPlayer.stop();
     }

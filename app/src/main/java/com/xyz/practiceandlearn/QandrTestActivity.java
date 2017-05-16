@@ -213,7 +213,6 @@ public class QandrTestActivity extends AppCompatActivity {
             return;
         }
 
-
 //        String filePath =basedir +"/V1/AudioQandR/"+String.valueOf(Global.currentSound+1)+".mp3";
 //        String filePath = Environment.getExternalStorageDirectory()+"/AudioQandR/"+String.valueOf(Global.currentAnswer+1)+".mp3";
         mPlayer = new MediaPlayer();

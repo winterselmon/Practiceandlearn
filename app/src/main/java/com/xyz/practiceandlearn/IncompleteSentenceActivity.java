@@ -21,6 +21,8 @@ import java.io.IOException;
 import static com.xyz.practiceandlearn.Global.BaseDir;
 import static com.xyz.practiceandlearn.Global.basedir;
 
+import static com.xyz.practiceandlearn.Global.basedirPhoto;
+import static com.xyz.practiceandlearn.Global.basedirSound;
 import static com.xyz.practiceandlearn.IncompleteDatabase.COLUMN_ID_INCOMPLETE_CHOICE;
 import static com.xyz.practiceandlearn.IncompleteDatabase.COLUMN_ID_INCOMPLETE_QUESTION;
 import static com.xyz.practiceandlearn.IncompleteDatabase.COLUMN_INCOMPLETE_ANSWER;
@@ -258,10 +260,26 @@ public class IncompleteSentenceActivity extends AppCompatActivity {
     }
 
     private void playTrue(){
-        String filePath = BaseDir+"/V1/soundtrue.mp3";
+
+        File photoDB = new File(basedirSound+ "/V1/soundtrue.mp3");
+        File photoDB2 = new File(basedirSound + "/V1/V2/soundtrue.mp3/");
+        File filepath = null;
+
+        if (photoDB2.exists()) {
+            filepath = new File(basedirPhoto +"/V1/V2/soundtrue.mp3");
+        } else if (photoDB.exists()) {
+
+            filepath = new File(basedirPhoto +"/V1/soundtrue.mp3");
+
+        } else {
+            //Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
+            return;
+        }
+//        String filePath = basedirSound +"/V1/V2/soundtrue.mp3";
+
         mPlayer = new MediaPlayer();
         try {
-            mPlayer.setDataSource(filePath);
+            mPlayer.setDataSource(String.valueOf(filepath));
             mPlayer.prepare();
             mPlayer.start();
         } catch (IOException e) {
@@ -270,10 +288,25 @@ public class IncompleteSentenceActivity extends AppCompatActivity {
     }
 
     private void playWrong(){
-        String filePath = BaseDir+"/V1/soundwrong.mp3";
+
+        File photoDB = new File(basedirSound+ "/V1/soundwrong.mp3");
+        File photoDB2 = new File(basedirSound + "/V1/V2/soundwrong.mp3");
+        File filepath = null;
+
+        if (photoDB2.exists()) {
+            filepath = new File(basedirPhoto +"/V1/V2/soundwrong.mp3");
+        } else if (photoDB.exists()) {
+            filepath = new File(basedirPhoto +"/V1/soundwrong.mp3");
+
+        } else {
+            //Toast.makeText(getBaseContext(),"hi3",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+//        String filePath = basedirSound +"/V1/V2/soundwrong.mp3";
         mPlayer = new MediaPlayer();
         try {
-            mPlayer.setDataSource(filePath);
+            mPlayer.setDataSource(String.valueOf(filepath));
             mPlayer.prepare();
             mPlayer.start();
         } catch (IOException e) {
