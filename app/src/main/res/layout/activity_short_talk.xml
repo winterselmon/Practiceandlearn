@@ -250,8 +250,8 @@
                 android:text="Back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginStart="25dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="5dp"
                 android:id="@+id/btnBack4"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -278,6 +278,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btnNext4"
                 android:layout_toRightOf="@+id/btnAns4"
+                android:layout_marginRight="5dp"
                 android:layout_toEndOf="@+id/btnAns4" />
         </RelativeLayout>
 

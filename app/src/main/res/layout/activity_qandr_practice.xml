@@ -75,8 +75,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginStart="25dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="5dp"
             android:layout_below="@id/txtDes"
             android:id="@+id/btnBack2"
             android:layout_alignParentBottom="true"
@@ -108,6 +108,7 @@
             android:id="@+id/btnNext2"
             android:layout_alignParentBottom="true"
             android:layout_toRightOf="@+id/btnAns2"
+            android:layout_marginRight="5dp"
             android:layout_toEndOf="@+id/btnAns2" />
 
     </RelativeLayout>

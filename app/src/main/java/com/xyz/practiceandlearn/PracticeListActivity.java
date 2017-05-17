@@ -56,6 +56,7 @@ public class PracticeListActivity extends AppCompatActivity {
 
         ListView list1 = (ListView) findViewById(R.id.listPractice);
         list1.setOnItemClickListener(itemClickListener);
+
     }
 
     public void onBackPressed(){
@@ -67,7 +68,6 @@ public class PracticeListActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(PracticeListActivity.this, MainActivity.class);
                         startActivity(intent);
-                        mPlayer.stop();
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
