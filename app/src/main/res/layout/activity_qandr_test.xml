@@ -4,7 +4,7 @@
     android:id="@+id/activity_qandr_test"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xyz.practiceandlearn.QandrTestActivity">
+    tools:context="com.xyz.practiceandlearn.Test.QandrTestActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

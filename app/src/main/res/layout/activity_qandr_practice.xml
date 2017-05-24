@@ -4,7 +4,7 @@
     android:id="@+id/activity_qandr_practice"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xyz.practiceandlearn.QandrPracticeActivity">
+    tools:context="com.xyz.practiceandlearn.Practice.QandrPracticeActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

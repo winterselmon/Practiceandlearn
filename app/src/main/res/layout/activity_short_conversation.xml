@@ -6,7 +6,7 @@
     android:focusableInTouchMode="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xyz.practiceandlearn.ShortConversationActivity">
+    tools:context="com.xyz.practiceandlearn.Practice.ShortConversationActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

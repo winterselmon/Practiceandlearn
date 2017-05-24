@@ -4,11 +4,11 @@
     android:id="@+id/activity_incomplete_sentence_test"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xyz.practiceandlearn.IncompleteSentenceTestActivity">
+    tools:context="com.xyz.practiceandlearn.Test.IncompleteSentenceTestActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="600dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -76,29 +76,23 @@
 
         </RadioGroup>
 
-
-
         <Button
             android:text="Back"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginStart="25dp"
-            android:layout_below="@id/rdoGroup_Incomplete_test"
+            android:layout_height="match_parent"
             android:id="@+id/btnBack5_test"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25dp" />
 
         <Button
             android:text="Next"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/btnNext5_test"
-            android:layout_alignParentBottom="true"
             android:layout_marginRight="25dp"
-            android:layout_alignParentRight="true" />
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"/>
 
     </RelativeLayout>
 

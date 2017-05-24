@@ -4,7 +4,7 @@
     android:id="@+id/activity_incomplete_sentence"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xyz.practiceandlearn.IncompleteSentenceActivity">
+    tools:context="com.xyz.practiceandlearn.Practice.IncompleteSentenceActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
