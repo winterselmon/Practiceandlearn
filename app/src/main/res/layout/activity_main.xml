@@ -64,7 +64,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:id="@+id/button3"
-        android:text="update"
+        android:text="CHANGE"
         android:layout_below="@+id/button2"
         android:layout_alignLeft="@+id/button2"
         android:layout_alignStart="@+id/button2"

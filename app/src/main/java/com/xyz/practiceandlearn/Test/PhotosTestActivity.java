@@ -245,9 +245,9 @@ public class PhotosTestActivity extends AppCompatActivity {
         File photoDB2 = new File(basedirSound + "/V1/V2/photoTest/");
         File imgFile = null;
 
-        if (photoDB2.exists()) {
-            imgFile = new File(basedirPhoto +"/V1/V2/photoTest/"+String.valueOf(Global.currentposition+1)+".png");
-        } else if (photoDB.exists()) {
+        if (Version.CURRENT.equals(Version.SECOND)) {
+            imgFile = new File(basedirPhoto +"/V1/photoTest_V2/"+String.valueOf(Global.currentposition+1)+".png");
+        } else if (Version.CURRENT.equals(Version.FIRST)) {
 
             imgFile = new File(basedirPhoto +"/V1/photoTest/"+String.valueOf(Global.currentposition+1)+".png");
 
@@ -272,7 +272,7 @@ public class PhotosTestActivity extends AppCompatActivity {
 
     private void playSound() {
         File photoDB = new File(basedirSound+ "/V1/AudioPhoto/");
-        File photoDB2 = new File(basedirSound + "/V1/V2/AudioPhoto/");
+        File photoDB2 = new File(basedirSound + "/V1/AudioPhoto/");
         File filepath = null;
 
         if (mPlayer !=null){
@@ -280,9 +280,9 @@ public class PhotosTestActivity extends AppCompatActivity {
             mPlayer.release();
         }
 
-        if (photoDB2.exists()) {
-            filepath = new File(basedirPhoto +"/V1/V2/AudioPhoto/"+String.valueOf(Global.currentposition+1)+".mp3");
-        } else if (photoDB.exists()) {
+        if (Version.CURRENT.equals(Version.SECOND)) {
+            filepath = new File(basedirPhoto +"/V1/AudioPhoto_V2/"+String.valueOf(Global.currentposition+1)+".mp3");
+        } else if (Version.CURRENT.equals(Version.FIRST)) {
 
             filepath = new File(basedirPhoto +"/V1/AudioPhoto/"+String.valueOf(Global.currentposition+1)+".mp3");
 

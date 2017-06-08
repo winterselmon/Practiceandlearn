@@ -246,9 +246,9 @@ public class ShortConTestActivity extends AppCompatActivity {
             mPlayer.release();
         }
 
-        if (photoDB2.exists()) {
-            filepath = new File(basedirPhoto +"/V1/V2/AudioShortCon/"+String.valueOf(Global.currentposition+1)+".mp3");
-        } else if (photoDB.exists()) {
+        if (Version.CURRENT.equals(Version.SECOND)) {
+            filepath = new File(basedirPhoto +"/V1/AudioShortCon_V2/"+String.valueOf(Global.currentposition+1)+".mp3");
+        } else if (Version.CURRENT.equals(Version.FIRST)) {
 
             filepath = new File(basedirPhoto +"/V1/AudioShortCon/"+String.valueOf(Global.currentposition+1)+".mp3");
 

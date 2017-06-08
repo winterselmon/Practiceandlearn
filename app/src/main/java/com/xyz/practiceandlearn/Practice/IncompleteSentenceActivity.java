@@ -290,7 +290,7 @@ public class IncompleteSentenceActivity extends AppCompatActivity {
         File filepath = null;
 
         if (photoDB2.exists()) {
-            filepath = new File(basedirPhoto +"/V1/V2/soundtrue.mp3");
+            filepath = new File(basedirPhoto +"/V1/soundtrue.mp3");
         } else if (photoDB.exists()) {
 
             filepath = new File(basedirPhoto +"/V1/soundtrue.mp3");
@@ -318,7 +318,7 @@ public class IncompleteSentenceActivity extends AppCompatActivity {
         File filepath = null;
 
         if (photoDB2.exists()) {
-            filepath = new File(basedirPhoto +"/V1/V2/soundwrong.mp3");
+            filepath = new File(basedirPhoto +"/V1/soundwrong.mp3");
         } else if (photoDB.exists()) {
             filepath = new File(basedirPhoto +"/V1/soundwrong.mp3");
 

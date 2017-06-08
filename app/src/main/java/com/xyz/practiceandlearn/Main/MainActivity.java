@@ -85,6 +85,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         txtVersion = (TextView) findViewById(R.id.txtversion);
+        if (Version.CURRENT.equals(Version.FIRST)) {
+            txtVersion.setText("Version 1");
+        } else {
+            txtVersion.setText("Version 2");
+        }
+
 
 //        File dir1 = new File(Global.basedirSound + "/V1/TOEIC.db");
 //        File dir2 = new File(Global.basedirSound + "/V1/V2/TOEIC2.db");

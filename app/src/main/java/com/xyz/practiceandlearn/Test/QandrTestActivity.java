@@ -218,9 +218,9 @@ public class QandrTestActivity extends AppCompatActivity {
             mPlayer.release();
         }
 
-        if (photoDB2.exists()) {
-            filepath = new File(basedirPhoto +"/V1/V2/AudioQandR/"+String.valueOf(Global.currentposition+1)+".mp3");
-        } else if (photoDB.exists()) {
+        if (Version.CURRENT.equals(Version.SECOND)) {
+            filepath = new File(basedirPhoto +"/V1/AudioQandR_V2/"+String.valueOf(Global.currentposition+1)+".mp3");
+        } else if (Version.CURRENT.equals(Version.FIRST)) {
 
             filepath = new File(basedirPhoto +"/V1/AudioQandR/"+String.valueOf(Global.currentposition+1)+".mp3");
 

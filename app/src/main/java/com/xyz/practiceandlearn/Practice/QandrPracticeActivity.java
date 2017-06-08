@@ -184,9 +184,9 @@ public class QandrPracticeActivity extends AppCompatActivity {
             mPlayer.stop();
             mPlayer.release();
         }
-        if (photoDB2.exists()) {
-            filepath = new File(basedirPhoto + "/V1/V2/AudioQandRPratice/" + String.valueOf(currentposition + 1) + ".mp3");
-        } else if (photoDB.exists()) {
+        if (Version.CURRENT.equals(Version.SECOND)) {
+            filepath = new File(basedirPhoto + "/V1/AudioQandRPratice_V2/" + String.valueOf(currentposition + 1) + ".mp3");
+        } else if (Version.CURRENT.equals(Version.FIRST)) {
             filepath = new File(basedirPhoto + "/V1/AudioQandRPratice/" + String.valueOf(currentposition + 1) + ".mp3");
         } else {
             return;
@@ -211,7 +211,7 @@ public class QandrPracticeActivity extends AppCompatActivity {
         File filepath = null;
 
         if (photoDB2.exists()) {
-            filepath = new File(basedirPhoto + "/V1/V2/soundtrue.mp3");
+            filepath = new File(basedirPhoto + "/V1/soundtrue.mp3");
         } else if (photoDB.exists()) {
 
             filepath = new File(basedirPhoto + "/V1/soundtrue.mp3");
@@ -235,11 +235,11 @@ public class QandrPracticeActivity extends AppCompatActivity {
     private void playWrong() {
 
         File photoDB = new File(basedirSound + "/V1/soundwrong.mp3");
-        File photoDB2 = new File(basedirSound + "/V1/V2/soundwrong.mp3");
+        File photoDB2 = new File(basedirSound + "/V1/soundwrong.mp3");
         File filepath = null;
 
         if (photoDB2.exists()) {
-            filepath = new File(basedirPhoto + "/V1/V2/soundwrong.mp3");
+            filepath = new File(basedirPhoto + "/V1/soundwrong.mp3");
         } else if (photoDB.exists()) {
             filepath = new File(basedirPhoto + "/V1/soundwrong.mp3");
 
@@ -285,11 +285,11 @@ public class QandrPracticeActivity extends AppCompatActivity {
 
                         if (chkA) {
                             //playSound
-                            playTrue();
+                            //playTrue();
 //                            Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
                         } else {
 
-                            playWrong();
+                            //playWrong();
 //                            Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
                         }
 
@@ -298,11 +298,11 @@ public class QandrPracticeActivity extends AppCompatActivity {
 
                         if (chkB) {
                             //playSound
-                            playTrue();
+                            //playTrue();
 //                            Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
                         } else {
 
-                            playWrong();
+                            //playWrong();
 //                            Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
                         }
 
@@ -311,11 +311,11 @@ public class QandrPracticeActivity extends AppCompatActivity {
 
                         if (chkC) {
                             //playSound
-                            playTrue();
+                            //playTrue();
 //                            Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
                         } else {
 
-                            playWrong();
+                            //playWrong();
 //                            Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
                         }
                     }

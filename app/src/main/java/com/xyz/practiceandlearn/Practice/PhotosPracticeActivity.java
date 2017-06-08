@@ -48,7 +48,7 @@ public class PhotosPracticeActivity extends AppCompatActivity {
     private int currentposition;
     private int currentsound;
     private boolean showanswer;
-    private  final int maxrow = 39;
+    private final int maxrow = 39;
     //private static String[] COLUMNS = {COLUMN_PHOTO_CHOICE_A, COLUMN_PHOTO_CHOICE_B, COLUMN_PHOTO_CHOICE_C, COLUMN_PHOTO_CHOICE_D,};
 
     private  String sql_ver1 = COLUMN_ID_PHOTO_CHOICE + "<=40 and " + PhotoDatabase.COLUMN_VERSION + " = '" + Version.CURRENT +"'";
@@ -120,7 +120,6 @@ public class PhotosPracticeActivity extends AppCompatActivity {
 
                 playSound();
                 //playSound(currentposition);
-
             }
         });
 
@@ -217,9 +216,9 @@ public class PhotosPracticeActivity extends AppCompatActivity {
             mPlayer.release();
         }
 
-        if (photoDB2.exists()) {
-            filepath = new File(basedirPhoto + "/V1/V2/AudioPhotoPratice/" + String.valueOf(currentposition + 1) + ".mp3");
-        } else if (photoDB.exists()) {
+        if (Version.CURRENT.equals(Version.SECOND)) {
+            filepath = new File(basedirPhoto + "/V1/AudioPhotoPratice_V2/" + String.valueOf(currentposition + 1) + ".mp3");
+        } else if (Version.CURRENT.equals(Version.FIRST)) {
 
             filepath = new File(basedirPhoto + "/V1/AudioPhotoPratice/" + String.valueOf(currentposition + 1) + ".mp3");
 
@@ -247,11 +246,11 @@ public class PhotosPracticeActivity extends AppCompatActivity {
     private void playTrue() {
 
         File photoDB = new File(basedirSound + "/V1/soundtrue.mp3");
-        File photoDB2 = new File(basedirSound + "/V1/V2/soundtrue.mp3/");
+        File photoDB2 = new File(basedirSound + "/V1/soundtrue.mp3/");
         File filepath = null;
 
         if (photoDB2.exists()) {
-            filepath = new File(basedirPhoto + "/V1/V2/soundtrue.mp3");
+            filepath = new File(basedirPhoto + "/V1/soundtrue.mp3");
         } else if (photoDB.exists()) {
 
             filepath = new File(basedirPhoto + "/V1/soundtrue.mp3");
@@ -275,11 +274,11 @@ public class PhotosPracticeActivity extends AppCompatActivity {
     private void playWrong() {
 
         File photoDB = new File(basedirSound + "/V1/soundwrong.mp3");
-        File photoDB2 = new File(basedirSound + "/V1/V2/soundwrong.mp3");
+        File photoDB2 = new File(basedirSound + "/V1/soundwrong.mp3");
         File filepath = null;
 
         if (photoDB2.exists()) {
-            filepath = new File(basedirPhoto + "/V1/V2/soundwrong.mp3");
+            filepath = new File(basedirPhoto + "/V1/soundwrong.mp3");
         } else if (photoDB.exists()) {
             filepath = new File(basedirPhoto + "/V1/soundwrong.mp3");
 
@@ -342,11 +341,11 @@ public class PhotosPracticeActivity extends AppCompatActivity {
 
                         if (chkA) {
                             //playSound
-                            playTrue();
+                            //playTrue();
 //                            Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
                         } else {
 
-                            playWrong();
+                            //playWrong();
 //                            Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
                         }
 
@@ -355,11 +354,11 @@ public class PhotosPracticeActivity extends AppCompatActivity {
 
                         if (chkB) {
                             //playSound
-                            playTrue();
+                            //playTrue();
 //                            Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
                         } else {
 
-                            playWrong();
+                            //playWrong();
 //                            Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
                         }
 
@@ -368,11 +367,11 @@ public class PhotosPracticeActivity extends AppCompatActivity {
 
                         if (chkC) {
                             //playSound
-                            playTrue();
+                            //playTrue();
 //                            Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
                         } else {
 
-                            playWrong();
+                            //playWrong();
 //                            Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
                         }
 
@@ -381,17 +380,14 @@ public class PhotosPracticeActivity extends AppCompatActivity {
 
                         if (chkD) {
                             //playSound
-                            playTrue();
+                            //playTrue();
 //                            Toast.makeText(getBaseContext(), "r", Toast.LENGTH_LONG).show();
                         } else {
 
-                            playWrong();
+                            //playWrong();
 //                            Toast.makeText(getBaseContext(), "c", Toast.LENGTH_LONG).show();
                         }
-
                     }
-
-
                 } else {
                     clearlayout();
                 }
@@ -419,10 +415,9 @@ public class PhotosPracticeActivity extends AppCompatActivity {
         File photoDB2 = new File(basedirSound + "/V1/V2/photoPratice/");
         File imgFile = null;
 
-        if (photoDB2.exists()) {
-            imgFile = new File(basedirPhoto + "/V1/V2/photoPratice/" + String.valueOf(currentposition + 1) + ".png");
-        } else if (photoDB.exists()) {
-
+        if (Version.CURRENT.equals(Version.SECOND)) {
+            imgFile = new File(basedirPhoto + "/V1/photoPratice_V2/" + String.valueOf(currentposition + 1) + ".png");
+        } else if (Version.CURRENT.equals(Version.FIRST)) {
             imgFile = new File(basedirPhoto + "/V1/photoPratice/" + String.valueOf(currentposition + 1) + ".png");
 
         } else {

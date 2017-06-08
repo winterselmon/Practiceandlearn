@@ -385,9 +385,9 @@ public class ShortConversationActivity extends AppCompatActivity {
             mPlayer.release();
         }
 
-        if (photoDB2.exists()) {
-            filepath = new File(basedirPhoto + "/V1/V2/AudioShortConPratice/" + String.valueOf(currentposition + 1) + ".mp3");
-        } else if (photoDB.exists()) {
+        if (Version.CURRENT.equals(Version.SECOND)) {
+            filepath = new File(basedirPhoto + "/V1/AudioShortConPratice_V2/" + String.valueOf(currentposition + 1) + ".mp3");
+        } else if (Version.CURRENT.equals(Version.FIRST)) {
 
             filepath = new File(basedirPhoto + "/V1/AudioShortConPratice/" + String.valueOf(currentposition + 1) + ".mp3");
 
