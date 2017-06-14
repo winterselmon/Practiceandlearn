@@ -58,201 +58,142 @@ public class MainActivity extends AppCompatActivity {
     private ShortTalkDatabase objShortTalkScript;
     private TextCompletionDatabase objTextCompletionScript;
 
-    // Progress Dialog
+    //สร้าง progressDialog ชื่อ pDialog
     private ProgressDialog pDialog;
+    //กำหนดตัวแปรชนิด int ชื่อ progress_bar_type ให้มีค่าเริ่มต้นเท่ากับ 0
     public static final int progress_bar_type = 0;
 
-    // File url to download
+    //path url ไว้สำหรับ download
     private static String file_url = "http://103.212.181.17/project/V1.zip";
     private static String file_url2 = "http://103.212.181.17/project/V2.zip";
 
+    //สร้างตัวแปรชนิด string ชื่อ KEY_VERSION ให้มีค่าเท่ากับ version
     public static final String KEY_VERSION = "Version";
 
+    //สร้างตัวแปร ชนิด string ให้มีค่าเท่ากับ Global.BaseDir.toString() + "/V1.zip"
     String zipFile = Global.BaseDir.toString() + "/V1.zip";
+    //สร้างตัวแปร ชนิด string ให้มีค่าเท่ากับ Global.BaseDir.toString() + "/V1/";
     String unzipLocation = Global.BaseDir.toString() + "/V1/";
 
+    //สร้างตัวแปร ชนิด string ให้มีค่าเท่ากับ Global.BaseDir.toString() + "/V2.zip";
     String zipFile2 = Global.BaseDir.toString() + "/V2.zip";
+    //สร้างตัวแปร ชนิด string ให้มีค่าเท่ากับ Global.BaseDir.toString() + "/V2/";
     String unzipLocation2 = Global.BaseDir.toString() + "/V2/";
-    //String unzipLocation = Environment.getExternalStorageDirectory() + "/sdcard/";
 
+    //สร้างตัวแปร ชนิด string ให้เก็บค่า http://103.212.181.17/project/V2.zip
     String customURL = "http://103.212.181.17/project/V2.zip";
 
+    //สร้างตัวแปร ชนิด TextView ชื่อ txtVersion
     TextView txtVersion;
 
+    //เมื่อ เข้าสู่ activity นี้ ให้....
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //ผูก txtversion ด้วย id txtversion
         txtVersion = (TextView) findViewById(R.id.txtversion);
+        //สร้างเงื่อนไขว่า ถ้า Version.CURENT มีค่าตรงกับ Version.FIRST ให้
         if (Version.CURRENT.equals(Version.FIRST)) {
+            //set ค่า txtVersion ให้เป็นคำว่า Version 1
             txtVersion.setText("Version 1");
+            //ถ้าไม่ใช่ ให้
         } else {
+            //set ค่า txtVersion ให้เป็นคำว่า Version 2
             txtVersion.setText("Version 2");
         }
 
-
-//        File dir1 = new File(Global.basedirSound + "/V1/TOEIC.db");
-//        File dir2 = new File(Global.basedirSound + "/V1/V2/TOEIC2.db");
-//        if (dir2.exists()) {
-//            txtVersion.setText("Version 2");
-//        } else if (dir1.exists()) {
-//            txtVersion.setText("Version 1");
-//        }
-
-
-
-//        File fileV2 = new File(Global.basedirSound + "/V1/V2/TOEIC2.db");
-//        if (fileV2.exists()) {
-//        } else {
-//            MyTask task = new MyTask();
-//            task.execute(customURL);
-//        }
-
+        //สร้างตัวแปร File ชื่อ dirV1 มีค่าเท่ากับ ตำแหน่งไฟล์ Global.BaseDir + "/V1.zip"
         File dirV1 = new File(Global.BaseDir + "/V1.zip");
 
+        //สร้างเงื่อนไขว่าถ้าตรวจพบไฟล์ dirV1 ให้ไม่ต้องทำอะไร
         if (dirV1.exists()) {
+            //ถ้าไม่พอไฟล์ให้
         } else {
+            //set ค่า txtVersion ให้เป็นคำว่า Version 1
             txtVersion.setText("Version 1");
+            //ให้เริ่มการดาวโหลดไฟล์จาก url
             new MainActivity.DownloadFileFromURL().execute(file_url);
         }
-//        new MainActivity.DownloadFileFromURL().execute(file_url);
-
-        //File dir1 = new File(BaseDir + "/V1/V1.zip");
-        //Toast.makeText(getBaseContext(),dir1.toString(),Toast.LENGTH_LONG).show();
-        //Toast.makeText(getBaseContext(),unzipLocation,Toast.LENGTH_LONG).show();
-        //Global.played[1] = true;
-        //if (Global.played[1])
-        //    Toast.makeText(getBaseContext(),"played 1 ok",Toast.LENGTH_LONG).show();
-
-        //Global.played[2] = false;
-        //if (!Global.played[2])
-        //    Toast.makeText(getBaseContext(),"played 2 false",Toast.LENGTH_LONG).show();
-
-
+        //สร้างตัวแปร ชนิด button ชื่อ btn อ้างอิงจาก id button
         Button btn = (Button) findViewById(R.id.button);
 
+        //กำหนดว่าเมื่อกดปุ่มจะให้ทำอะไร
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //กำหนดตัวแปร ชนืด Intent ชื่อ intent ให้เปลี่ยนจากหน้า mainActivity ไปยังหน้า PracticeListActivity
                 Intent intent = new Intent(MainActivity.this, PracticeListActivity.class);
+                //เริ่มการเปลี่ยน activity
                 startActivity(intent);
             }
         });
 
+        //สร้างตัวแปร ชนิด button ชื่อ btn อ้างอิงจาก id button2
         Button btn2 = (Button) findViewById(R.id.button2);
+        //กำหนดว่าเมื่อกดปุ่มจะให้ทำอะไร
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //กำหนดตัวแปร ชนืด Intent ชื่อ intent ให้เปลี่ยนจากหน้า mainActivity ไปยังหน้า DescriptionPhotoActivity
                 Intent intent = new Intent(MainActivity.this, DescriptionPhotoActivity.class);
+                //เริ่มการเปลี่ยน activity
                 startActivity(intent);
             }
         });
 
+        //สร้างตัวแปร ชนิด button ชื่อ btn อ้างอิงจาก id button3
         Button btn3 = (Button) findViewById(R.id.button3);
+        //กำหนดว่าเมื่อกดปุ่มจะให้ทำอะไร
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                File dir2 = new File(Global.BaseDir + "/V1/V2/");
+                //สร้างตัวแปร ชนิด TextView ชื่อ txtVersion อ้างอิงจาก id txtversion
                 TextView txtVersion = (TextView) findViewById(R.id.txtversion);
-////                File dir1 = new File(BaseDir + "/V1.zip");
-//
-//                if (dir2.exists()) {
-//                    Toast.makeText(getBaseContext(), "Lastest version", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    new MainActivity.DownloadFileFromURL().execute(file_url2);
-//                    txtVersion.setText("Version 2");
-//
-//                    //Toast.makeText(getBaseContext(), "version 1", Toast.LENGTH_SHORT).show();
-//                } //else {
-//////                    new MainActivity.DownloadFileFromURL().execute(file_url);
-////                }
-
+                //สร้างเงื่อนไขว่าถ้า Version.CURRENT มีค่าตรงกับ Version.FIRST ให้
                 if (Version.CURRENT.equals(Version.FIRST)) {
+                    //กำหนดให้ Version.CURRENT = Version.SECOND
                     Version.CURRENT = Version.SECOND;
+                    //set ค่า txtVersion ให้เป็นคำว่า Version 2
                     txtVersion.setText("Version 2");
+                    //ถ้าไม่ตรงกันให้
                 } else {
+                    //กำหนดให้ Version.CURRENT = Version.SECOND
                     Version.CURRENT = Version.FIRST;
+                    //set ค่า txtVersion ให้เป็นคำว่า Version 2
                     txtVersion.setText("Version 1");
                 }
             }
         });
-        // Refresh main activity upon close of dialog box
-//        Intent refresh =new Intent(this, MainActivity.class);
-//        startActivity(refresh);
-
-        //objPhotoDatabase = new PhotoDatabase(this);
-        //objQandR = new QuestionAndResponseDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
-        //objShortCon = new ShortConDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
-        //objIncomplete = new IncompleteDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
-        //objReading = new ReadingComprehensionDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
-        //objReadingPractice = new ReadingComprehensionDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
-        //objShortTalkScript = new ShortTalkDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
-        //objShortTalkQuestion = new ShortTalkDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
-        //objTextCompletionScript = new TextCompletionDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
-        //objTextCompletionQuestion = new TextCompletionDatabase(this, Global.basedir.toString() + "/V1/TOEIC.db");
-
-
-        //if (pathdatabaseV1.exists() && pathdatabaseV1.isDirectory()) {
-        //objMyDatabase = new MyDatabase(this, basedir.toString() + "/V1/TOEIC.db");
-        //Toast.makeText(getBaseContext(),"V1",Toast.LENGTH_SHORT).show();
-
     }
 
-
-    //File pathdatabaseV2 = new File(basedir.toString() + "/V2/TOEIC.db");
-    //File pathdatabaseV1 = new File(basedir.toString() + "/V1/TOEIC.db");
-    //if (pathdatabaseV2.exists() && pathdatabaseV2.isDirectory()) {
-
-    //if (pathdatabaseV1.exists() && pathdatabaseV1.isDirectory()) {
-    //Global.objMyDatabase = new MyDatabase(this, basedir.toString() + "/V1/TOEIC.db");
-    //} else {
-    //   Global.objMyDatabase = new MyDatabase(this, basedir.toString() + "/V2/TOEIC.db");
-    //}
-
-    //}
-
-    //if V1
-    //objMyDatabase = new MyDatabase(this, basedir.toString()+"/V2/TOEIC.db");
-    //if V2
-    //objMyDatabase = new MyDatabase(this, basedir.toString()+"/V1/TOEIC.db");
-
-
-    //AddValues();
-    //AddValuesToQandR();
-    //AddValuesToShortConversation();
-    //addValuesShortTalkScript();
-    //addValuesShortTalkQuestion();
-    //AddValuesToIncompleteSentence();
-    //addValuesTextCompletionScript();
-    //addValuesTextCompletionQuestion();
-    //addValuesReadingComprehensionScript();
-
-
-    //TEST
-
-    //AddValuesToPhotosTest();
-    //AddValuesToQandRTest();
-    //AddValuesToShortConTest();
-    //AddValuesToShortTalkTest();
-    //AddValuesToIncompleteSentenceTest();
-    //AddValuesToTextCompletionTest();
-    //AddValuesToReadingComprehensionTest();
-
-
     @Override
+
+    //สร้าง method ชื่อ onCreateDialog มี parameter ชื่อ id ชนิด int
     protected Dialog onCreateDialog(int id) {
+        //สร้างเงื่อนไขหลัก โดย อิง parameter ชื่อ id
         switch (id) {
+            //ถ้า progress_bar_type เป็น 0
             case progress_bar_type: // we set this to 0
+                //สร้าง ProgressDialog ใหม่
                 pDialog = new ProgressDialog(this);
+                //สร้างข้อความใน Dialog Downloading file. Please wait...
                 pDialog.setMessage("Downloading file. Please wait...");
                 pDialog.setIndeterminate(false);
+                //สร้างค่าสูงสุดอยู่ที่ 100
                 pDialog.setMax(100);
+                //กำหนด style ให้ dialog เป็นแบบ horizontal
                 pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                //กำหนดให้ปิด dialog ได้
                 pDialog.setCancelable(true);
+                //แสดง dialog
                 pDialog.show();
+                //คืนค่า dialog
                 return pDialog;
+            //กำหนดค่าเดิม
             default:
+                //คืนค่าเป็น null
                 return null;
         }
     }
@@ -260,12 +201,14 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Background Async Task to download file
      */
+    //สร้าง class ชื่อ DownloadFileFromURL และมีการใช้ class AsyncTask
     public class DownloadFileFromURL extends AsyncTask<String, String, String> {
 
         /**
          * Before starting background thread Show Progress Bar Dialog
          */
         @Override
+        //สร้าง method onPreExecute คือเมื่อเริ่มทำงานให้ show dialog
         protected void onPreExecute() {
             super.onPreExecute();
             showDialog(progress_bar_type);
@@ -275,11 +218,17 @@ public class MainActivity extends AppCompatActivity {
          * Downloading file in background thread
          */
         @Override
+        //สร้าง method doInBackground คือ ให้ทำการดาวโหลดไฟล์โดยอ้างอิงจาก url ข้างต้น
         protected String doInBackground(String... f_url) {
+            //สร้างตัวแปป ชนิด int ชื่อ count
             int count;
+            //สร้างตัวตรวจสอบ try catch คือถ้าโค๊ดใน try ไม่มีปัญหาก็จะทำงานตามปกติ
             try {
+                //สร้างตัวแปร ชนิด URL ชื่อ url อ้างอิง paremeter f_url
                 URL url = new URL(f_url[0]);
+                //ให้ตัวแปร url เปิด connection และเก็บไว้ในตัวแปร conection
                 URLConnection conection = url.openConnection();
+                //ให้ conection ทำการเชื่อมต่อ
                 conection.connect();
 
                 // this will be useful so that you can show a tipical 0-100%
@@ -290,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
                 InputStream input = new BufferedInputStream(url.openStream(),
                         8192);
 
-                // Output stream
+                // Output stream คือ กำหนดตำแหน่งไฟล์ที่ทำการดาวโหลดมา
                 OutputStream output = new FileOutputStream(Environment.getExternalStorageDirectory()
                         + "/V1.zip");
 
@@ -315,20 +264,20 @@ public class MainActivity extends AppCompatActivity {
                 output.close();
                 input.close();
 
+                //กำหนด path สำหรับระบุตำแหน่งของไฟล์หลังจาก unzip
                 File dir2 = new File(Global.BaseDir + "/V2.zip");
                 File dir1 = new File(Global.BaseDir + "/V1.zip");
 
+                //สร้างเงื่อนไขว่าถ้าตรวจพบไฟล์ dirV2 ให้ทำการเรียกใช้คลาส DecompressFast เพื่อ unzip ไฟล์
                 if (dir2.exists()) {
                     DecompressFast decompressFast = new DecompressFast(zipFile2, unzipLocation2);
                     decompressFast.unzip();
+                    //สร้างเงื่อนไขว่าถ้าตรวจพบไฟล์ dirV1 ให้ทำการเรียกใช้คลาส DecompressFast เพื่อ unzip ไฟล์
                 } else if (dir1.exists()) {
                     DecompressFast decompressFast = new DecompressFast(zipFile, unzipLocation);
                     decompressFast.unzip();
-
                 }
-
-                //DecompressFast decompressFast = new DecompressFast(zipFile, unzipLocation);
-                //decompressFast.unzip();
+                //โค๊ตเกิด error ให้ แสดง Log เพื่อที่จะตรวจสอบ error ได้
             } catch (Exception e) {
                 Log.e("Error: ", e.getMessage());
             }
@@ -355,109 +304,107 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //สร้าง class onBackPressed เพื่อ ตรวจสอบการกดปุ่ม back ของตัว system
     public void onBackPressed() {
+        //สร้าง alertDialog
         new AlertDialog.Builder(this)
+                //กำหนด title ให้กับ dialog
                 .setTitle("Stop the app?")
+                //กำหนดข้อความ ให้กับ dialog
                 .setMessage("Are you sure you want to exit?")
+                //เพิ่มปุ่ม ok ให้กับ dialog
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //finish activity
+                        //เมื่อกด ok ให้จบการทำงานของ application
                         finish();
                         moveTaskToBack(true);
                     }
                 })
+                //เพิ่มปุ่ม cancel ให้กับ dialog เมื่อกดจะอยู่ที่หน้าเดิม
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
                     }
                 })
+                //กำหนดไอคอนให้กับ dialog
                 .setIcon(android.R.drawable.ic_dialog_alert)
+                //โชว dialog
                 .show();
     }
 
+    //สร้าง class DecompressFast
     class DecompressFast {
+        //สร้างตัวแปร ชนิด string ชื่อ _zipFile
         private String _zipFile;
+        //สร้างตัวแปร ชนิด string ชื่อ _location
         private String _location;
 
-
+        //เรียกใช้คลาส DecompressFast
         public DecompressFast(String zipFile, String location) {
+            //กำหนดให้ _zipFile เก็บ zipFile
             _zipFile = zipFile;
+            //กำหนดให้ _location เก็บ location
             _location = location;
             _dirChecker("");
         }
 
+        //สร้าง method unzip
         public void unzip() {
             try {
+                //รับข้อมูลจากไฟล์
                 FileInputStream fin = new FileInputStream(_zipFile);
+                //รับข้อแบบ zip ไฟล์
                 ZipInputStream zin = new ZipInputStream(fin);
+                //กำหนดให้ ZipEntry มีค่าเป็น null
                 ZipEntry ze = null;
+                //สร้างลูป while ถ้า ze ค่าไม่ใช่ null ให้
                 while ((ze = zin.getNextEntry()) != null) {
+                    //แสดงค่า log
                     Log.v("Decompress", "Unzipping " + ze.getName());
+                    //สร้างเงื่อนไขว่า ถ้า ze มีอยู่ใน Directory ให้ _dirChecker มีค่าเป็น ชื่อ zipentry
                     if (ze.isDirectory()) {
                         _dirChecker(ze.getName());
+                        //ถ้า ze ไม่อยู่ใน Directory ให้
                     } else {
+                        //ส่งข้อมูลชนิด file ไปยัง location ที่กำหนด
                         FileOutputStream fout = new FileOutputStream(_location + ze.getName());
+                        //ขนาดข้อมูลที่ส่งไป
                         BufferedOutputStream bufout = new BufferedOutputStream(fout);
+                        //กำหนดขนาด buffer 1024 byte
                         byte[] buffer = new byte[1024];
+                        //สร้างตัวแปรชนิด int ชื่อ read มีค่าเท่ากับ 0
                         int read = 0;
+                        //สร้างลูป ถ้า read ไม่ใช่ -1 ให้
                         while ((read = zin.read(buffer)) != -1) {
+                            //เขียนไฟล์ลงใน location ที่กำหนด
                             bufout.write(buffer, 0, read);
                         }
+                        //หยุดการทำงาน หรือก็คือ แตกไฟล์เสร็จแล้ว
                         bufout.close();
                         zin.closeEntry();
                         fout.close();
 
                     }
                 }
+                //หยุดรับข้อมูล zip ไฟล์
                 zin.close();
                 Log.d("Unzip", "Unzipping compleate. path : " + _location);
 
+                //โค๊ตเกิด error ให้ แสดง Log เพื่อที่จะตรวจสอบ error ได้
             } catch (Exception e) {
                 Log.e("Decompress", "unzip", e);
                 Log.d("Unzip", "Unzipping failed");
             }
         }
 
+        //สร้าง metod _dirChecker ไว้เก็บตำแหน่งไฟล์
         private void _dirChecker(String dir) {
             File f = new File(_location + dir);
 
             if (!f.isDirectory()) {
                 f.mkdirs();
-            }
-        }
-    }
-
-    private class MyTask extends AsyncTask<String, Void, Boolean> {
-
-        @Override
-        protected void onPreExecute() {
-
-        }
-
-        @Override
-        protected Boolean doInBackground(String... params) {
-
-            try {
-                HttpURLConnection.setFollowRedirects(false);
-                HttpURLConnection con = (HttpURLConnection) new URL(params[0]).openConnection();
-                con.setRequestMethod("HEAD");
-                System.out.println(con.getResponseCode());
-                return (con.getResponseCode() == HttpURLConnection.HTTP_OK);
-            } catch (Exception e) {
-                e.printStackTrace();
-                return false;
-            }
-        }
-
-        @Override
-        protected void onPostExecute(Boolean result) {
-            boolean bResponse = result;
-            if (bResponse == true) {
-                Toast.makeText(MainActivity.this, "New Update", Toast.LENGTH_LONG).show();
-            } else {
-//                Toast.makeText(MainActivity.this, "File does not exist!", Toast.LENGTH_LONG).show();
             }
         }
     }

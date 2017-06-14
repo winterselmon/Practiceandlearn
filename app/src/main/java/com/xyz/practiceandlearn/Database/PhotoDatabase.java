@@ -12,11 +12,14 @@ import java.io.File;
  * Created by 10.10 on 1/16/2017.
  */
 
+//สร้าง class PhotoDatabase เพื่อ เพิ่มข้อมูลลงในตาราง และ ควบคุมการใช้งาน database ตารางนี้
 public class PhotoDatabase {
 
     private MyDatabase objMyDatabase;
     private SQLiteDatabase writeSQLite , readSQLite;
 
+    //ส่วนประกอบของตาราง database ตารางนี้
+    //practice
     public static final String PHOTOGRAPHS_QUESTION = "PhotographsQuestion";
     public static final String COLUMN_ID_PHOTO_QUESTION = "Id_photo_question";
     public static final String COLUMN_PHOTO_ANSWER = "Photo_answer";

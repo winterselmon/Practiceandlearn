@@ -10,6 +10,7 @@ import java.io.File;
  * Created by 10.10 on 1/16/2017.
  */
 
+//สร้าง class MyDatabase เพื่อไว้ สร้างตาราง database และไว้เพื่อควบคุมการเรียกใช้ database
 public class MyDatabase extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "TOEIC.db";
@@ -52,44 +53,12 @@ public class MyDatabase extends SQLiteOpenHelper {
 
     public MyDatabase(Context context, File dbname) {
         super(context, String.valueOf(dbname), null, DATABASE_VERSION);
-        //basedir.toString()+"/V1/TOEIC.db"
-        //super(context,"/storage/sdcard/sdcard/V1/TOEIC.db", null, DATABASE_VERSION);
+
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        //sqLiteDatabase.execSQL(PHOTOGRAPHS_QUESTION);
-        //sqLiteDatabase.execSQL(PHOTOGRAPHS_CHOICE);
-        //sqLiteDatabase.execSQL(QUESTIONANDRESPONSE_QUESTION);
-        //sqLiteDatabase.execSQL(QUESTIONANDRESPONSE_CHOICE);
-        //sqLiteDatabase.execSQL(SHORTCONVERSATION_SCRIPT);
-        //sqLiteDatabase.execSQL(SHORTCONVERSATION_QUESTION);
-        //sqLiteDatabase.execSQL(INCOMPLETE_SENTENCE_QUESTION);
-        //sqLiteDatabase.execSQL(INCOMPLETE_SENTENCE_CHOICE);
-        //sqLiteDatabase.execSQL(READING_COMPREHENSION_SCRIPT);
-        //sqLiteDatabase.execSQL(READING_COMPREHENSION_QUESTION);
-        //sqLiteDatabase.execSQL(SHORTTALK_SCRIPT);
-        //sqLiteDatabase.execSQL(SHORTTALK_QUESTION);
-        //sqLiteDatabase.execSQL(TEXTCOMPLETION_SCRIPT);
-        //sqLiteDatabase.execSQL(TEXTCOMPLETION_QUESTION);
-
-
-        //TEST
-        //sqLiteDatabase.execSQL(PHOTOGRAPHS_QUESTION_TEST);
-        //sqLiteDatabase.execSQL(PHOTOGRAPHS_CHOICE_TEST);
-        //sqLiteDatabase.execSQL(QUESTIONANDRESPONSE_QUESTION_TEST);
-        //sqLiteDatabase.execSQL(QUESTIONANDRESPONSE_CHOICE_TEST);
-        //sqLiteDatabase.execSQL(SHORTCONVERSATION_SCRIPT_TEST);
-        //sqLiteDatabase.execSQL(SHORTCONVERSATION_QUESTION_TEST);
-        //sqLiteDatabase.execSQL(INCOMPLETE_SENTENCE_QUESTION_TEST);
-        //sqLiteDatabase.execSQL(INCOMPLETE_SENTENCE_CHOICE_TEST);
-        //sqLiteDatabase.execSQL(READING_COMPREHENSION_SCRIPT_TEST);
-        //sqLiteDatabase.execSQL(READING_COMPREHENSION_QUESTION_TEST);
-        //sqLiteDatabase.execSQL(SHORTTALK_SCRIPT_TEST);
-        //sqLiteDatabase.execSQL(SHORTTALK_QUESTION_TEST);
-        //sqLiteDatabase.execSQL(TEXTCOMPLETION_SCRIPT_TEST);
-        //sqLiteDatabase.execSQL(TEXTCOMPLETION_QUESTION_TEST);
     }
 
     @Override
