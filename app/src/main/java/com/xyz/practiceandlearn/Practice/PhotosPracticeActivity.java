@@ -66,8 +66,6 @@ public class PhotosPracticeActivity extends AppCompatActivity {
     private MediaPlayer mPlayer, soundtrue, soundwrong;
     String correctAnswer;
 
-    private static final String TAG = "PhotosPracticeActivity";
-
     //เมื่อ เข้าสู่ activity นี้ ให้....
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,8 +148,11 @@ public class PhotosPracticeActivity extends AppCompatActivity {
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        //กำหนดตัวแปร ชนืด Intent ชื่อ intent ให้เปลี่ยน activity จาก PhotosPracticeActivity ไปยัง MainActivity
                         Intent intent = new Intent(PhotosPracticeActivity.this, MainActivity.class);
+                        //เริ่มการเปลี่ยน activity
                         startActivity(intent);
+                        //หยุดเล่นเสียง
                         mPlayer.stop();
 
                     }
@@ -167,7 +168,6 @@ public class PhotosPracticeActivity extends AppCompatActivity {
                 //แสดง dialog
                 .show();
     }
-    //method back
     private void back() {
 
         //สร้างตัวแปรชนิด button อ้างอิงจาก id btnBack
@@ -206,9 +206,9 @@ public class PhotosPracticeActivity extends AppCompatActivity {
 
     //สร้าง method next
     private void next() {
-        //สร้างตัวแปรชนิด button อ้างอิง id btnNext
+        //สร้างตัวแปรชนิด button ชื่อ btnNext
         Button btnNext = (Button) findViewById(R.id.btnNext);
-        //ตรวจสอบการกดปุ่ม เมื่อกดปุ่ม ให้..
+        //ตรวจสอบการกดปุ่ม เมื่อกดปุ่ม ให้
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -260,7 +260,7 @@ public class PhotosPracticeActivity extends AppCompatActivity {
         } else {
             return;
         }
-        //สร้าง mplayer ใหม่
+        //สส้าง class MediaPlayer  ใหม่
         mPlayer = new MediaPlayer();
         try {
             //ระบุตำแหน่งที่เก็บไฟล์

@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //กำหนดตัวแปร ชนืด Intent ชื่อ intent ให้เปลี่ยนจากหน้า mainActivity ไปยังหน้า PracticeListActivity
+                //กำหนดตัวแปร ชนืด Intent ชื่อ intent ให้เปลี่ยน activity mainActivity ไปยัง PracticeListActivity
                 Intent intent = new Intent(MainActivity.this, PracticeListActivity.class);
                 //เริ่มการเปลี่ยน activity
                 startActivity(intent);
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //กำหนดตัวแปร ชนืด Intent ชื่อ intent ให้เปลี่ยนจากหน้า mainActivity ไปยังหน้า DescriptionPhotoActivity
+                //กำหนดตัวแปร ชนืด Intent ชื่อ intent ให้เปลี่ยน activity mainActivity ไปยัง DescriptionPhotoActivity
                 Intent intent = new Intent(MainActivity.this, DescriptionPhotoActivity.class);
                 //เริ่มการเปลี่ยน activity
                 startActivity(intent);
